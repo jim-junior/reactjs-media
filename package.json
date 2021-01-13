@@ -1,26 +1,33 @@
 {
-  "name": "react-media",
-  "version": "1.0.0",
-  "description": "A package for all media components in react. Video and Audio",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jimjunior44/react-media.git"
-  },
-  "keywords": [
-    "react",
-    "react-media",
-    "video",
-    "audio",
-    "react-audio"
-  ],
-  "author": "Beingana Jim Junior",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jimjunior44/react-media/issues"
-  },
-  "homepage": "https://github.com/jimjunior44/react-media#readme"
+	"name": "react-media",
+	"version": "1.0.0",
+	"description": "A package for all media components in react. Video and Audio",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"peerDependencies": {
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1"
+	},
+	"dependencies": {
+		"react-icons": "^4.1.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jimjunior44/react-media.git"
+	},
+	"keywords": [
+		"react",
+		"react-media",
+		"video",
+		"audio",
+		"react-audio"
+	],
+	"author": "Beingana Jim Junior",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jimjunior44/react-media/issues"
+	},
+	"homepage": "https://github.com/jimjunior44/react-media#readme"
 }
