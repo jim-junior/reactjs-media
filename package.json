@@ -1,5 +1,5 @@
 {
-	"name": "react-media",
+	"name": "reactjs-media",
 	"version": "1.0.0",
 	"description": "A package for all media components in react. Video and Audio",
 	"main": "index.js",
@@ -15,7 +15,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jimjunior44/react-media.git"
+		"url": "git+https://github.com/jimjunior44/reactjs-media.git"
 	},
 	"keywords": [
 		"react",
@@ -27,7 +27,7 @@
 	"author": "Beingana Jim Junior",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/jimjunior44/react-media/issues"
+		"url": "https://github.com/jimjunior44/reactjs-media/issues"
 	},
-	"homepage": "https://github.com/jimjunior44/react-media#readme"
+	"homepage": "https://github.com/jimjunior44/reactjs-media#readme"
 }
