@@ -1,10 +1,13 @@
 .one {
-  width: 500px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 100%;
+  height: 100%;
   color: blue;
+  background: black;
   position: relative;
+}
+
+.one:hover .video-react-lower-bar {
+  opacity: 1;
 }
 
 .progress-video-react {
@@ -32,8 +35,7 @@
   width: 0px;
   height: 0px;
   border-radius: 50%;
-  border: #006eff 0.5px solid;
-  background-color: white;
+  background-color: aqua;
 }
 
 .progress-video-react .point:hover {
@@ -49,8 +51,40 @@
 }
 
 .progress-video-react:hover .point {
-  width: 10px;
+  width: 1px;
   height: 10px;
+}
+
+.video-react-loading {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.089);
+  border: white 2px solid;
+  border-top: blue 2px solid;
+  width: 50px;
+  top: 33.33%;
+  left: 43.33%;
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  position: absolute;
+  /* margin: auto;
+	margin-top: auto;
+	margin-bottom: auto; */
+}
+
+@-webkit-keyframes loading {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 .video-react-lower-bar {
@@ -58,9 +92,12 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  padding: 0.5rem 0.3rem;
+  margin: 0.5rem 0.3rem;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.404)), color-stop(rgba(0, 0, 0, 0.589)), to(rgba(0, 0, 0, 0.863)));
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.863));
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  opacity: 0;
 }
 
 .one > video {
@@ -70,7 +107,7 @@
 }
 
 .video-react-controls > div {
-  width: 50px;
+  width: 45%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -83,6 +120,7 @@
 
 .video-react-controls > div svg {
   margin-top: auto;
+  width: 100%;
   margin-bottom: auto;
 }
 
@@ -105,12 +143,23 @@
 
 .time-stamps .fullstime {
   margin-left: auto;
+  padding-right: 5px;
+}
+
+.time-stamps .current {
+  padding-left: 5px;
+}
+
+.video-react-more {
+  position: relative;
 }
 
 .video-react-play,
 .video-react-pause,
 .video-react-volume,
 .video-react-fullscreen,
+.video-react-rewind,
+.video-react-forward,
 .video-react-more {
   border: rgba(209, 208, 208, 0) 1px solid;
   -webkit-transition: all 0.3s;
@@ -123,6 +172,8 @@
 .video-react-pause:hover,
 .video-react-volume:hover,
 .video-react-fullscreen:hover,
+.video-react-rewind:hover,
+.video-react-forward:hover,
 .video-react-more:hover {
   border-top: rgba(209, 208, 208, 0.267) 1px solid;
   border-bottom: rgba(209, 208, 208, 0.267) 1px solid;
@@ -130,23 +181,82 @@
   color: aqua;
 }
 
+span.icon {
+  padding: 5px;
+  width: 30px;
+}
+
+.video-react-menu {
+  background-color: white;
+  width: 200px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  bottom: 101%;
+  padding: 0.3rem 5px;
+  font-size: 1rem;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+  border-radius: 5px;
+  right: 0px;
+  position: absolute;
+  color: black;
+}
+
+.list- {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list-:hover {
+  background: whitesmoke;
+}
+
 .video-react-volume {
   position: relative;
 }
 
+.video-react-volume .finnished {
+  background-color: aqua;
+  height: 100%;
+}
+
 .video-react-volume .volume-add {
   position: absolute;
-  top: -5px;
-  display: none;
-  width: 60px;
-  height: 3px;
-  background: white;
+  top: -2px;
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: white;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+.video-react-volume .volume-div {
+  width: 80px;
+  height: 2px;
+  background: white;
   border-radius: 5px;
 }
 
 .video-react-volume:hover .volume-add {
-  display: block;
+  opacity: 1;
 }
 /*# sourceMappingURL=Video.css.map */
