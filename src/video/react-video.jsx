@@ -7,7 +7,7 @@ import './Video.css'
 
 
 
-const ReactVideo = (props) => {
+export const ReactVideo = (props) => {
     const [playing, setplaying] = useState(false)
     const video = useRef(null)
     const div = useRef(null)
@@ -54,12 +54,18 @@ const ReactVideo = (props) => {
     function foward(e) {
         let x = 0.025 * video.current.duration
         video.current.currentTime += x
-        props.onFoward()
+        if (props.onFoward) {
+            props.onFoward()
+        }
+
     }
     function rewind(e) {
         let x = 0.05 * video.current.currentTime
         video.current.currentTime -= x
-        props.onRewind()
+        if (props.onRewind) {
+            props.onRewind()
+        }
+
     }
 
     function onSeek(e) {
@@ -72,7 +78,10 @@ const ReactVideo = (props) => {
 
         let perc = (x / offsetWidth) * 100
         setwidth(perc)
-        props.onSeek()
+        if (props.onSeek) {
+            props.onSeek()
+        }
+
     }
     function TimeUpdate(e) {
         const { currentTime } = video.current
@@ -87,7 +96,10 @@ const ReactVideo = (props) => {
             video.current.volume = 1
             setvwidth(100)
         }
-        props.onMute(mute)
+        if (props.onMute) {
+            props.onMute(mute)
+        }
+
     }
 
     function calcTime(d) {
@@ -249,4 +261,3 @@ ReactVideo.propTypes = {
     onPause: PropTypes.func,
     onEnterFullScreen: PropTypes.func
 }
-export default ReactVideo;

@@ -1,4 +1,6 @@
 # Reactjs Media 
+__Note:__ We recommend installing `v1.1.2` and above.
+
 
 The reactjs media is a react package with awesome HTMLMediaElements that are recreated into react components.
 It is developed by [Beingana Jim Junior](https://www.twitter.com/_jimjunior_) a front end Developer. The source code can be found on [Github](https://github.com/jimjunior44/reactjs-media)
