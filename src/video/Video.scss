@@ -91,9 +91,10 @@
 	text-align: center;
 	padding-top: 5px;
 	svg {
-		margin-top: auto;
-		width: 100%;
-		margin-bottom: auto;
+		margin-top: auto !important;
+		width: 100% !important;
+		height: fit-content !important;
+		margin-bottom: auto !important;
 	}
 }
 .video-react-controls {

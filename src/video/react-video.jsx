@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react'
 import './Video.css'
-import * as icons from 'react-icons/md'
-import * as icon from 'react-icons/ai'
+import {MdPause, MdPlayArrow, MdFastRewind, MdFastForward, MdVolumeUp, MdBrandingWatermark, MdVolumeDown, MdVolumeMute, MdVolumeOff} from 'react-icons/md'
+import { AiOutlineEllipsis, AiOutlineFullscreen} from 'react-icons/ai'
 
 /* 
     offsetWidth: Is the fullwidth
@@ -133,7 +133,10 @@ const ReactVideo = (props) => {
             setstate('')
             
         }
-        props.onTimeUpdate(e, currentTime, w)
+        if (props.onTimeUpdate) {
+            props.onTimeUpdate(e, currentTime, w)
+        }
+        
 
     }
 
@@ -142,16 +145,25 @@ const ReactVideo = (props) => {
         video.current.play()
         setplaying(true)
         console.log(vc.currentTime)
-        props.onPlay(e)
+        
+        if (props.onPlay) {
+            props.onPlay(e)
+        }
     }
     const pause = (e) => {
         video.current.pause()
         setplaying(false)
-        props.onPause(e)
+        if (props.onPause) {
+            props.onPause(e)
+        }
+        
     }
     const enterFullScreen = (e) => {
         video.current.requestFullscreen()
-        props.onEnterFullScreen(e)
+        if (props.onEnterFullScreen) {
+            props.onEnterFullScreen(e)
+        }
+        
     }
     return (
         <div>
@@ -175,11 +187,11 @@ const ReactVideo = (props) => {
                     <div className="fullstime">{total}</div>
                 </div>
                 <div className="video-react-controls">
-                    {playing ? <div className="video-react-pause" onClick={pause}><icons.MdPause /></div>: 
-                    <div className="video-react-play" onClick={play}><icons.MdPlayArrow /></div>
+                    {playing ? <div className="video-react-pause" onClick={pause}><MdPause /></div>: 
+                    <div className="video-react-play" onClick={play}><MdPlayArrow /></div>
             }
-                    <div className="video-react-rewind" onClick={rewind}><icons.MdFastRewind /></div>
-                    <div className="video-react-forward" onClick={foward}><icons.MdFastForward /></div>
+                    <div className="video-react-rewind" onClick={rewind}><MdFastRewind /></div>
+                    <div className="video-react-forward" onClick={foward}><MdFastForward /></div>
                     <div className="video-react-pro"></div>
                     <div className="video-react-pro"></div>
                     <div className="video-react-volume"><div className="volume-add">
@@ -190,20 +202,20 @@ const ReactVideo = (props) => {
                             </div></div>{video.current ? <>
                     {
                     video.current.volume === 0 ?
-                        <icons.MdVolumeOff onClick={Mute}  />: 
+                        <MdVolumeOff onClick={Mute}  />: 
                         <>
-                            {video.current.volume < 0.3 ? <><icons.MdVolumeMute onClick={Mute} /></> : 
-                                <>{video.current.volume < 0.7 ? <><icons.MdVolumeDown onClick={Mute} /></>:
-                                <icons.MdVolumeUp onClick={Mute} />}</>
+                            {video.current.volume < 0.3 ? <><MdVolumeMute onClick={Mute} /></> : 
+                                <>{video.current.volume < 0.7 ? <><MdVolumeDown onClick={Mute} /></>:
+                                <MdVolumeUp onClick={Mute} />}</>
                             }</>
                     }</> :<></>}</div>
-                    <div className="video-react-fullscreen" onClick={enterFullScreen}><icon.AiOutlineFullscreen /></div>
+                    <div className="video-react-fullscreen" onClick={enterFullScreen}><AiOutlineFullscreen /></div>
                     <div className="video-react-more"><div style={more ? {
                         transform: 'scale(1)',
 	                    opacity: 1
                     } : {}} className="video-react-menu">
                         <div className="list-" onClick={pp}>
-                            <span className="icon"><icons.MdBrandingWatermark /></span>
+                            <span className="icon"><MdBrandingWatermark /></span>
                             <span className="text">Picture In Picture</span>
                         </div>
                         <div className="list-">
@@ -214,7 +226,7 @@ const ReactVideo = (props) => {
                             <span className="icon"></span>
                             <span className="text"></span>
                         </div>
-                    </div><icon.AiOutlineEllipsis onClick={mm} /></div>
+                    </div><AiOutlineEllipsis onClick={mm} /></div>
                     
                 </div>
             </div>

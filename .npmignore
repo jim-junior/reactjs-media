@@ -1,6 +1,6 @@
 node_modules
 src
-webpack.config.js
+rollup.config.js
 .babelrc
 .eslintrc.js
 comand.txt
