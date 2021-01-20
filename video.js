@@ -1,11 +1,14 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var _regeneratorRuntime = require('@babel/runtime/regenerator');
 var _asyncToGenerator = require('@babel/runtime/helpers/asyncToGenerator');
 var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
 var React = require('react');
 var md = require('react-icons/md');
 var ai = require('react-icons/ai');
+var PropTypes = require('prop-types');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -13,6 +16,7 @@ var _regeneratorRuntime__default = /*#__PURE__*/_interopDefaultLegacy(_regenerat
 var _asyncToGenerator__default = /*#__PURE__*/_interopDefaultLegacy(_asyncToGenerator);
 var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 
 var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
 
@@ -35,45 +39,40 @@ var ReactVideo = function ReactVideo(props) {
   var div = React.useRef(null);
   var vdiv = React.useRef(null);
 
-  var _useState3 = React.useState({}),
+  var _useState3 = React.useState('00:00'),
       _useState4 = _slicedToArray__default['default'](_useState3, 2),
-      vc = _useState4[0],
-      setvc = _useState4[1];
+      total = _useState4[0],
+      settotlat = _useState4[1];
 
-  var _useState5 = React.useState('00:00'),
+  var _useState5 = React.useState(0),
       _useState6 = _slicedToArray__default['default'](_useState5, 2),
-      total = _useState6[0],
-      settotlat = _useState6[1];
+      state = _useState6[0],
+      setstate = _useState6[1];
 
   var _useState7 = React.useState(0),
       _useState8 = _slicedToArray__default['default'](_useState7, 2),
-      state = _useState8[0],
-      setstate = _useState8[1];
+      width = _useState8[0],
+      setwidth = _useState8[1];
 
   var _useState9 = React.useState(0),
       _useState10 = _slicedToArray__default['default'](_useState9, 2),
-      width = _useState10[0],
-      setwidth = _useState10[1];
+      vwidth = _useState10[0],
+      setvwidth = _useState10[1];
 
-  var _useState11 = React.useState(0),
+  var _useState11 = React.useState(false),
       _useState12 = _slicedToArray__default['default'](_useState11, 2),
-      vwidth = _useState12[0],
-      setvwidth = _useState12[1];
+      mute = _useState12[0],
+      setmute = _useState12[1];
 
   var _useState13 = React.useState(false),
       _useState14 = _slicedToArray__default['default'](_useState13, 2),
-      mute = _useState14[0],
-      setmute = _useState14[1];
+      more = _useState14[0],
+      setmore = _useState14[1];
 
-  var _useState15 = React.useState(false),
+  var _useState15 = React.useState('00:00'),
       _useState16 = _slicedToArray__default['default'](_useState15, 2),
-      more = _useState16[0],
-      setmore = _useState16[1];
-
-  var _useState17 = React.useState('00:00'),
-      _useState18 = _slicedToArray__default['default'](_useState17, 2),
-      ct = _useState18[0],
-      setcurrenttime = _useState18[1];
+      ct = _useState16[0],
+      setcurrenttime = _useState16[1];
 
   React.useEffect(function () {
     function work() {
@@ -104,10 +103,9 @@ var ReactVideo = function ReactVideo(props) {
                   }, 5000);
                 }
 
-                setvc(video.current);
                 settotlat(calcTime(duration));
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -227,7 +225,10 @@ var ReactVideo = function ReactVideo(props) {
 
   function pp() {
     video.current.requestPictureInPicture();
-    props.onRequestPictureInPicture();
+
+    if (props.onRequestPictureInPicture) {
+      props.onRequestPictureInPicture();
+    }
   }
 
   function timeChanging(e) {
@@ -249,7 +250,6 @@ var ReactVideo = function ReactVideo(props) {
   var play = function play(e) {
     video.current.play();
     setplaying(true);
-    console.log(vc.currentTime);
 
     if (props.onPlay) {
       props.onPlay(e);
@@ -277,6 +277,13 @@ var ReactVideo = function ReactVideo(props) {
     className: "one"
   }, /*#__PURE__*/React__default['default'].createElement("video", {
     ref: video,
+    autoPlay: props.autoPlay ? true : false,
+    onPause: function onPause() {
+      setplaying(false);
+    },
+    onPlay: function onPlay() {
+      setplaying(true);
+    },
     poster: props.poster,
     className: "video-react",
     onTimeUpdate: function onTimeUpdate(e) {
@@ -384,7 +391,21 @@ var ReactVideo = function ReactVideo(props) {
     onClick: mm
   }))))));
 };
-/* 
+ReactVideo.propTypes = {
+  src: PropTypes__default['default'].string.isRequired,
+  poster: PropTypes__default['default'].string,
+  autoPlay: PropTypes__default['default'].bool,
+  onFoward: PropTypes__default['default'].func,
+  onRewind: PropTypes__default['default'].func,
+  onSeek: PropTypes__default['default'].func,
+  onMute: PropTypes__default['default'].func,
+  onRequestPictureInPicture: PropTypes__default['default'].func,
+  onTimeUpdate: PropTypes__default['default'].func,
+  onPlay: PropTypes__default['default'].func,
+  onPause: PropTypes__default['default'].func,
+  onEnterFullScreen: PropTypes__default['default'].func
+};
+/*
 props.onFoward()
 props.onRewind()
 props.onSeek()
@@ -396,4 +417,4 @@ props.onPause(e)
 props.onEnterFullScreen(e)
 */
 
-module.exports = ReactVideo;
+exports.ReactVideo = ReactVideo;

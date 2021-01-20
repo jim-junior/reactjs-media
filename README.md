@@ -20,7 +20,7 @@ In here we shall show a small demo on how to setup a simple video component. We 
 
 ```jsx
 import React from 'react';
-import { ReactVideo } from 'reactjs-media';
+import { ReactVideo } from 'reactjs-media/video';
 
 const App = () => {
     return (
@@ -48,5 +48,5 @@ The above code will create a video componet that looks like this:
 
 ![ReactJS Video](./docs/Capture.PNG)
 
-The video component can be customised and there are a vriety of hooks to use it. You can find them in the official [Documentation](https://blurify.ml/projects/reactjs-video/docs "Documentation").
+The video component can be customised and there are a vriety of hooks to use it. You can find them in the official [Documentation](https://blurify.ml/projects/reactjs-video "Documentation").
 
