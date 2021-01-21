@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { MdPause, MdPlayArrow, MdFastRewind, MdFastForward, MdVolumeUp, MdBrandingWatermark, MdVolumeDown, MdVolumeMute, MdVolumeOff } from 'react-icons/md'
 import { AiOutlineEllipsis, AiOutlineFullscreen } from 'react-icons/ai'
 import PropTypes from 'prop-types';
@@ -12,32 +12,11 @@ export const ReactVideo = (props) => {
     const video = useRef(null)
     const div = useRef(null)
     const vdiv = useRef(null)
-    const [total, settotlat] = useState('00:00')
-    const [state, setstate] = useState(0)
     const [width, setwidth] = useState(0)
     const [vwidth, setvwidth] = useState(0)
     const [mute, setmute] = useState(false)
     const [more, setmore] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
-
-    useEffect(() => {
-        async function work() {
-            const { duration } = await video.current
-            if (isNaN(duration)) {
-                setTimeout(() => {
-
-                    setstate('')
-                }, 5000);
-                setTimeout(() => {
-
-                    setstate('')
-                }, 5000);
-            }
-            settotlat(calcTime(duration))
-
-        }
-        work()
-    }, [state])
     const mm = () => {
         setmore(!more)
     }
@@ -119,9 +98,9 @@ export const ReactVideo = (props) => {
         if (f < 10) {
             f = `0${f}`
         }
-        if (h < 0) {
+        if (h <= 0) {
             h = ``
-        } else if (h < 10) {
+        } else if (h < 10 && h > 0) {
             h = `0${h}:`
         }
 
@@ -137,11 +116,6 @@ export const ReactVideo = (props) => {
         const { currentTime, duration } = video.current
         const w = (currentTime / duration) * 100
         setwidth(w)
-        if (total === '00:00') {
-
-            setstate('')
-
-        }
         if (props.onTimeUpdate) {
             props.onTimeUpdate(e, currentTime, w)
         }
@@ -175,7 +149,7 @@ export const ReactVideo = (props) => {
     }
     return (
         <div>
-            <section className="one"  >
+            <section className={`one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 ${props.className}`}  >
                 <video ref={video} autoPlay={props.autoPlay ? true : false} onPause={() => {
                     setplaying(false)
                 }} onPlay={() => {
@@ -189,14 +163,14 @@ export const ReactVideo = (props) => {
                 {video.current ? <>
                     {video.current.seeking ?
                         <div className="video-react-loading"></div> : <></>}</> : <></>}
-                <div className="video-react-lower-bar">
+                <div className="video-react-lower-bar_dhhiahhbhhbhb3767d7637____u">
                     <div className="hundred"><div className="progress-video-react" ref={div} onClick={onSeek} >
                         <div className="finnished" style={{ width: `${width}%` }}></div>
                         <div className="point"></div>
                     </div></div>
                     <div className="time-stamps">
                         <div className="current">{ct}</div>
-                        <div className="fullstime">{total}</div>
+                        <div className="fullstime">{video.current ? calcTime(video.current.duration) : <></>}</div>
                     </div>
                     <div className="video-react-controls">
                         {playing ? <div className="video-react-pause" onClick={pause}><MdPause /></div> :
@@ -226,7 +200,7 @@ export const ReactVideo = (props) => {
                             transform: 'scale(1)',
                             opacity: 1
                         } : {}} className="video-react-menu">
-                            <div className="list-" onClick={pp}>
+                            <div className="list-" onGotPointerCapture={pp} >
                                 <span className="icon"><MdBrandingWatermark /></span>
                                 <span className="text">Picture In Picture</span>
                             </div>
@@ -251,6 +225,7 @@ ReactVideo.propTypes = {
     src: PropTypes.string.isRequired,
     poster: PropTypes.string,
     autoPlay: PropTypes.bool,
+    className: PropTypes.string,
     onFoward: PropTypes.func,
     onRewind: PropTypes.func,
     onSeek: PropTypes.func,
