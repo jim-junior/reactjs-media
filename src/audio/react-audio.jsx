@@ -31,8 +31,6 @@ export const ReactAudio = (props) => {
         const x = e.nativeEvent.layerX
         const { offsetWidth } = div.current
         const { duration } = audio.current
-        console.log(offsetWidth)
-        console.log(e)
 
         let time = (x / offsetWidth) * duration
         audio.current.currentTime = time

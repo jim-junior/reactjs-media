@@ -66,8 +66,6 @@
       var x = e.nativeEvent.layerX;
       var offsetWidth = div.current.offsetWidth;
       var duration = audio.current.duration;
-      console.log(offsetWidth);
-      console.log(e);
       var time = x / offsetWidth * duration;
       audio.current.currentTime = time;
       var perc = x / offsetWidth * 100;
