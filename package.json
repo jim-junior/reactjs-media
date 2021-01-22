@@ -17,9 +17,6 @@
 		"type": "git",
 		"url": "git+https://github.com/jimjunior44/reactjs-media.git"
 	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
 	"keywords": [
 		"react",
 		"media",
