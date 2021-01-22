@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { MdPause, MdPlayArrow, MdFastRewind, MdFastForward, MdVolumeUp, MdBrandingWatermark, MdVolumeDown, MdVolumeMute, MdVolumeOff } from 'react-icons/md'
+import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt } from 'react-icons/md'
 import { AiOutlineEllipsis, AiOutlineFullscreen } from 'react-icons/ai'
 import PropTypes from 'prop-types';
 import './Video.css'
@@ -11,6 +11,7 @@ export const ReactVideo = (props) => {
     const [playing, setplaying] = useState(false)
     const video = useRef(null)
     const div = useRef(null)
+    const sect = useRef(null)
     const vdiv = useRef(null)
     const [width, setwidth] = useState(0)
     const [vwidth, setvwidth] = useState(0)
@@ -61,6 +62,16 @@ export const ReactVideo = (props) => {
             props.onSeek()
         }
 
+    }
+    function addp() {
+        if (video.current.playbackRate <= 16) {
+            video.current.playbackRate += 1
+        }
+    }
+    function minusp() {
+        if (video.current.playbackRate > 0) {
+            video.current.playbackRate -= 1
+        }
     }
     function TimeUpdate(e) {
         const { currentTime } = video.current
@@ -141,7 +152,7 @@ export const ReactVideo = (props) => {
 
     }
     const enterFullScreen = (e) => {
-        video.current.requestFullscreen()
+        sect.current.requestFullscreen()
         if (props.onEnterFullScreen) {
             props.onEnterFullScreen(e)
         }
@@ -149,7 +160,9 @@ export const ReactVideo = (props) => {
     }
     return (
         <div>
-            <section className={`one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 ${props.className}`}  >
+            <section onContextMenu={(e) => {
+                e.preventDefault()
+            }} className={`one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 ${props.className}`} ref={sect} >
                 <video ref={video} autoPlay={props.autoPlay ? true : false} onPause={() => {
                     setplaying(false)
                 }} onPlay={() => {
@@ -196,26 +209,31 @@ export const ReactVideo = (props) => {
                                             }</>
                                 }</> : <></>}</div>
                         <div className="video-react-fullscreen" onClick={enterFullScreen}><AiOutlineFullscreen /></div>
-                        <div className="video-react-more"><div style={more ? {
+                        <div className="video-react-more" ><div style={more ? {
                             transform: 'scale(1)',
                             opacity: 1
                         } : {}} className="video-react-menu">
-                            <div className="list-" onGotPointerCapture={pp} >
-                                <span className="icon"><MdBrandingWatermark /></span>
+                            <div className="list-" onClick={pp} >
+                                <span className="icon"><MdPictureInPictureAlt /></span>
                                 <span className="text">Picture In Picture</span>
                             </div>
-                            <div className="list-">
-                                <span className="icon">16X</span>
-                                <span className="text">Playback Speed</span>
+                            <div className="list-1">
+                                <span className="icon" onClick={minusp} style={video.current ? video.current.playbackRate === 0 ?
+                                    { cursor: 'not-allowed' } : {} : {}
+                                }><MdRemove /></span>
+                                <span className="text">{video.current ? video.current.playbackRate : 0}</span>
+                                <span className="icon" onClick={addp}  ><MdAdd /></span>
                             </div>
-                            <div className="list-">
-                                <span className="icon"></span>
-                                <span className="text"></span>
-                            </div>
-                        </div><AiOutlineEllipsis onClick={mm} /></div>
+                        </div><AiOutlineEllipsis onContextMenu={(e) => {
+                            e.preventDefault()
+                        }} onClick={mm} /></div>
 
                     </div>
                 </div>
+
+
+
+
 
             </section>
         </div>

@@ -138,15 +138,15 @@
 }
 span.icon {
 	padding: 5px;
-	width: 30px;
+	font-size: 1rem;
 }
 .video-react-menu {
-	background-color: white;
-	width: 200px;
+	background-color: whitesmoke;
+	width: 150px;
 	height: fit-content;
 	bottom: 101%;
 	padding: 0.3rem 5px;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	transform: scale(0);
 	transition: all 0.4s ease-in-out;
 	opacity: 0;
@@ -154,12 +154,39 @@ span.icon {
 	right: 0px;
 	position: absolute;
 	color: black;
+	z-index: 3;
+	box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
 }
 .list- {
 	display: flex;
 	align-items: center;
+	.text {
+		margin-left: 10px;
+	}
 	&:hover {
-		background: whitesmoke;
+		background: gray;
+		color: white;
+	}
+	span.icon > svg {
+		font-size: 1.5rem;
+		width: 20px !important;
+		height: 20px !important;
+	}
+}
+.list-1 {
+	display: flex;
+	align-items: center;
+	span {
+		flex: 1;
+	}
+	.icon {
+		color: #006eff;
+		border-radius: 5px;
+		transition: all 0.2s ease-out;
+		&:hover {
+			background-color: gray;
+			color: white;
+		}
 	}
 }
 .video-react-volume {

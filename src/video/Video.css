@@ -186,18 +186,18 @@
 
 span.icon {
   padding: 5px;
-  width: 30px;
+  font-size: 1rem;
 }
 
 .video-react-menu {
-  background-color: white;
-  width: 200px;
+  background-color: whitesmoke;
+  width: 150px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   bottom: 101%;
   padding: 0.3rem 5px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   -webkit-transform: scale(0);
           transform: scale(0);
   -webkit-transition: all 0.4s ease-in-out;
@@ -207,6 +207,9 @@ span.icon {
   right: 0px;
   position: absolute;
   color: black;
+  z-index: 3;
+  -webkit-box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
+          box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
 }
 
 .list- {
@@ -218,8 +221,46 @@ span.icon {
           align-items: center;
 }
 
+.list- .text {
+  margin-left: 10px;
+}
+
 .list-:hover {
-  background: whitesmoke;
+  background: gray;
+  color: white;
+}
+
+.list- span.icon > svg {
+  font-size: 1.5rem;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.list-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list-1 span {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.list-1 .icon {
+  color: #006eff;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.list-1 .icon:hover {
+  background-color: gray;
+  color: white;
 }
 
 .video-react-volume {
