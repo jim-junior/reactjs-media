@@ -1,12 +1,14 @@
 import babel from '@rollup/plugin-babel';
 import styles from "rollup-plugin-styles";
+import sourcemaps from 'rollup-plugin-sourcemaps';
 
 const config =  [
   {
     input: "src/index.js",
     output: {
-      name: "reactjsvideo",
+      name: "reactjsmedia",
       dir: "lib",
+      sourcemap: true,
       format: "cjs",
       exports: "auto"
     },
@@ -17,6 +19,7 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
+      sourcemaps(),
       styles()
     ]
   },
@@ -24,6 +27,7 @@ const config =  [
     input: "src/video/react-video.jsx",
     output: {
       name: "reactjsvideo",
+      sourcemap: true,
       file: "video.js",
       format: "cjs"
     },
@@ -34,6 +38,7 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
+      sourcemaps(),
       styles()
     ]
   },
@@ -41,6 +46,7 @@ const config =  [
     input: "src/video/react-video.jsx",
     output: {
       name: "reactjsvideo",
+      sourcemap: true,
       file: "dist/video.esm.js",
       format: "esm"
     },
@@ -51,13 +57,15 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   },
   {
     input: "src/video/react-video.jsx",
     output: {
       name: "reactjsvideo",
+      sourcemap: true,
       file: "dist/video.umd.js",
       format: "umd"
     },
@@ -68,13 +76,15 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   },
   {
     input: "src/video/react-video.jsx",
     output: {
       name: "reactjsvideo",
+      sourcemap: true,
       file: "dist/video.cjs.js",
       format: "cjs"
     },
@@ -85,12 +95,14 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   },{
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "reactjsaudio",
+      sourcemap: true,
       file: "audio.js",
       format: "cjs"
     },
@@ -101,13 +113,15 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   },
   {
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "reactjsaudio",
+      sourcemap: true,
       file: "dist/audio.esm.js",
       format: "esm"
     },
@@ -118,13 +132,15 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   },
   {
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "reactjsaudio",
+      sourcemap: true,
       file: "dist/audio.umd.js",
       format: "umd"
     },
@@ -135,15 +151,17 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   },
   {
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "reactjsaudio",
       file: "dist/audio.cjs.js",
-      format: "cjs"
+      format: "cjs",
+      sourcemap: true
     },
     external: ["react", /@babel\/runtime/],
     plugins: [
@@ -152,7 +170,8 @@ const config =  [
         plugins: ['@babel/transform-runtime'],
         babelHelpers: 'runtime'
       }),
-      styles()
+      styles(),
+      sourcemaps()
     ]
   }
 ];
