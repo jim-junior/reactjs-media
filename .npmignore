@@ -5,3 +5,13 @@ rollup.config.js
 .eslintrc.js
 comand.txt
 
+.git
+CVS
+.svn
+.hg
+.lock-wscript
+.wafpickle-N
+.DS_Store
+npm-debug.log
+.npmrc
+config.gypi

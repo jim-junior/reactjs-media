@@ -31,7 +31,7 @@
 	"bugs": {
 		"url": "https://github.com/jimjunior44/reactjs-media/issues"
 	},
-	"homepage": "https://github.com/jimjunior44/reactjs-media#readme",
+	"homepage": "https://blurify.ml/projects/reactjs-media",
 	"devDependencies": {
 		"@babel/cli": "^7.12.10",
 		"@babel/core": "^7.12.10",
