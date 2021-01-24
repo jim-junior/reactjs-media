@@ -7,7 +7,6 @@ var _asyncToGenerator = require('@babel/runtime/helpers/asyncToGenerator');
 var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
 var React = require('react');
 var md = require('react-icons/md');
-var ai = require('react-icons/ai');
 var PropTypes = require('prop-types');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -20,7 +19,7 @@ var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 
 var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
 
-var css = ".one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 {\n  width: 100%;\n  height: 100%;\n  color: blue;\n  background: black;\n  position: relative;\n}\n\n.one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9:hover .video-react-lower-bar_dhhiahhbhhbhb3767d7637____u {\n  opacity: 1;\n}\n\n.progress-video-react {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  height: 2px;\n  width: 100%;\n  margin-bottom: 5px;\n  cursor: pointer;\n  background-color: aliceblue;\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n}\n\n.progress-video-react .finnished {\n  background-color: #006eff;\n  height: 100%;\n}\n\n.progress-video-react .point {\n  width: 0px;\n  height: 0px;\n  border-radius: 50%;\n  background-color: aqua;\n}\n\n.progress-video-react .point:hover {\n  background-color: #006eff;\n}\n\n.progress-video-react:focus {\n  background-color: yellow;\n}\n\n.progress-video-react:hover {\n  height: 5px;\n}\n\n.progress-video-react:hover .point {\n  width: 1px;\n  height: 10px;\n}\n\n.video-react-loading {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background-color: rgba(255, 255, 255, 0.089);\n  border: white 2px solid;\n  border-top: blue 2px solid;\n  width: 50px;\n  top: 33.33%;\n  left: 43.33%;\n  -webkit-animation: loading 1s infinite;\n          animation: loading 1s infinite;\n  position: absolute;\n  /* margin: auto;\r\n\tmargin-top: auto;\r\n\tmargin-bottom: auto; */\n}\n\n@-webkit-keyframes loading {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes loading {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n.video-react-lower-bar_dhhiahhbhhbhb3767d7637____u {\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  right: 0px;\n  margin: 0.5rem 0.3rem;\n  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.404)), color-stop(rgba(0, 0, 0, 0.589)), to(rgba(0, 0, 0, 0.863)));\n  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.863));\n  -webkit-transition: all 0.5s ease-out;\n  transition: all 0.5s ease-out;\n  opacity: 0;\n}\n\n.one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 > video {\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n}\n\n.video-react-controls > div {\n  width: 45%;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  text-align: center;\n  padding-top: 5px;\n}\n\n.video-react-controls > div svg {\n  margin-top: auto !important;\n  width: 100% !important;\n  height: -webkit-fit-content !important;\n  height: -moz-fit-content !important;\n  height: fit-content !important;\n  margin-bottom: auto !important;\n}\n\n.video-react-controls {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n}\n\n.time-stamps {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 0.7rem;\n  color: white;\n  text-shadow: black 1px 1px 1px;\n}\n\n.time-stamps .fullstime {\n  margin-left: auto;\n  padding-right: 5px;\n}\n\n.time-stamps .current {\n  padding-left: 5px;\n}\n\n.video-react-more {\n  position: relative;\n}\n\n.video-react-play,\n.video-react-pause,\n.video-react-volume,\n.video-react-fullscreen,\n.video-react-rewind,\n.video-react-forward,\n.video-react-more {\n  border: rgba(209, 208, 208, 0) 1px solid;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n  cursor: pointer;\n  color: white;\n}\n\n.video-react-play:hover,\n.video-react-pause:hover,\n.video-react-volume:hover,\n.video-react-fullscreen:hover,\n.video-react-rewind:hover,\n.video-react-forward:hover,\n.video-react-more:hover {\n  border-top: rgba(209, 208, 208, 0.267) 1px solid;\n  border-bottom: rgba(209, 208, 208, 0.267) 1px solid;\n  background-color: rgba(128, 128, 128, 0.089);\n  color: aqua;\n}\n\nspan.icon {\n  padding: 5px;\n  font-size: 1rem;\n}\n\n.video-react-menu {\n  background-color: whitesmoke;\n  width: 150px;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  bottom: 101%;\n  padding: 0.3rem 5px;\n  font-size: 0.8rem;\n  -webkit-transform: scale(0);\n          transform: scale(0);\n  -webkit-transition: all 0.4s ease-in-out;\n  transition: all 0.4s ease-in-out;\n  opacity: 0;\n  border-radius: 5px;\n  right: 0px;\n  position: absolute;\n  color: black;\n  z-index: 3;\n  -webkit-box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;\n          box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;\n}\n\n.list- {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.list- .text {\n  margin-left: 10px;\n}\n\n.list-:hover {\n  background: gray;\n  color: white;\n}\n\n.list- span.icon > svg {\n  font-size: 1.5rem;\n  width: 20px !important;\n  height: 20px !important;\n}\n\n.list-1 {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.list-1 span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n\n.list-1 .icon {\n  color: #006eff;\n  border-radius: 5px;\n  -webkit-transition: all 0.2s ease-out;\n  transition: all 0.2s ease-out;\n}\n\n.list-1 .icon:hover {\n  background-color: gray;\n  color: white;\n}\n\n.video-react-volume {\n  position: relative;\n}\n\n.video-react-volume .finnished {\n  background-color: aqua;\n  height: 100%;\n}\n\n.video-react-volume .volume-add {\n  position: absolute;\n  top: -2px;\n  opacity: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  color: white;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n}\n\n.video-react-volume .volume-div {\n  width: 80px;\n  height: 2px;\n  background: white;\n  border-radius: 5px;\n}\n\n.video-react-volume:hover .volume-add {\n  opacity: 1;\n}";
+var css = ".one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 {\n  width: 100%;\n  height: 500px;\n  color: #006eff;\n  background: black;\n  position: relative;\n}\n\n.one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9:hover .video-react-lower-bar_dhhiahhbhhbhb3767d7637____u {\n  opacity: 1;\n}\n\n.progress-video-react {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  height: 2px;\n  width: 100%;\n  margin-bottom: 5px;\n  cursor: pointer;\n  background-color: aliceblue;\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n}\n\n.progress-video-react .finnished {\n  background-color: #006eff;\n  height: 100%;\n}\n\n.progress-video-react .point {\n  width: 0px;\n  height: 0px;\n  border-radius: 50%;\n  background-color: aqua;\n}\n\n.progress-video-react .point:hover {\n  background-color: #006eff;\n}\n\n.progress-video-react:focus {\n  background-color: yellow;\n}\n\n.progress-video-react:hover {\n  height: 5px;\n}\n\n.progress-video-react:hover .point {\n  width: 1px;\n  height: 10px;\n}\n\n.video-react-loading {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background-color: rgba(255, 255, 255, 0.089);\n  border: white 2px solid;\n  border-top: blue 2px solid;\n  width: 50px;\n  top: 33.33%;\n  left: 43.33%;\n  -webkit-animation: loading 1s infinite;\n          animation: loading 1s infinite;\n  position: absolute;\n  /* margin: auto;\r\n\tmargin-top: auto;\r\n\tmargin-bottom: auto; */\n}\n\n@-webkit-keyframes loading {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes loading {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n.video-react-lower-bar_dhhiahhbhhbhb3767d7637____u {\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  right: 0px;\n  margin: 0.5rem 0.3rem;\n  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.404)), color-stop(rgba(0, 0, 0, 0.589)), to(rgba(0, 0, 0, 0.863)));\n  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.863));\n  -webkit-transition: all 0.5s ease-out;\n  transition: all 0.5s ease-out;\n  opacity: 0;\n}\n\n.one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 > video {\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n}\n\n.video-react-controls > div {\n  width: 45%;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  text-align: center;\n  padding-top: 5px;\n}\n\n.video-react-controls > div svg {\n  font-size: 1.5rem !important;\n  margin-top: auto !important;\n  width: 100% !important;\n  margin-bottom: auto !important;\n}\n\n.video-react-controls {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n}\n\n.time-stamps {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  font-size: 0.7rem;\n  color: white;\n  text-shadow: black 1px 1px 1px;\n}\n\n.time-stamps .fullstime {\n  margin-left: auto;\n  padding-right: 5px;\n}\n\n.time-stamps .current {\n  padding-left: 5px;\n}\n\n.video-react-more {\n  position: relative;\n}\n\n.video-react-play,\n.video-react-pause,\n.video-react-volume,\n.video-react-fullscreen,\n.video-react-rewind,\n.video-react-forward,\n.video-react-more {\n  border: rgba(209, 208, 208, 0) 1px solid;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n  cursor: pointer;\n  color: white;\n}\n\n.video-react-play:hover,\n.video-react-pause:hover,\n.video-react-volume:hover,\n.video-react-fullscreen:hover,\n.video-react-rewind:hover,\n.video-react-forward:hover,\n.video-react-more:hover {\n  border-top: rgba(209, 208, 208, 0.267) 1px solid;\n  border-bottom: rgba(209, 208, 208, 0.267) 1px solid;\n  background-color: rgba(128, 128, 128, 0.089);\n  color: #006eff;\n}\n\nspan.icon {\n  padding: 5px;\n  font-size: 1rem;\n}\n\n.video-react-menu {\n  background-color: whitesmoke;\n  width: 150px;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  bottom: 101%;\n  padding: 0.3rem 5px;\n  font-size: 0.8rem;\n  -webkit-transform: scale(0);\n          transform: scale(0);\n  -webkit-transition: all 0.4s ease-in-out;\n  transition: all 0.4s ease-in-out;\n  opacity: 0;\n  border-radius: 5px;\n  right: 0px;\n  position: absolute;\n  color: black;\n  z-index: 3;\n  -webkit-box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;\n          box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;\n}\n\n.list- {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.list- .text {\n  margin-left: 10px;\n}\n\n.list-:hover {\n  background: gray;\n  color: white;\n}\n\n.list- span.icon > svg {\n  color: #006eff;\n  font-size: 1.5rem !important;\n  width: 20px !important;\n}\n\n.list-1 {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.list-1 span {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n\n.list-1 .icon {\n  color: #006eff;\n  border-radius: 5px;\n  -webkit-transition: all 0.2s ease-out;\n  transition: all 0.2s ease-out;\n}\n\n.list-1 .icon:hover {\n  background-color: gray;\n  color: white;\n}\n\n.video-react-volume {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.video-react-volume .finnished {\n  background-color: #006eff;\n  height: 100%;\n}\n\n.video-react-volume .volume-add {\n  opacity: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  color: white;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n}\n\n.video-react-volume .volume-div {\n  width: 0px;\n  height: 3px;\n  margin: auto;\n  background: white;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n  border-radius: 5px;\n}\n\n.video-react-volume:hover .volume-add {\n  opacity: 1;\n}\n\n.video-react-volume:hover .volume-div {\n  width: 80px;\n}\n\n.video-react-error_12ede3ws3 {\n  background-color: red;\n  z-index: 10;\n  border-radius: 5px;\n  position: absolute;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  top: 10px;\n  opacity: 0;\n  margin: auto;\n  font-size: 0.9rem;\n  color: white;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-shadow: black 1px 1px 25px;\n          box-shadow: black 1px 1px 25px;\n  left: 10px;\n  -webkit-transition: all 0.5s ease-in-out;\n  transition: all 0.5s ease-in-out;\n  padding: 0.1rem;\n}\n\n.video-react-error_12ede3ws3 span {\n  margin: 5px;\n  text-align: center;\n  vertical-align: middle;\n}\n\n.video-react-error_12ede3ws3 .cancel {\n  padding: 0.3rem;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.video-react-error_12ede3ws3 .cancel:hover {\n  background-color: rgba(255, 255, 255, 0.37);\n}\n\n.video-react-error_12ede3ws3 svg {\n  font-size: 1.5rem;\n}";
 n(css,{});
 
 var ReactVideo = function ReactVideo(props) {
@@ -34,15 +33,15 @@ var ReactVideo = function ReactVideo(props) {
   var sect = React.useRef(null);
   var vdiv = React.useRef(null);
 
-  var _useState3 = React.useState(0),
+  var _useState3 = React.useState(false),
       _useState4 = _slicedToArray__default['default'](_useState3, 2),
-      width = _useState4[0],
-      setwidth = _useState4[1];
+      error = _useState4[0],
+      seterror = _useState4[1];
 
-  var _useState5 = React.useState(0),
+  var _useState5 = React.useState(false),
       _useState6 = _slicedToArray__default['default'](_useState5, 2),
-      vwidth = _useState6[0],
-      setvwidth = _useState6[1];
+      fulls = _useState6[0],
+      setfulls = _useState6[1];
 
   var _useState7 = React.useState(false),
       _useState8 = _slicedToArray__default['default'](_useState7, 2),
@@ -68,8 +67,6 @@ var ReactVideo = function ReactVideo(props) {
     var offsetWidth = vdiv.current.offsetWidth;
     var time = x / offsetWidth * 1;
     video.current.volume = time;
-    var perc = x / offsetWidth * 100;
-    setvwidth(perc);
   }
 
   function foward(e) {
@@ -96,8 +93,6 @@ var ReactVideo = function ReactVideo(props) {
     var duration = video.current.duration;
     var time = x / offsetWidth * duration;
     video.current.currentTime = time;
-    var perc = x / offsetWidth * 100;
-    setwidth(perc);
 
     if (props.onSeek) {
       props.onSeek();
@@ -105,7 +100,7 @@ var ReactVideo = function ReactVideo(props) {
   }
 
   function addp() {
-    if (video.current.playbackRate <= 16) {
+    if (video.current.playbackRate < 16) {
       video.current.playbackRate += 1;
     }
   }
@@ -117,8 +112,14 @@ var ReactVideo = function ReactVideo(props) {
   }
 
   function TimeUpdate(e) {
-    var currentTime = video.current.currentTime;
+    var _video$current = video.current,
+        currentTime = _video$current.currentTime,
+        duration = _video$current.duration;
     setcurrenttime(calcTime(currentTime));
+
+    if (props.onTimeUpdate) {
+      props.onTimeUpdate(e, currentTime, duration);
+    }
   }
 
   function Mute(_x) {
@@ -137,10 +138,8 @@ var ReactVideo = function ReactVideo(props) {
             case 2:
               if (video.current.volume > 0) {
                 video.current.volume = 0;
-                setvwidth(0);
               } else {
                 video.current.volume = 1;
-                setvwidth(100);
               }
 
               if (props.onMute) {
@@ -195,18 +194,6 @@ var ReactVideo = function ReactVideo(props) {
     }
   }
 
-  function timeChanging(e) {
-    var _video$current = video.current,
-        currentTime = _video$current.currentTime,
-        duration = _video$current.duration;
-    var w = currentTime / duration * 100;
-    setwidth(w);
-
-    if (props.onTimeUpdate) {
-      props.onTimeUpdate(e, currentTime, w);
-    }
-  }
-
   var play = function play(e) {
     video.current.play();
     setplaying(true);
@@ -225,21 +212,39 @@ var ReactVideo = function ReactVideo(props) {
     }
   };
 
+  function contextMenu(e) {
+    var _e$nativeEvent = e.nativeEvent,
+        layerY = _e$nativeEvent.layerY,
+        layerX = _e$nativeEvent.layerX;
+    console.log(layerY, layerX);
+  }
+
   var enterFullScreen = function enterFullScreen(e) {
     sect.current.requestFullscreen();
 
     if (props.onEnterFullScreen) {
       props.onEnterFullScreen(e);
     }
+
+    setfulls(true);
+  };
+
+  var exitFullScreen = function exitFullScreen() {
+    sect.current.ownerDocument.exitFullscreen();
+    setfulls(false);
   };
 
   return /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement("section", {
     onContextMenu: function onContextMenu(e) {
       e.preventDefault();
+      contextMenu(e);
     },
     className: "one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 ".concat(props.className),
     ref: sect
   }, /*#__PURE__*/React__default['default'].createElement("video", {
+    onError: function onError() {
+      seterror(true);
+    },
     ref: video,
     autoPlay: props.autoPlay ? true : false,
     onPause: function onPause() {
@@ -251,8 +256,7 @@ var ReactVideo = function ReactVideo(props) {
     poster: props.poster,
     className: "video-react",
     onTimeUpdate: function onTimeUpdate(e) {
-      TimeUpdate();
-      timeChanging(e);
+      TimeUpdate(e);
     }
   }, /*#__PURE__*/React__default['default'].createElement("source", {
     src: props.src,
@@ -269,8 +273,10 @@ var ReactVideo = function ReactVideo(props) {
     onClick: onSeek
   }, /*#__PURE__*/React__default['default'].createElement("div", {
     className: "finnished",
-    style: {
-      width: "".concat(width, "%")
+    style: video.current ? {
+      width: "".concat(video.current.currentTime / video.current.duration * 100, "%")
+    } : {
+      width: 0
     }
   }), /*#__PURE__*/React__default['default'].createElement("div", {
     className: "point"
@@ -280,7 +286,7 @@ var ReactVideo = function ReactVideo(props) {
     className: "current"
   }, ct), /*#__PURE__*/React__default['default'].createElement("div", {
     className: "fullstime"
-  }, video.current ? calcTime(video.current.duration) : /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null))), /*#__PURE__*/React__default['default'].createElement("div", {
+  }, video.current ? calcTime(video.current.duration) : /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, "--:--"))), /*#__PURE__*/React__default['default'].createElement("div", {
     className: "video-react-controls"
   }, playing ? /*#__PURE__*/React__default['default'].createElement("div", {
     className: "video-react-pause",
@@ -308,8 +314,10 @@ var ReactVideo = function ReactVideo(props) {
     onClick: va
   }, /*#__PURE__*/React__default['default'].createElement("div", {
     className: "finnished",
-    style: {
-      width: "".concat(vwidth, "%")
+    style: video.current ? {
+      width: "".concat(video.current.volume / 1 * 100, "%")
+    } : {
+      width: 0
     }
   }), /*#__PURE__*/React__default['default'].createElement("div", {
     className: "point"
@@ -321,10 +329,13 @@ var ReactVideo = function ReactVideo(props) {
     onClick: Mute
   })) : /*#__PURE__*/React__default['default'].createElement(md.MdVolumeUp, {
     onClick: Mute
-  })))) : /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null)), /*#__PURE__*/React__default['default'].createElement("div", {
+  })))) : /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null)), fulls ? /*#__PURE__*/React__default['default'].createElement("div", {
+    className: "video-react-fullscreen",
+    onClick: exitFullScreen
+  }, /*#__PURE__*/React__default['default'].createElement(md.MdFullscreenExit, null)) : /*#__PURE__*/React__default['default'].createElement("div", {
     className: "video-react-fullscreen",
     onClick: enterFullScreen
-  }, /*#__PURE__*/React__default['default'].createElement(ai.AiOutlineFullscreen, null)), /*#__PURE__*/React__default['default'].createElement("div", {
+  }, /*#__PURE__*/React__default['default'].createElement(md.MdFullscreen, null)), /*#__PURE__*/React__default['default'].createElement("div", {
     className: "video-react-more"
   }, /*#__PURE__*/React__default['default'].createElement("div", {
     style: more ? {
@@ -349,15 +360,25 @@ var ReactVideo = function ReactVideo(props) {
     } : {} : {}
   }, /*#__PURE__*/React__default['default'].createElement(md.MdRemove, null)), /*#__PURE__*/React__default['default'].createElement("span", {
     className: "text"
-  }, video.current ? video.current.playbackRate : 0), /*#__PURE__*/React__default['default'].createElement("span", {
+  }, video.current ? video.current.playbackRate : 1), /*#__PURE__*/React__default['default'].createElement("span", {
     className: "icon",
     onClick: addp
-  }, /*#__PURE__*/React__default['default'].createElement(md.MdAdd, null)))), /*#__PURE__*/React__default['default'].createElement(ai.AiOutlineEllipsis, {
+  }, /*#__PURE__*/React__default['default'].createElement(md.MdAdd, null)))), /*#__PURE__*/React__default['default'].createElement(md.MdMoreHoriz, {
     onContextMenu: function onContextMenu(e) {
       e.preventDefault();
     },
     onClick: mm
-  }))))));
+  })))), /*#__PURE__*/React__default['default'].createElement("div", {
+    className: "video-react-error_12ede3ws3",
+    style: error ? {
+      opacity: 1
+    } : {}
+  }, /*#__PURE__*/React__default['default'].createElement("span", null, /*#__PURE__*/React__default['default'].createElement(md.MdErrorOutline, null)), " ", /*#__PURE__*/React__default['default'].createElement("span", null, /*#__PURE__*/React__default['default'].createElement("b", null, "Error:"), " Failed to load Video"), /*#__PURE__*/React__default['default'].createElement("span", {
+    className: "cancel",
+    onClick: function onClick() {
+      seterror(false);
+    }
+  }, /*#__PURE__*/React__default['default'].createElement(md.MdClose, null)))));
 };
 ReactVideo.propTypes = {
   src: PropTypes__default['default'].string.isRequired,
@@ -374,6 +395,11 @@ ReactVideo.propTypes = {
   onPause: PropTypes__default['default'].func,
   onEnterFullScreen: PropTypes__default['default'].func
 };
+/*
+
+<iframe width="727" height="409" src="https://www.youtube.com/embed/CDrieqwSdgI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+*/
 
 exports.ReactVideo = ReactVideo;
 //# sourceMappingURL=video.js.map

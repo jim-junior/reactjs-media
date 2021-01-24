@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt } from 'react-icons/md'
-import { AiOutlineEllipsis, AiOutlineFullscreen } from 'react-icons/ai'
+import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt, MdFullscreenExit, MdFullscreen, MdMoreHoriz, MdErrorOutline, MdClose } from 'react-icons/md'
 import PropTypes from 'prop-types';
 import './Video.css'
 
@@ -13,8 +12,8 @@ export const ReactVideo = (props) => {
     const div = useRef(null)
     const sect = useRef(null)
     const vdiv = useRef(null)
-    const [width, setwidth] = useState(0)
-    const [vwidth, setvwidth] = useState(0)
+    const [error, seterror] = useState(false)
+    const [fulls, setfulls] = useState(false)
     const [mute, setmute] = useState(false)
     const [more, setmore] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
@@ -28,8 +27,6 @@ export const ReactVideo = (props) => {
         let time = (x / offsetWidth) * 1
         video.current.volume = time
 
-        let perc = (x / offsetWidth) * 100
-        setvwidth(perc)
     }
     function foward(e) {
         let x = 0.025 * video.current.duration
@@ -56,15 +53,13 @@ export const ReactVideo = (props) => {
         let time = (x / offsetWidth) * duration
         video.current.currentTime = time
 
-        let perc = (x / offsetWidth) * 100
-        setwidth(perc)
         if (props.onSeek) {
             props.onSeek()
         }
 
     }
     function addp() {
-        if (video.current.playbackRate <= 16) {
+        if (video.current.playbackRate < 16) {
             video.current.playbackRate += 1
         }
     }
@@ -74,17 +69,18 @@ export const ReactVideo = (props) => {
         }
     }
     function TimeUpdate(e) {
-        const { currentTime } = video.current
+        const { currentTime, duration } = video.current
         setcurrenttime(calcTime(currentTime))
+        if (props.onTimeUpdate) {
+            props.onTimeUpdate(e, currentTime, duration)
+        }
     }
     async function Mute(e) {
         await setmute(!mute)
         if (video.current.volume > 0) {
             video.current.volume = 0
-            setvwidth(0)
         } else {
             video.current.volume = 1
-            setvwidth(100)
         }
         if (props.onMute) {
             props.onMute(mute)
@@ -123,16 +119,6 @@ export const ReactVideo = (props) => {
             props.onRequestPictureInPicture()
         }
     }
-    function timeChanging(e) {
-        const { currentTime, duration } = video.current
-        const w = (currentTime / duration) * 100
-        setwidth(w)
-        if (props.onTimeUpdate) {
-            props.onTimeUpdate(e, currentTime, w)
-        }
-
-
-    }
 
 
     const play = (e) => {
@@ -151,25 +137,37 @@ export const ReactVideo = (props) => {
         }
 
     }
+    function contextMenu(e) {
+        const { layerY, layerX } = e.nativeEvent
+        console.log(layerY, layerX)
+    }
     const enterFullScreen = (e) => {
         sect.current.requestFullscreen()
         if (props.onEnterFullScreen) {
             props.onEnterFullScreen(e)
         }
+        setfulls(true)
+
+    }
+    const exitFullScreen = () => {
+        sect.current.ownerDocument.exitFullscreen()
+        setfulls(false)
 
     }
     return (
         <div>
             <section onContextMenu={(e) => {
                 e.preventDefault()
+                contextMenu(e)
             }} className={`one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 ${props.className}`} ref={sect} >
-                <video ref={video} autoPlay={props.autoPlay ? true : false} onPause={() => {
+                <video onError={() => {
+                    seterror(true)
+                }} ref={video} autoPlay={props.autoPlay ? true : false} onPause={() => {
                     setplaying(false)
                 }} onPlay={() => {
                     setplaying(true)
                 }} poster={props.poster} className='video-react' onTimeUpdate={(e) => {
                     TimeUpdate(e)
-                    timeChanging(e)
                 }} >
                     <source src={props.src} type="video/mp4" />
                 </video>
@@ -178,12 +176,12 @@ export const ReactVideo = (props) => {
                         <div className="video-react-loading"></div> : <></>}</> : <></>}
                 <div className="video-react-lower-bar_dhhiahhbhhbhb3767d7637____u">
                     <div className="hundred"><div className="progress-video-react" ref={div} onClick={onSeek} >
-                        <div className="finnished" style={{ width: `${width}%` }}></div>
+                        <div className="finnished" style={video.current ? { width: `${(video.current.currentTime / video.current.duration) * 100}%` } : { width: 0 }}></div>
                         <div className="point"></div>
                     </div></div>
                     <div className="time-stamps">
                         <div className="current">{ct}</div>
-                        <div className="fullstime">{video.current ? calcTime(video.current.duration) : <></>}</div>
+                        <div className="fullstime">{video.current ? calcTime(video.current.duration) : <>--:--</>}</div>
                     </div>
                     <div className="video-react-controls">
                         {playing ? <div className="video-react-pause" onClick={pause}><MdPause /></div> :
@@ -196,7 +194,7 @@ export const ReactVideo = (props) => {
                         <div className="video-react-volume"><div className="volume-add">
 
                             <div className="volume-div" ref={vdiv} onClick={va} >
-                                <div className="finnished" style={{ width: `${vwidth}%` }}></div>
+                                <div className="finnished" style={video.current ? { width: `${(video.current.volume / 1) * 100}%` } : { width: 0 }}></div>
                                 <div className="point"></div>
                             </div></div>{video.current ? <>
                                 {
@@ -208,7 +206,7 @@ export const ReactVideo = (props) => {
                                                     <MdVolumeUp onClick={Mute} />}</>
                                             }</>
                                 }</> : <></>}</div>
-                        <div className="video-react-fullscreen" onClick={enterFullScreen}><AiOutlineFullscreen /></div>
+                        {fulls ? <div className="video-react-fullscreen" onClick={exitFullScreen}><MdFullscreenExit /></div> : <div className="video-react-fullscreen" onClick={enterFullScreen}><MdFullscreen /></div>}
                         <div className="video-react-more" ><div style={more ? {
                             transform: 'scale(1)',
                             opacity: 1
@@ -221,16 +219,24 @@ export const ReactVideo = (props) => {
                                 <span className="icon" onClick={minusp} style={video.current ? video.current.playbackRate === 0 ?
                                     { cursor: 'not-allowed' } : {} : {}
                                 }><MdRemove /></span>
-                                <span className="text">{video.current ? video.current.playbackRate : 0}</span>
+                                <span className="text">{video.current ? video.current.playbackRate : 1}</span>
                                 <span className="icon" onClick={addp}  ><MdAdd /></span>
                             </div>
-                        </div><AiOutlineEllipsis onContextMenu={(e) => {
+                        </div><MdMoreHoriz onContextMenu={(e) => {
                             e.preventDefault()
                         }} onClick={mm} /></div>
 
                     </div>
                 </div>
 
+                <div className="video-react-error_12ede3ws3" style={error ? { opacity: 1 } : {}}>
+                    <span><MdErrorOutline /></span> <span><b>Error:</b> Failed to load Video</span>
+                    <span className="cancel" onClick={() => {
+                        seterror(false)
+                    }}>
+                        <MdClose />
+                    </span>
+                </div>
 
 
 
@@ -254,3 +260,8 @@ ReactVideo.propTypes = {
     onPause: PropTypes.func,
     onEnterFullScreen: PropTypes.func
 }
+/*
+
+<iframe width="727" height="409" src="https://www.youtube.com/embed/CDrieqwSdgI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+*/

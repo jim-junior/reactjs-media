@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\junior\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.15\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:///c:\Users\junior\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.16\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
       
       
       
@@ -196,8 +196,10 @@ html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-
       <div class="mume markdown-preview  ">
       <h1 class="mume-header" id="reactjs-media">Reactjs Media</h1>
 
-<p>The reactjs media is a react package with awesome HTMLMediaElements that are recreated into react components.<br>
-It is developed by <a href="https://www.twitter.com/_jimjunior_">Beingana Jim Junior</a> a front end Developer. The source code can be found on <a href="https://github.com/jimjunior44/reactjs-media">Github</a></p>
+<blockquote>
+<p><strong>Note:</strong> We recommend installing version <code>&gt;=1.1.2</code> and above. This is because any version before that will cause errors in your code.</p>
+</blockquote>
+<p>The reactjs media is a react package with awesome HTMLMediaElements that are recreated into react components with a good looking UI and fast UX.</p>
 <p>It includes currently only has a video component.</p>
 <h4 class="mume-header" id="installation">Installation</h4>
 
@@ -208,7 +210,7 @@ It is developed by <a href="https://www.twitter.com/_jimjunior_">Beingana Jim Ju
 
 <p>In here we shall show a small demo on how to setup a simple video component. We shall create the default component.</p>
 <pre data-role="codeBlock" data-info="jsx" class="language-jsx"><span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">React</span></span> <span class="token keyword module">from</span> <span class="token string">&apos;react&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">ReactVideo</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&apos;reactjs-media&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">ReactVideo</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&apos;reactjs-media/video&apos;</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function"><span class="token maybe-class-name">App</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
     <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>
@@ -223,16 +225,62 @@ It is developed by <a href="https://www.twitter.com/_jimjunior_">Beingana Jim Ju
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span></span><span class="token punctuation">&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">ReactVideo</span></span>
-            <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>https://www.example.com/myvideo.mp4<span class="token punctuation">&apos;</span></span>
+                <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>https://www.example.com/myvideo.mp4<span class="token punctuation">&apos;</span></span>
+                <span class="token attr-name">poster</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>/poster.png<span class="token punctuation">&apos;</span></span>
             <span class="token punctuation">/&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">/&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-</pre><p>The above code will create a video componet that looks like this:</p>
-<p><img src="./docs/Capture.PNG" alt="ReactJS Video"></p>
-<p>The video component can be customised and there are a vriety of hooks to use it. You can find them in the official <a href="https://blurify.ml/projects/reactjs-video/docs" title="Documentation">Documentation</a>.</p>
+</pre><p>The above code can be used to create the most basic video component. .</p>
+<p>A few important props you can pass are here:</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>type</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td>string : <strong>Required</strong></td>
+<td>This is the source of the video you want to display a it will be placed in the <code>&lt;source /&gt;</code> tag.</td>
+</tr>
+<tr>
+<td><code>poster</code></td>
+<td>string:</td>
+<td>This is the poster os the video</td>
+</tr>
+<tr>
+<td><code>className</code></td>
+<td>string</td>
+<td>The class of the video</td>
+</tr>
+<tr>
+<td><code>onPlay</code></td>
+<td>fuction</td>
+<td>It takes in a function and you can use it how you want</td>
+</tr>
+<tr>
+<td><code>onPause</code></td>
+<td>fuction</td>
+<td>It also takes in a function and you can use it how you want</td>
+</tr>
+<tr>
+<td><code>onTimeUpdate</code></td>
+<td>function</td>
+<td>It is triggered when the video is playing. It passes in 3 arguments. An <code>event</code>, <code>currentTime</code>, and the <code>percentage</code> finished.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>If you want to learn more on how to customize it. Checkout the offical <a href="https://blurify.ml/projects/reactjs-media" title="Documentation">Documentation</a></p>
+<hr>
+<p>This package is developed by <a href="https://www.twitter.com/_jimjunior_">Beingana Jim Junior</a> a fullstack Developer. The source code can be found on <a href="https://github.com/jimjunior44/reactjs-media">Github</a>.<br>
+Anybody interested is free to contribute.</p>
 
       </div>
       
