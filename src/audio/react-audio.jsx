@@ -1,3 +1,7 @@
+/* 
+Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
+*/
+
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import './audio.css'
@@ -139,6 +143,7 @@ export const ReactAudio = (props) => {
                 </audio>
 
 
+
                 <div className="audio-react-p1">
 
 
@@ -173,14 +178,14 @@ export const ReactAudio = (props) => {
                     <div className="react-audio-controls"><div className="volume-add">
 
                         <div className="volume-div" ref={vdiv} onClick={va} >
-                            <div className="finnished" style={{ width: `${vwidth}%` }}></div>
+                            <div className="finnished" style={audio.current ? { width: `${(audio.current.volume / 1) * 100}%` } : { width: 0 }}></div>
                             <div className="point"></div>
                         </div></div>{audio.current ? <>
                             {
                                 audio.current.volume === 0 ?
                                     <icons.MdVolumeOff onClick={Mute} /> :
                                     <>
-                                        {audio.current.volume < 0.2 ? <><icons.MdVolumeMute onClick={Mute} /></> :
+                                        {audio.current.volume < 0.3 ? <><icons.MdVolumeMute onClick={Mute} /></> :
                                             <>{audio.current.volume < 0.7 ? <><icons.MdVolumeDown onClick={Mute} /></> :
                                                 <icons.MdVolumeUp onClick={Mute} />}</>
                                         }</>

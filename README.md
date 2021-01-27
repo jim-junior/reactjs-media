@@ -6,8 +6,13 @@ The reactjs media is a react package with awesome HTMLMediaElements that are rec
 
 It includes currently only has a video and audio component.
 
-In `v1.1.9` more components such as youtube and facebook player will be included.
+Available components: 
+- Image 
+- Video 
+- Audio
+- Youtube Player
 
+Facebook player is soon Comming
 #### Installation
 
 To install go to your terminal and run this script
@@ -49,6 +54,8 @@ const MyVideo = () => {
 ```
 
 The above code can be used to create the most basic video component. .
+
+Try it on [Codesandbox](https://codesandbox.io/s/reactjs-media-3pj4t?file=/src/App.js)
 
 A few important props you can pass are here:
 | Prop           | type                  | Function                                                                                                                       |

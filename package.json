@@ -1,9 +1,11 @@
 {
 	"name": "reactjs-media",
-	"version": "1.1.6",
+	"version": "1.2.0",
 	"description": "A package for all media components in react. Video and Audio",
 	"main": "./lib/index.js",
-	"scripts": {},
+	"scripts": {
+		"build": "rollup -c"
+	},
 	"peerDependencies": {
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1"
@@ -38,6 +40,8 @@
 		"@babel/plugin-transform-runtime": "^7.12.10",
 		"@babel/preset-env": "^7.12.11",
 		"@babel/preset-react": "^7.12.10",
+		"@material-ui/core": "^4.11.3",
+		"@material-ui/lab": "^4.0.0-alpha.57",
 		"@rollup/plugin-babel": "^5.2.2",
 		"@rollup/plugin-commonjs": "^17.0.0",
 		"babel-plugin-inline-react-svg": "^1.1.2",

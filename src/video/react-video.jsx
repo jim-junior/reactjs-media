@@ -1,8 +1,12 @@
+/* 
+Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
+*/
+
 import React, { useRef, useState } from 'react'
-import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt, MdFullscreenExit, MdFullscreen, MdMoreHoriz, MdErrorOutline, MdClose } from 'react-icons/md'
+import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt, MdFullscreenExit, MdFullscreen, MdMoreHoriz, MdErrorOutline, MdClose, MdFlipToBack, MdLoop } from 'react-icons/md'
 import PropTypes from 'prop-types';
 import './Video.css'
-
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -13,10 +17,15 @@ export const ReactVideo = (props) => {
     const sect = useRef(null)
     const vdiv = useRef(null)
     const [error, seterror] = useState(false)
+    const [y, sety] = useState(false)
+    const [x, setx] = useState(false)
+    const [on, seton] = useState(false)
+    const [loaded, setloaded] = useState(true)
     const [fulls, setfulls] = useState(false)
     const [mute, setmute] = useState(false)
     const [more, setmore] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
+    const [ctt, setctt] = useState('00:00')
     const mm = () => {
         setmore(!more)
     }
@@ -52,6 +61,19 @@ export const ReactVideo = (props) => {
 
         let time = (x / offsetWidth) * duration
         video.current.currentTime = time
+
+        if (props.onSeek) {
+            props.onSeek()
+        }
+
+    }
+    function onMove(e) {
+        const x = e.nativeEvent.layerX
+        const { offsetWidth } = div.current
+        const { duration } = video.current
+
+        let time = (x / offsetWidth) * duration
+        setctt(calcTime(time))
 
         if (props.onSeek) {
             props.onSeek()
@@ -120,6 +142,20 @@ export const ReactVideo = (props) => {
         }
     }
 
+    function setClipboard(text) {
+        let data = new DataTransfer();
+
+        data.items.add("text/plain", text);
+        console.log(data)
+        navigator.clipboard.writeText(text).then(function () {
+            // eslint-disable-next-line no-restricted-globals
+            confirm('sucessfull')
+        }, function () {
+            // eslint-disable-next-line no-restricted-globals
+            confirm('failed')
+        });
+    }
+
 
     const play = (e) => {
         video.current.play()
@@ -138,8 +174,10 @@ export const ReactVideo = (props) => {
 
     }
     function contextMenu(e) {
-        const { layerY, layerX } = e.nativeEvent
-        console.log(layerY, layerX)
+        const { clientY, clientX } = e.nativeEvent
+        setx(clientX)
+        sety(clientY)
+        seton(true)
     }
     const enterFullScreen = (e) => {
         sect.current.requestFullscreen()
@@ -154,11 +192,30 @@ export const ReactVideo = (props) => {
         setfulls(false)
 
     }
+    function handleClose() {
+        seton(false)
+    }
     return (
         <div>
+            <style jsx>{`
+                .video-react-pause:hover,
+                .video-react-play:hover,
+                .video-react-volume:hover,
+                .video-react-rewind:hover,
+                .video-react-more:hover,
+                .video-react-fullscreen:hover,
+                .video-react-forward:hover {
+                    color: ${props.primaryColor};
+                }
+                .finnished {
+                    background-color: ${props.primaryColor} !important;
+                }
+            `}</style>
             <section onContextMenu={(e) => {
                 e.preventDefault()
                 contextMenu(e)
+            }} onBlur={() => {
+                handleClose()
             }} className={`one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 ${props.className}`} ref={sect} >
                 <video onError={() => {
                     seterror(true)
@@ -166,32 +223,36 @@ export const ReactVideo = (props) => {
                     setplaying(false)
                 }} onPlay={() => {
                     setplaying(true)
-                }} poster={props.poster} className='video-react' onTimeUpdate={(e) => {
+                }} className='video-react' onTimeUpdate={(e) => {
                     TimeUpdate(e)
-                }} >
-                    <source src={props.src} type="video/mp4" />
+                }} controlslist="nodownload" >
+                    <source src={props.src} type={props.type ? props.type : "video/mp4"} />
                 </video>
                 {video.current ? <>
                     {video.current.seeking ?
                         <div className="video-react-loading"></div> : <></>}</> : <></>}
                 <div className="video-react-lower-bar_dhhiahhbhhbhb3767d7637____u">
-                    <div className="hundred"><div className="progress-video-react" ref={div} onClick={onSeek} >
-                        <div className="finnished" style={video.current ? { width: `${(video.current.currentTime / video.current.duration) * 100}%` } : { width: 0 }}></div>
+                    <Tooltip title={ctt} aria-label="add" placement="top" ><div className="hundred"><div className="progress-video-react" ref={div} onMouseMove={(e) => {
+                        onMove(e)
+                    }} onClick={onSeek} >
+                        <div
+                            className="finnished"
+                            style={video.current ? { width: `${(video.current.currentTime / video.current.duration) * 100}%`, background: props.primaryColor ? props.primaryColor : '' } : { width: 0 }} ></div>
                         <div className="point"></div>
-                    </div></div>
+                    </div></div></Tooltip>
                     <div className="time-stamps">
                         <div className="current">{ct}</div>
                         <div className="fullstime">{video.current ? calcTime(video.current.duration) : <>--:--</>}</div>
                     </div>
                     <div className="video-react-controls">
-                        {playing ? <div className="video-react-pause" onClick={pause}><MdPause /></div> :
-                            <div className="video-react-play" onClick={play}><MdPlayArrow /></div>
+                        {playing ? <Tooltip title="Pause" aria-label="add" placement="top" ><div className="video-react-pause" onClick={pause}><MdPause /></div></Tooltip> :
+                            <Tooltip title="Play" aria-label="add" placement="top" ><div className="video-react-play" onClick={play}><MdPlayArrow /></div></Tooltip>
                         }
-                        <div className="video-react-rewind" onClick={rewind}><MdFastRewind /></div>
-                        <div className="video-react-forward" onClick={foward}><MdFastForward /></div>
+                        <Tooltip title="Rewind" aria-label="add" placement="top" ><div className="video-react-rewind" onClick={rewind}><MdFastRewind /></div></Tooltip>
+                        <Tooltip title="Forward" aria-label="add" placement="top" ><div className="video-react-forward" onClick={foward}><MdFastForward /></div></Tooltip>
                         <div className="video-react-pro"></div>
                         <div className="video-react-pro"></div>
-                        <div className="video-react-volume"><div className="volume-add">
+                        <Tooltip title="Volume" aria-label="add" placement="top" ><div className="video-react-volume"><div className="volume-add">
 
                             <div className="volume-div" ref={vdiv} onClick={va} >
                                 <div className="finnished" style={video.current ? { width: `${(video.current.volume / 1) * 100}%` } : { width: 0 }}></div>
@@ -205,9 +266,9 @@ export const ReactVideo = (props) => {
                                                 <>{video.current.volume < 0.7 ? <><MdVolumeDown onClick={Mute} /></> :
                                                     <MdVolumeUp onClick={Mute} />}</>
                                             }</>
-                                }</> : <></>}</div>
-                        {fulls ? <div className="video-react-fullscreen" onClick={exitFullScreen}><MdFullscreenExit /></div> : <div className="video-react-fullscreen" onClick={enterFullScreen}><MdFullscreen /></div>}
-                        <div className="video-react-more" ><div style={more ? {
+                                }</> : <></>}</div></Tooltip>
+                        <Tooltip title="Fullscreen" aria-label="add" placement="top" >{fulls ? <div className="video-react-fullscreen" onClick={exitFullScreen}><MdFullscreenExit /></div> : <div className="video-react-fullscreen" onClick={enterFullScreen}><MdFullscreen /></div>}</Tooltip>
+                        <Tooltip arrow title="More" aria-label="add" placement="left" ><div className="video-react-more" ><div style={more ? {
                             transform: 'scale(1)',
                             opacity: 1
                         } : {}} className="video-react-menu">
@@ -215,16 +276,16 @@ export const ReactVideo = (props) => {
                                 <span className="icon"><MdPictureInPictureAlt /></span>
                                 <span className="text">Picture In Picture</span>
                             </div>
-                            <div className="list-1">
+                            <Tooltip arrow title="Playback speed" aria-label="add" placement="left" ><div className="list-1">
                                 <span className="icon" onClick={minusp} style={video.current ? video.current.playbackRate === 0 ?
                                     { cursor: 'not-allowed' } : {} : {}
                                 }><MdRemove /></span>
                                 <span className="text">{video.current ? video.current.playbackRate : 1}</span>
                                 <span className="icon" onClick={addp}  ><MdAdd /></span>
-                            </div>
+                            </div></Tooltip>
                         </div><MdMoreHoriz onContextMenu={(e) => {
                             e.preventDefault()
-                        }} onClick={mm} /></div>
+                        }} onClick={mm} /></div></Tooltip>
 
                     </div>
                 </div>
@@ -239,15 +300,49 @@ export const ReactVideo = (props) => {
                 </div>
 
 
+                {on ?
+                    <div className="menu-c" onClick={() => {
+                        handleClose()
+                    }}>
+                        <div className="menu-contxt" onClick={() => {
+                            handleClose()
+                        }}>
+                            <div className="video-rect-context" style={{ top: y, left: x }}>
+                                <ul className="context-list">
+                                    {playing ?
+                                        <li className="play" onClick={pause} ><span className="i"><MdPause /></span><span className="t">Pause</span></li> : <li className="play" onClick={play} ><span className="i"><MdPlayArrow /></span><span className="t">Play</span></li>}
+                                    <li onClick={() => { setClipboard(video.current ? video.current.currentSrc : '') }}><span className="i"><MdFlipToBack /></span><span className="t" >Copy Video Url</span></li>
+                                    {video.current ? <>{video.current.loop ? <li onClick={() => {
+                                        video.current.loop = false
+                                    }} ><span className="i"><MdLoop /></span><span className="t">Stop Loop</span></li> : <li onClick={() => {
+                                        video.current.loop = true
+                                    }} ><span className="i"><MdLoop /></span><span className="t">Loop</span></li>
+                                    }</> : <></>}
+                                </ul>
+                            </div></div></div> : <></>}
+                {playing === false && loaded === true ? <div className="poster">
+                    <div>
+                        <img src={props.poster} alt="video poster" />
+                        <div style={props.primaryColor ? { background: props.primaryColor } : {}} onClick={() => {
+                            play()
+                            setloaded(false)
+                        }}><MdPlayArrow /></div>
+                    </div>
+                </div> : <></>}
+
+                {props.childern}
 
 
             </section>
+
         </div>
     )
 }
 ReactVideo.propTypes = {
     src: PropTypes.string.isRequired,
+    type: PropTypes.string,
     poster: PropTypes.string,
+    primaryColor: PropTypes.string,
     autoPlay: PropTypes.bool,
     className: PropTypes.string,
     onFoward: PropTypes.func,
@@ -260,8 +355,3 @@ ReactVideo.propTypes = {
     onPause: PropTypes.func,
     onEnterFullScreen: PropTypes.func
 }
-/*
-
-<iframe width="727" height="409" src="https://www.youtube.com/embed/CDrieqwSdgI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-*/
