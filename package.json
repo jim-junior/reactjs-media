@@ -1,6 +1,6 @@
 {
 	"name": "reactjs-media",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "A package for all media components in react. Video and Audio",
 	"main": "./lib/index.js",
 	"scripts": {
@@ -33,7 +33,7 @@
 	"bugs": {
 		"url": "https://github.com/jim-junior/reactjs-media/issues"
 	},
-	"homepage": "https://blurify.ml/projects/reactjs-media",
+	"homepage": "https://cranom.com/reactjs-media",
 	"devDependencies": {
 		"@babel/cli": "^7.12.10",
 		"@babel/core": "^7.12.10",

@@ -68,7 +68,7 @@ A few important props you can pass are here:
 | `onTimeUpdate` | function              | It is triggered when the video is playing. It passes in 3 arguments. An `event`, `currentTime`, and the `percentage` finished. |
 
 ___
-If you want to learn more on how to customize it. Checkout the offical [Documentation](https://blurify.ml/projects/reactjs-media "Documentation")
+If you want to learn more on how to customize it. Checkout the offical [Documentation](https://cranom.com/reactjs-media "Documentation")
 <!-- props.onTimeUpdate(e, currentTime, w) -->
 
 ___

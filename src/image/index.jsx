@@ -1,14 +1,16 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types'
 import './Image.css'
+import { MdFileDownload } from 'react-icons/md';
+import { Tooltip } from '@material-ui/core';
 
 export const Image = (props) => {
     const img = useRef(null)
 
     return (
-        <section className={`img_section`} style={{ backgroundColor: '#9c9c9c9c' }}>
+        <section className={`img_section`} style={{ margin: 'auto' }}>
             <picture>
-                <source media={props.media} sizes="" type={props.type} srcset="" />
+                <source media={props.media} sizes={props.sizes} type={props.type} srcSet={props.srcset} />
                 <img
                     src={props.src}
                     ref={img}
@@ -23,11 +25,16 @@ export const Image = (props) => {
                     hspace={props.hspace}
                     id={props.id}
                     vspace={props.vspace}
-                    longDesc={props.longdesc}
+                    longdesc={props.longdesc}
                     align={props.align}
                     useMap={props.useMap}
                 />
             </picture>
+            <Tooltip title="Download" aria-label="add" >
+                <div className="download_btn">
+                    <a download={props.name} href={props.src} className="download_lnk"><MdFileDownload /></a>
+                </div>
+            </Tooltip>
             {img.current ? <>{img.current.complete ? <></> : <div className="blur_overlay"></div>}</> : <></>}
         </section>
     )

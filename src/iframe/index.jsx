@@ -1,13 +1,12 @@
-/* 
-Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
-*/
+import React, { useRef, useState } from 'react';
+import PropTypes from 'prop-types'
 
-import React, { useRef, useState } from 'react'
-import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt, MdFullscreenExit, MdFullscreen, MdErrorOutline, MdClose, MdFlipToBack, MdLoop, MdSettings, MdFileDownload } from 'react-icons/md'
-import PropTypes from 'prop-types';
+
+import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt, MdFullscreenExit, MdFullscreen, MdErrorOutline, MdClose, MdFlipToBack, MdLoop, MdSettings } from 'react-icons/md'
 import './Video.css'
 import Tooltip from '@material-ui/core/Tooltip';
-
+import { BrowserRouter as Router } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 
 export const ReactVideo = (props) => {
@@ -191,7 +190,7 @@ export const ReactVideo = (props) => {
     }
     return (
         <div>
-            <style jsx="true">{`
+            <style jsx>{`
                 .video-react-pause:hover,
                 .video-react-play:hover,
                 .video-react-volume:hover,
@@ -202,9 +201,6 @@ export const ReactVideo = (props) => {
                     color: ${props.primaryColor};
                 }
                 .finnished {
-                    background-color: ${props.primaryColor} !important;
-                }
-                .point {
                     background-color: ${props.primaryColor} !important;
                 }
             `}</style>
@@ -222,7 +218,7 @@ export const ReactVideo = (props) => {
                     setplaying(true)
                 }} className='video-react' onTimeUpdate={(e) => {
                     TimeUpdate(e)
-                }} controlsList="nodownload" >
+                }} controlslist="nodownload" >
                     <source src={props.src} type={props.type ? props.type : "video/mp4"} />
                 </video>
                 {video.current ? <>
@@ -234,8 +230,8 @@ export const ReactVideo = (props) => {
                     }} onClick={onSeek} >
                         <div
                             className="finnished"
-                            style={video.current ? { width: `${(video.current.currentTime / video.current.duration) * 100}%`, background: props.primaryColor ? props.primaryColor : '' } : { width: 0 }} ><div className="point"></div></div>
-
+                            style={video.current ? { width: `${(video.current.currentTime / video.current.duration) * 100}%`, background: props.primaryColor ? props.primaryColor : '' } : { width: 0 }} ></div>
+                        <div className="point"></div>
                     </div></div></Tooltip>
                     <div className="time-stamps">
                         <div className="current">{ct}</div>
@@ -269,10 +265,6 @@ export const ReactVideo = (props) => {
                             transform: 'scale(1)',
                             opacity: 1
                         } : {}} className="video-react-menu">
-                            <a download='video' href={props.src} className="list-" onClick={pp} >
-                                <span className="icon"><MdFileDownload /></span>
-                                <span className="text">Download</span>
-                            </a>
                             <div className="list-" onClick={pp} >
                                 <span className="icon"><MdPictureInPictureAlt /></span>
                                 <span className="text">Picture In Picture</span>
@@ -284,7 +276,7 @@ export const ReactVideo = (props) => {
                                 <span className="text">{video.current ? video.current.playbackRate : 1}</span>
                                 <span className="icon" onClick={addp}  ><MdAdd /></span>
                             </div></Tooltip>
-                        </div><MdSettings style={more ? { transform: 'rotate(40deg)', transition: 'all 0.2s' } : { transition: 'all 0.2s' }} onContextMenu={(e) => {
+                        </div><MdSettings onContextMenu={(e) => {
                             e.preventDefault()
                         }} onClick={mm} /></div></Tooltip>
 
@@ -356,3 +348,31 @@ ReactVideo.propTypes = {
     onPause: PropTypes.func,
     onEnterFullScreen: PropTypes.func
 }
+
+
+export const IframePlayer = props => {
+    console.log(props)
+    return (
+        <div>
+            <li>
+                <a href={`/footwear`}>Footwear</a>
+            </li><Router>
+                <Route
+                    path={`/footwear`}
+                    render={(props) => {
+                        console.log(props)
+                        return (
+                            <div>
+                                <ReactVideo />
+                            </div>
+                        )
+                    }}
+                />
+
+            </Router></div>
+    )
+}
+
+
+
+

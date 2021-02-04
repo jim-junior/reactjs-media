@@ -4,7 +4,7 @@ rollup.config.js
 .babelrc
 .eslintrc.js
 comand.txt
-
+players.txt
 .git
 CVS
 .svn
@@ -15,3 +15,5 @@ CVS
 npm-debug.log
 .npmrc
 config.gypi
+.vs
+.vscode

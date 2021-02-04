@@ -32,32 +32,17 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 .progress-video-react .finnished {
   background-color: #006eff;
   height: 100%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .progress-video-react .point {
   width: 0px;
   height: 0px;
-  margin-left: auto;
   border-radius: 50%;
-  position: absolute;
-  right: -3px;
-  pointer-events: none;
-  border-radius: 50%;
-  background-color: #006eff;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  background-color: aqua;
 }
 
 .progress-video-react .point:hover {
-  -webkit-transform: scale(1.5);
-          transform: scale(1.5);
+  background-color: #006eff;
 }
 
 .progress-video-react:focus {
@@ -69,7 +54,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 }
 
 .progress-video-react:hover .point {
-  width: 10px;
+  width: 1px;
   height: 10px;
 }
 
@@ -110,7 +95,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   bottom: 0px;
   left: 0px;
   right: 0px;
-  margin: 0rem 0.3rem;
+  margin: 0.5rem 0.3rem;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.404)), color-stop(rgba(0, 0, 0, 0.589)), to(rgba(0, 0, 0, 0.863)));
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.863));
   -webkit-transition: all 0.5s ease-out;
@@ -235,8 +220,6 @@ span.icon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: black;
-  text-decoration: none;
 }
 
 .list- .text {

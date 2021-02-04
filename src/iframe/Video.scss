@@ -28,23 +28,14 @@ $back: #00000075;
 	.finnished {
 		background-color: $theme;
 		height: 100%;
-		align-items: center;
-		position: relative;
-		display: flex;
 	}
 	.point {
 		width: 0px;
 		height: 0px;
-		margin-left: auto;
 		border-radius: 50%;
-		position: absolute;
-		right: -3px;
-		pointer-events: none;
-		border-radius: 50%;
-		background-color: $theme;
-		transition: all 0.3s;
+		background-color: aqua;
 		&:hover {
-			transform: scale(1.5);
+			background-color: $theme;
 		}
 	}
 	&:focus {
@@ -53,7 +44,7 @@ $back: #00000075;
 	&:hover {
 		height: 5px;
 		.point {
-			width: 10px;
+			width: 1px;
 			height: 10px;
 		}
 	}
@@ -84,7 +75,7 @@ $back: #00000075;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	margin: 0rem 0.3rem;
+	margin: 0.5rem 0.3rem;
 	background: linear-gradient(
 		rgba(0, 0, 0, 0),
 		rgba(0, 0, 0, 0.404),
@@ -175,8 +166,6 @@ span.icon {
 .list- {
 	display: flex;
 	align-items: center;
-	color: black;
-	text-decoration: none;
 	.text {
 		margin-left: 10px;
 	}
