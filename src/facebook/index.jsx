@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 export const FacebookPlayer = (props) => {
     const div = useRef(null)
@@ -18,7 +19,7 @@ export const FacebookPlayer = (props) => {
         let fdRoot = div.current.ownerDocument.createElement("div");
         fdRoot.setAttribute('id', "fb-root")
         div.current.ownerDocument.body.insertAdjacentElement('afterBegin', fdRoot)
-        // add the text node to the newly created div
+
     }, [state])
     return (
         <div>
@@ -35,3 +36,12 @@ export const FacebookPlayer = (props) => {
     )
 }
 
+FacebookPlayer.propTypes = {
+    src: PropTypes.string.isRequired,
+    width: PropTypes.number,
+    allowFullScreen: PropTypes.bool,
+    autoPlay: PropTypes.bool,
+    lazy: PropTypes.bool,
+    showText: PropTypes.bool,
+    captions: PropTypes.bool
+}

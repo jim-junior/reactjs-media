@@ -32,14 +32,14 @@ export const Image = (props) => {
             </picture>
             <Tooltip title="Download" aria-label="add" >
                 <div className="download_btn">
-                    <a download={props.name} href={props.src} className="download_lnk"><MdFileDownload /></a>
+                    {props.download ? <a download={props.name ? props.name : 'my image'} href={props.src} className="download_lnk"><MdFileDownload /></a> : <></>}
                 </div>
             </Tooltip>
             {img.current ? <>{img.current.complete ? <></> : <div className="blur_overlay"></div>}</> : <></>}
         </section>
     )
 }
-Image.protoType = {
+Image.propTypes = {
     src: PropTypes.string,
     alt: PropTypes.string,
     madia: PropTypes.string,
