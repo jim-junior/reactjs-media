@@ -7,7 +7,15 @@ import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdV
 import PropTypes from 'prop-types';
 import './Video.css'
 import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Grid from '@material-ui/core/Grid';
+import Slider from '@material-ui/core/Slider';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+const iOSBoxShadow =
+    '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
 
 export const ReactVideo = (props) => {
@@ -26,6 +34,40 @@ export const ReactVideo = (props) => {
     const [more, setmore] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
     const [ctt, setctt] = useState('00:00')
+    const TimeSlider = withStyles({
+        root: {
+            color: '#3880ff',
+            height: 2,
+            padding: '15px 0',
+        },
+        active: {},
+        valueLabel: {
+            left: 'calc(-50% + 12px)',
+            top: -22,
+            '& *': {
+                background: 'transparent',
+                color: '#000',
+            },
+        },
+        track: {
+            height: 2,
+        },
+        rail: {
+            height: 2,
+            opacity: 0.5,
+            backgroundColor: '#bfbfbf',
+        },
+        mark: {
+            backgroundColor: '#bfbfbf',
+            height: 8,
+            width: 1,
+            marginTop: -3,
+        },
+        markActive: {
+            opacity: 1,
+            backgroundColor: 'currentColor',
+        },
+    })(Slider);
     const mm = () => {
         setmore(!more)
     }
@@ -54,18 +96,15 @@ export const ReactVideo = (props) => {
 
     }
 
-    function onSeek(e) {
-        const x = e.nativeEvent.layerX
-        const { offsetWidth } = div.current
+    function onSeek(e, newValue) {
         const { duration } = video.current
 
-        let time = (x / offsetWidth) * duration
+        let time = (newValue / 100) * duration
         video.current.currentTime = time
 
         if (props.onSeek) {
             props.onSeek()
         }
-
     }
     function onMove(e) {
         const x = e.nativeEvent.layerX
@@ -192,22 +231,22 @@ export const ReactVideo = (props) => {
     return (
         <div>
             <style jsx="true">{`
-                .video-react-pause:hover,
-                .video-react-play:hover,
-                .video-react-volume:hover,
-                .video-react-rewind:hover,
-                .video-react-more:hover,
-                .video-react-fullscreen:hover,
-                .video-react-forward:hover {
-                    color: ${props.primaryColor};
-                }
-                .finnished {
-                    background-color: ${props.primaryColor} !important;
-                }
-                .point {
-                    background-color: ${props.primaryColor} !important;
-                }
-            `}</style>
+                    .video-react-pause:hover,
+                    .video-react-play:hover,
+                    .video-react-volume:hover,
+                    .video-react-rewind:hover,
+                    .video-react-more:hover,
+                    .video-react-fullscreen:hover,
+                    .video-react-forward:hover {
+                        color: ${props.primaryColor};
+                    }
+                    .finnished {
+                        background-color: ${props.primaryColor} !important;
+                    }
+                    .point {
+                        background-color: ${props.primaryColor} !important;
+                    }
+                `}</style>
             <section onContextMenu={(e) => {
                 e.preventDefault()
                 contextMenu(e)
@@ -225,68 +264,140 @@ export const ReactVideo = (props) => {
                 }} controlsList="nodownload" >
                     <source src={props.src} type={props.type ? props.type : "video/mp4"} />
                 </video>
+
+
+                {
+                    // Loading indicator
+                }
                 {video.current ? <>
                     {video.current.seeking ?
-                        <div className="video-react-loading"></div> : <></>}</> : <></>}
-                <div className="video-react-lower-bar_dhhiahhbhhbhb3767d7637____u">
-                    <Tooltip title={ctt} aria-label="add" placement="top" ><div className="hundred"><div className="progress-video-react" ref={div} onMouseMove={(e) => {
-                        onMove(e)
-                    }} onClick={onSeek} >
-                        <div
-                            className="finnished"
-                            style={video.current ? { width: `${(video.current.currentTime / video.current.duration) * 100}%`, background: props.primaryColor ? props.primaryColor : '' } : { width: 0 }} ><div className="point"></div></div>
+                        <div className="video-react-loading">
+                            <CircularProgress style={{ color: props.primaryColor }} />
+                        </div> : <></>
+                    } </> : <></>
+                }
 
-                    </div></div></Tooltip>
-                    <div className="time-stamps">
-                        <div className="current">{ct}</div>
-                        <div className="fullstime">{video.current ? calcTime(video.current.duration) : <>--:--</>}</div>
+
+                {
+                    // Lower bar with controls
+                }
+
+                <div className="video-react-lower-bar_dhhiahhbhhbhb3767d7637____u">
+
+                    {
+                        // Progress bar
+                    }
+
+
+                    <div className="hundred">
+                        <Grid container spacing={2}>
+                            <Grid item xs>
+                                <TimeSlider style={props.primaryColor ? { color: props.primaryColor } : {}} value={video.current ? (video.current.currentTime / video.current.duration) * 100 : 0} onChange={onSeek} aria-labelledby="continuous-slider" />
+                            </Grid>
+                        </Grid>
+
                     </div>
+
+
+                    {
+                        // Controls 
+                    }
+
                     <div className="video-react-controls">
+
+                        {
+                            // Play/ Pause button
+                        }
                         {playing ? <Tooltip title="Pause" aria-label="add" placement="top" ><div className="video-react-pause" onClick={pause}><MdPause /></div></Tooltip> :
                             <Tooltip title="Play" aria-label="add" placement="top" ><div className="video-react-play" onClick={play}><MdPlayArrow /></div></Tooltip>
                         }
-                        <Tooltip title="Rewind" aria-label="add" placement="top" ><div className="video-react-rewind" onClick={rewind}><MdFastRewind /></div></Tooltip>
-                        <Tooltip title="Forward" aria-label="add" placement="top" ><div className="video-react-forward" onClick={foward}><MdFastForward /></div></Tooltip>
-                        <div className="video-react-pro"></div>
-                        <div className="video-react-pro"></div>
-                        <Tooltip title="Volume" aria-label="add" placement="top" ><div className="video-react-volume"><div className="volume-add">
 
-                            <div className="volume-div" ref={vdiv} onClick={va} >
-                                <div className="finnished" style={video.current ? { width: `${(video.current.volume / 1) * 100}%` } : { width: 0 }}></div>
-                                <div className="point"></div>
-                            </div></div>{video.current ? <>
-                                {
-                                    video.current.volume === 0 ?
+                        {/* Rewind button */}
+                        <Tooltip title="Rewind" aria-label="add" placement="top" >
+                            <div className="video-react-rewind" onClick={rewind}><MdFastRewind /></div>
+                        </Tooltip>
+
+                        {/* forward button */}
+                        <Tooltip title="Forward" aria-label="add" placement="top" >
+                            <div className="video-react-forward" onClick={foward}><MdFastForward /></div>
+                        </Tooltip>
+
+                        <div className="video-react-pro">
+                            <Typography style={{ color: 'grey' }} variant="caption" component="span">
+                                {ct} \ {video.current ? calcTime(video.current.duration) : <>00:00</>}
+                            </Typography>
+                        </div>
+                        <div className="video-react-pro"></div>
+
+                        {/* Volume controlls */}
+                        <Tooltip title="Volume" aria-label="add" placement="top" >
+                            <div className="video-react-volume">
+                                <div className="volume-add">
+
+                                    <div className="volume-div" ref={vdiv} onClick={va} >
+                                        <div className="finnished" style={video.current ? { width: `${(video.current.volume / 1) * 100}%` } : { width: 0 }}></div>
+                                        <div className="point"></div>
+                                    </div>
+                                </div>
+
+                                {video.current ?
+                                    <>{video.current.volume === 0 ?
                                         <MdVolumeOff onClick={Mute} /> :
                                         <>
                                             {video.current.volume < 0.3 ? <><MdVolumeMute onClick={Mute} /></> :
                                                 <>{video.current.volume < 0.7 ? <><MdVolumeDown onClick={Mute} /></> :
                                                     <MdVolumeUp onClick={Mute} />}</>
                                             }</>
-                                }</> : <><MdVolumeUp /></>}</div></Tooltip>
-                        <Tooltip title="Fullscreen" aria-label="add" placement="top" >{fulls ? <div className="video-react-fullscreen" onClick={exitFullScreen}><MdFullscreenExit /></div> : <div className="video-react-fullscreen" onClick={enterFullScreen}><MdFullscreen /></div>}</Tooltip>
-                        <Tooltip arrow title="Settings" aria-label="add" placement="left" ><div className="video-react-more" ><div style={more ? {
-                            transform: 'scale(1)',
-                            opacity: 1
-                        } : {}} className="video-react-menu">
-                            <a download='video' href={props.src} className="list-" onClick={pp} >
-                                <span className="icon"><MdFileDownload /></span>
-                                <span className="text">Download</span>
-                            </a>
-                            <div className="list-" onClick={pp} >
-                                <span className="icon"><MdPictureInPictureAlt /></span>
-                                <span className="text">Picture In Picture</span>
+                                    }</> : <><MdVolumeUp /></>}</div></Tooltip>
+
+                        {/* Fullscreen button */}
+
+                        <Tooltip title="Fullscreen" aria-label="add" placement="top" >
+                            {fulls ?
+                                <div className="video-react-fullscreen" onClick={exitFullScreen}><MdFullscreenExit /></div> : <div className="video-react-fullscreen" onClick={enterFullScreen}><MdFullscreen /></div>}
+                        </Tooltip>
+
+                        {/* Settings */}
+                        <Tooltip arrow title="Settings" aria-label="add" placement="left" >
+
+                            <div className="video-react-more" >
+
+                                <div style={more ? {
+                                    transform: 'scale(1)',
+                                    opacity: 1
+                                } : {}} className="video-react-menu">
+                                    <a download='video' href={props.src} className="list-" onClick={pp} >
+                                        <span className="icon"><MdFileDownload /></span>
+                                        <span className="text">Download</span>
+                                    </a>
+                                    <div className="list-" onClick={pp} >
+                                        <span className="icon"><MdPictureInPictureAlt /></span>
+                                        <span className="text">Picture In Picture</span>
+                                    </div>
+
+
+                                    <Tooltip arrow title="Playback speed" aria-label="add" placement="left" >
+
+                                        <div className="list-1">
+
+                                            <span className="icon" onClick={minusp} style={video.current ? video.current.playbackRate === 0 ?
+                                                { cursor: 'not-allowed' } : {} : {}
+                                            }>
+                                                <MdRemove />
+                                            </span>
+                                            <span className="text">{video.current ? video.current.playbackRate : 1}</span>
+                                            <span className="icon" onClick={addp}  ><MdAdd /></span>
+                                        </div>
+                                    </Tooltip>
+                                </div>
+
+                                <MdSettings style={more ? { transform: 'rotate(40deg)', transition: 'all 0.2s' } : {
+                                    transition: 'all 0.2s'
+                                }} onContextMenu={(e) => {
+                                    e.preventDefault()
+                                }} onClick={mm} />
                             </div>
-                            <Tooltip arrow title="Playback speed" aria-label="add" placement="left" ><div className="list-1">
-                                <span className="icon" onClick={minusp} style={video.current ? video.current.playbackRate === 0 ?
-                                    { cursor: 'not-allowed' } : {} : {}
-                                }><MdRemove /></span>
-                                <span className="text">{video.current ? video.current.playbackRate : 1}</span>
-                                <span className="icon" onClick={addp}  ><MdAdd /></span>
-                            </div></Tooltip>
-                        </div><MdSettings style={more ? { transform: 'rotate(40deg)', transition: 'all 0.2s' } : { transition: 'all 0.2s' }} onContextMenu={(e) => {
-                            e.preventDefault()
-                        }} onClick={mm} /></div></Tooltip>
+                        </Tooltip>
 
                     </div>
                 </div>
@@ -311,32 +422,57 @@ export const ReactVideo = (props) => {
                             <div className="video-rect-context" style={{ top: y, left: x }}>
                                 <ul className="context-list">
                                     {playing ?
-                                        <li className="play" onClick={pause} ><span className="i"><MdPause /></span><span className="t">Pause</span></li> : <li className="play" onClick={play} ><span className="i"><MdPlayArrow /></span><span className="t">Play</span></li>}
-                                    <li onClick={() => { setClipboard(video.current ? video.current.currentSrc : '') }}><span className="i"><MdFlipToBack /></span><span className="t" >Copy Video Url</span></li>
-                                    {video.current ? <>{video.current.loop ? <li onClick={() => {
-                                        video.current.loop = false
-                                    }} ><span className="i"><MdLoop /></span><span className="t">Stop Loop</span></li> : <li onClick={() => {
-                                        video.current.loop = true
-                                    }} ><span className="i"><MdLoop /></span><span className="t">Loop</span></li>
+                                        <li className="play" onClick={pause} >
+                                            <span className="i">
+                                                <MdPause />
+                                            </span>
+                                            <span className="t">Pause</span></li> : <li className="play" onClick={play} >
+                                            <span className="i">
+                                                <MdPlayArrow />
+                                            </span>
+                                            <span className="t">Play</span>
+                                        </li>}
+                                    <li onClick={() => { setClipboard(video.current ? video.current.currentSrc : '') }}>
+                                        <span className="i"><MdFlipToBack /></span>
+                                        <span className="t" >Copy Video Url</span>
+                                    </li>
+                                    {video.current ? <>{video.current.loop ?
+                                        <li onClick={() => {
+                                            video.current.loop = false
+                                        }} >
+                                            <span className="i"><MdLoop /></span>
+                                            <span className="t">Stop Loop</span>
+                                        </li> :
+                                        <li onClick={() => {
+                                            video.current.loop = true
+                                        }} >
+                                            <span className="i"><MdLoop /></span>
+                                            <span className="t">Loop</span>
+                                        </li>
                                     }</> : <></>}
                                 </ul>
-                            </div></div></div> : <></>}
-                {playing === false && loaded === true ? <div className="poster">
-                    <div>
-                        <img src={props.poster} alt="video poster" />
-                        <div style={props.primaryColor ? { background: props.primaryColor } : {}} onClick={() => {
-                            play()
-                            setloaded(false)
-                        }}><MdPlayArrow /></div>
-                    </div>
-                </div> : <></>}
+                            </div>
+                        </div>
+                    </div> : <></>}
+                {playing === false && loaded === true ?
+                    <div className="poster">
+                        <div>
+                            <img src={props.poster} alt="video poster" />
+                            <div style={props.primaryColor ? { background: props.primaryColor } : {}} onClick={() => {
+                                play()
+                                setloaded(false)
+                            }}>
+                                <MdPlayArrow />
+                            </div>
+                        </div>
+                    </div> : <></>}
 
                 {props.childern}
 
 
             </section>
 
-        </div>
+        </div >
     )
 }
 ReactVideo.propTypes = {

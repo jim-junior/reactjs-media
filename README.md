@@ -11,8 +11,9 @@ Available components:
 - Video 
 - Audio
 - Youtube Player
+- Facebook player
 
-Facebook player is soon Comming
+Sound Cloud player is soon Comming
 #### Installation
 
 To install go to your terminal and run this script
@@ -28,7 +29,7 @@ In here we shall show a small demo on how to setup a simple video component. We 
 
 ```jsx
 import React from 'react';
-import { ReactVideo } from 'reactjs-media/video';
+import { ReactVideo } from 'reactjs-media';
 
 const App = () => {
     return (

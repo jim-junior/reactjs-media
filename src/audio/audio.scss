@@ -2,16 +2,15 @@
 Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
 */
 
-$theme: #006eff;
+$theme: #003cff;
 $back: #00000075;
 .react-audio-covering-div_EJIJIJijajijshi_2428242cf_22 {
-	background-color: #000000;
-	border: 1px solid rgb(27, 27, 27);
-	box-shadow: #00000036 1px 1px 5px, #00000036 -1px -1px 5px;
+	background-color: #f5f5f5;
+	border: 1px solid rgb(129, 129, 129);
 	width: 100%;
 	padding: 0.2rem 0rem;
 	border-radius: 7px;
-	color: white;
+	color: $theme;
 	position: relative;
 }
 .playing-animation {
@@ -69,14 +68,14 @@ $back: #00000075;
 }
 .hundred {
 	width: stretch;
-	width: -moz-available;
-	width: fill-available;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 .time-stamps-audio_12242334_A_wjsh {
 	width: 100%;
 	display: flex;
 	font-size: 0.7rem;
-	color: white;
+	color: $theme;
 	.fullstime {
 		margin-left: auto;
 		padding-right: 5px;
@@ -135,10 +134,6 @@ $back: #00000075;
 		cursor: pointer;
 		transition: all 0.3s ease-in-out;
 		font-size: 1.3rem;
-		&:hover {
-			transform: scale(1.2);
-			color: #006eff;
-		}
 	}
 }
 .react-audio-controls {
@@ -154,6 +149,7 @@ $back: #00000075;
 		display: flex;
 		align-items: center;
 		width: fit-content;
+		transform: scaleX(0);
 		height: fit-content;
 		color: white;
 		transition: all 0.5s;
@@ -169,6 +165,7 @@ $back: #00000075;
 	&:hover {
 		.volume-add {
 			opacity: 1;
+			transform: scaleX(1);
 		}
 		.volume-div {
 			width: 80px;

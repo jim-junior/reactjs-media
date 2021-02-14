@@ -5,42 +5,47 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import './audio.css'
-import * as icons from 'react-icons/md'
+import {
+    MdPause, MdPlayArrow, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdCallMade,
+    MdPauseCircleFilled,
+    MdPlayCircleFilled,
+    MdCallReceived
+} from 'react-icons/md'
+import Grid from '@material-ui/core/Grid';
+import Slider from '@material-ui/core/Slider';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+
+
 
 export const ReactAudio = (props) => {
     const audio = useRef(null)
     const [playing, setplaying] = useState(false)
-    const vdiv = useRef(null)
     const div = useRef(null)
     const [width, setwidth] = useState(0)
     const [small, setsmall] = useState(false)
+    // eslint-disable-next-line no-unused-vars
     const [vwidth, setvwidth] = useState(0)
     const [mute, setmute] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
 
 
-    function va(e) {
-        const x = e.nativeEvent.layerX
-        const { offsetWidth } = vdiv.current
+    function va(e, n) {
 
-        let time = (x / offsetWidth) * 1
+        let time = (n / 100) * 1
         audio.current.volume = time
 
-        let perc = (x / offsetWidth) * 100
-        setvwidth(perc)
+        setvwidth(n)
     }
 
 
-    function onSeek(e) {
-        const x = e.nativeEvent.layerX
-        const { offsetWidth } = div.current
+    function onSeek(e, newValue) {
         const { duration } = audio.current
 
-        let time = (x / offsetWidth) * duration
+        let time = (newValue / 100) * duration
         audio.current.currentTime = time
 
-        let perc = (x / offsetWidth) * 100
-        setwidth(perc)
+        setwidth(newValue)
         if (props.onSeek) {
             props.onSeek()
         }
@@ -149,50 +154,72 @@ export const ReactAudio = (props) => {
 
 
                     <div className="hundred">
-                        <div className="progress-audio-react_dkijs_23443sxjsjAJajAJ3" ref={div} onClick={onSeek} >
-                            <div className="finnished" style={{ width: `${width}%` }} ></div>
-                            <div className="point"></div>
-                        </div>
+                        <Grid container spacing={2}>
+                            <Grid item>
+                                <Typography variant="caption" color="textSecondary" component="span">
+                                    {ct}
+                                </Typography>
+
+                            </Grid>
+                            <Grid item xs>
+                                <Slider style={props.primaryColor ? { color: props.primaryColor } : {}} value={width} onChange={onSeek} aria-labelledby="continuous-slider" />
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="caption" color="textSecondary" component="span">
+                                    {audio.current ? calcTime(audio.current.duration) : <>00:00</>}
+                                </Typography>
+
+                            </Grid>
+                        </Grid>
                     </div>
-                    <div className="playing-animation">
-                        <div className="first" style={playing ? {} : { animation: 'none' }}></div>
-                        <div className="middle" style={playing ? {} : { animation: 'none' }}></div>
-                        <div className="first" style={playing ? {} : { animation: 'none' }}></div>
-                    </div>
-                </div>
-                <div className="time-stamps-audio_12242334_A_wjsh">
-                    <div className="current">{ct}</div>
-                    <div className="fullstime">{audio.current ? calcTime(audio.current.duration) : <></>}</div>
                 </div>
                 <div className="audio-display-controls">
                     <div className="react-audio-play">
                         {playing ?
-                            <icons.MdPause onClick={pause} /> : <icons.MdPlayArrow onClick={play} />}
+                            <IconButton style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={pause} color="primary" aria-label="upload picture" component="span">
+                                <MdPause />
+                            </IconButton>
+                            : <IconButton style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={play} color="primary" aria-label="upload picture" component="span">
+                                <MdPlayArrow />
+                            </IconButton>}
                     </div>
                     <div className="react-audio-rewind">
-                        <icons.MdFastRewind onClick={rewind} />
+                        <IconButton style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={rewind} color="primary" aria-label="upload picture" component="span">
+                            <MdFastRewind />
+                        </IconButton>
+
                     </div>
                     <div className="react-audio-foward">
-                        <icons.MdFastForward onClick={foward} />
+                        <IconButton style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={foward} color="primary" aria-label="upload picture" component="span">
+                            <MdFastForward />
+                        </IconButton>
+
                     </div>
                     <div className="react-audio-controls"><div className="volume-add">
 
-                        <div className="volume-div" ref={vdiv} onClick={va} >
-                            <div className="finnished" style={audio.current ? { width: `${(audio.current.volume / 1) * 100}%` } : { width: 0 }}></div>
-                            <div className="point"></div>
-                        </div></div>{audio.current ? <>
-                            {
-                                audio.current.volume === 0 ?
-                                    <icons.MdVolumeOff onClick={Mute} /> :
-                                    <>
-                                        {audio.current.volume < 0.3 ? <><icons.MdVolumeMute onClick={Mute} /></> :
-                                            <>{audio.current.volume < 0.7 ? <><icons.MdVolumeDown onClick={Mute} /></> :
-                                                <icons.MdVolumeUp onClick={Mute} />}</>
-                                        }</>
-                            }</> : <></>}
+                        <Slider style={props.primaryColor ? { color: props.primaryColor } : {}} value={audio.current ? (audio.current.volume / 1) * 100 : 0} onChange={va} aria-labelledby="continuous-slider" />
+                    </div>
+                        {audio.current ? <>
+                            <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={Mute} aria-label="upload picture" component="span">
+
+                                {
+                                    audio.current.volume === 0 ?
+                                        <MdVolumeOff /> :
+                                        <>
+                                            {audio.current.volume < 0.3 ? <><MdVolumeMute /></> :
+                                                <>{audio.current.volume < 0.7 ? <><MdVolumeDown /></> :
+                                                    <MdVolumeUp />}</>
+                                            }</>
+                                }</IconButton></> : <>
+                                <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={Mute} aria-label="upload picture" component="span">
+                                    <MdVolumeUp />
+                                </IconButton>
+                            </>}
                     </div>
                     <div className="react-audio-fixed">
-                        <icons.MdCallMade onClick={() => { setsmall(!small) }} />
+                        <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={() => { setsmall(!small) }} aria-label="upload picture" component="span">
+                            <MdCallMade />
+                        </IconButton>
                     </div>
 
                 </div>
@@ -205,7 +232,7 @@ export const ReactAudio = (props) => {
                 <aside className={`react-audio-covering-div_EJI ${props.className}`}>
                     <div className="react-audio-play">
                         {playing ?
-                            <icons.MdPauseCircleFilled onClick={pause} /> : <icons.MdPlayCircleFilled onClick={play} />}
+                            <MdPauseCircleFilled onClick={pause} /> : <MdPlayCircleFilled onClick={play} />}
                     </div>
                     <div className="playing-animation" >
                         <div className="first" style={playing ? {} : { animation: 'none' }}></div>
@@ -213,7 +240,7 @@ export const ReactAudio = (props) => {
                         <div className="first" style={playing ? {} : { animation: 'none' }}></div>
                     </div>
                     <div className="react-audio-fixed">
-                        <icons.MdCallReceived onClick={() => { setsmall(!small) }} />
+                        <MdCallReceived onClick={() => { setsmall(!small) }} />
                     </div>
                 </aside> : <></>}
         </div>

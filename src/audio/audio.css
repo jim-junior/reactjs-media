@@ -2,14 +2,12 @@
 Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
 */
 .react-audio-covering-div_EJIJIJijajijshi_2428242cf_22 {
-  background-color: #000000;
-  border: 1px solid #1b1b1b;
-  -webkit-box-shadow: #00000036 1px 1px 5px, #00000036 -1px -1px 5px;
-          box-shadow: #00000036 1px 1px 5px, #00000036 -1px -1px 5px;
+  background-color: #f5f5f5;
+  border: 1px solid #818181;
   width: 100%;
   padding: 0.2rem 0rem;
   border-radius: 7px;
-  color: white;
+  color: #003cff;
   position: relative;
 }
 
@@ -122,9 +120,10 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 
 .hundred {
   width: -webkit-fill-available;
-  width: stretch;
   width: -moz-available;
-  width: fill-available;
+  width: stretch;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .time-stamps-audio_12242334_A_wjsh {
@@ -133,7 +132,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   display: -ms-flexbox;
   display: flex;
   font-size: 0.7rem;
-  color: white;
+  color: #003cff;
 }
 
 .time-stamps-audio_12242334_A_wjsh .fullstime {
@@ -211,16 +210,6 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   font-size: 1.3rem;
 }
 
-.react-audio-play svg:hover,
-.react-audio-rewind svg:hover,
-.react-audio-foward svg:hover,
-.react-audio-controls svg:hover,
-.react-audio-fixed svg:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-  color: #006eff;
-}
-
 .react-audio-controls {
   position: relative;
   display: -webkit-box;
@@ -232,7 +221,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 }
 
 .react-audio-controls .finnished {
-  background-color: #006eff;
+  background-color: #003cff;
   height: 100%;
 }
 
@@ -247,6 +236,8 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -267,6 +258,8 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 
 .react-audio-controls:hover .volume-add {
   opacity: 1;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
 .react-audio-controls:hover .volume-div {

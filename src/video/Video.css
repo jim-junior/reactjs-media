@@ -74,21 +74,12 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 }
 
 .video-react-loading {
+  width: 40px;
+  height: 40px;
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.089);
-  border: white 2px solid;
-  border-top: blue 2px solid;
-  width: 50px;
-  top: 33.33%;
+  top: 43.33%;
   left: 43.33%;
-  -webkit-animation: loading 1s infinite;
-          animation: loading 1s infinite;
   position: absolute;
-  /* margin: auto;
-	margin-top: auto;
-	margin-bottom: auto; */
 }
 
 @-webkit-keyframes loading {
@@ -469,7 +460,7 @@ span.icon {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   position: absolute;
   left: 45%;
   top: 45%;
