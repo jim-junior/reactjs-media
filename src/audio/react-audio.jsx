@@ -9,13 +9,17 @@ import {
     MdPause, MdPlayArrow, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdCallMade,
     MdPauseCircleFilled,
     MdPlayCircleFilled,
-    MdCallReceived
+    MdCallReceived,
+    MdFileDownload,
+    MdSettings
 } from 'react-icons/md'
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-
+import Tooltip from '@material-ui/core/Tooltip';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 export const ReactAudio = (props) => {
@@ -28,6 +32,15 @@ export const ReactAudio = (props) => {
     const [vwidth, setvwidth] = useState(0)
     const [mute, setmute] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const OpenMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const CloseMenu = () => {
+        setAnchorEl(null);
+    };
 
 
     function va(e, n) {
@@ -217,9 +230,24 @@ export const ReactAudio = (props) => {
                             </>}
                     </div>
                     <div className="react-audio-fixed">
-                        <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={() => { setsmall(!small) }} aria-label="upload picture" component="span">
-                            <MdCallMade />
+                        <IconButton aria-controls="audio-menu" aria-haspopup="true" onClick={OpenMenu} color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} aria-label="settings" component="span">
+                            <MdSettings />
                         </IconButton>
+                        <Menu
+                            id="audio-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={CloseMenu}
+                        ><Tooltip title="Mini player" aria-label="add" placement="left" >
+                                <MenuItem onClick={() => { setsmall(!small); CloseMenu() }}>
+                                    <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={() => { setsmall(!small) }} aria-label="upload picture" component="span">
+                                        <MdCallMade />
+                                    </IconButton></MenuItem></Tooltip>
+                            {props.download ? <Tooltip title="Download" aria-label="add" placement="left" ><MenuItem onClick={() => { CloseMenu() }}><a download='audio' href={props.src}  >
+                                <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} aria-label="upload picture" component="span"><MdFileDownload /></IconButton>
+                            </a></MenuItem></Tooltip> : <></>}
+                        </Menu>
                     </div>
 
                 </div>
@@ -231,8 +259,13 @@ export const ReactAudio = (props) => {
             {small ?
                 <aside className={`react-audio-covering-div_EJI ${props.className}`}>
                     <div className="react-audio-play">
-                        {playing ?
-                            <MdPauseCircleFilled onClick={pause} /> : <MdPlayCircleFilled onClick={play} />}
+                        {playing ? <><IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={pause} aria-label="upload picture" component="span">
+                            <MdPauseCircleFilled />
+                        </IconButton></>
+                            : <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={play} aria-label="upload picture" component="span">
+                                <MdPlayCircleFilled />
+                            </IconButton>
+                        }
                     </div>
                     <div className="playing-animation" >
                         <div className="first" style={playing ? {} : { animation: 'none' }}></div>
@@ -240,7 +273,9 @@ export const ReactAudio = (props) => {
                         <div className="first" style={playing ? {} : { animation: 'none' }}></div>
                     </div>
                     <div className="react-audio-fixed">
-                        <MdCallReceived onClick={() => { setsmall(!small) }} />
+                        <IconButton color="primary" style={props.primaryColor ? { color: props.primaryColor } : {}} onClick={() => { setsmall(!small) }} aria-label="upload picture" component="span">
+                            <MdCallReceived />
+                        </IconButton>
                     </div>
                 </aside> : <></>}
         </div>

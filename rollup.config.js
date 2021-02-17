@@ -6,7 +6,7 @@ const config =  [
   {
     input: "src/index.js",
     output: {
-      name: "reactjsmedia",
+      name: "reactjs-media",
       dir: "lib",
       sourcemap: true,
       format: "cjs",
@@ -26,7 +26,7 @@ const config =  [
   {
     input: "src/video/react-video.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "ReactVideo",
       sourcemap: true,
       file: "video.js",
       format: "cjs"
@@ -45,7 +45,7 @@ const config =  [
   {
     input: "src/video/react-video.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "ReactVideo",
       sourcemap: true,
       file: "dist/video.esm.js",
       format: "esm"
@@ -64,7 +64,7 @@ const config =  [
   {
     input: "src/video/react-video.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "ReactVideo",
       sourcemap: true,
       file: "dist/video.umd.js",
       format: "umd"
@@ -83,7 +83,7 @@ const config =  [
   {
     input: "src/video/react-video.jsx",
     output: {
-      name: "reactjsvideo",
+      name: "ReactVideo",
       sourcemap: true,
       file: "dist/video.cjs.js",
       format: "cjs"
@@ -101,7 +101,7 @@ const config =  [
   },{
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsaudio",
+      name: "ReactAudio",
       sourcemap: true,
       file: "audio.js",
       format: "cjs"
@@ -120,7 +120,7 @@ const config =  [
   {
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsaudio",
+      name: "ReactAudio",
       sourcemap: true,
       file: "dist/audio.esm.js",
       format: "esm"
@@ -139,7 +139,7 @@ const config =  [
   {
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsaudio",
+      name: "ReactAudio",
       sourcemap: true,
       file: "dist/audio.umd.js",
       format: "umd"
@@ -158,7 +158,7 @@ const config =  [
   {
     input: "src/audio/react-audio.jsx",
     output: {
-      name: "reactjsaudio",
+      name: "ReactAudio",
       file: "dist/audio.cjs.js",
       format: "cjs",
       sourcemap: true

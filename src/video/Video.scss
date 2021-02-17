@@ -76,7 +76,7 @@ $back: #00000075;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	margin: 0rem 0.3rem;
+	margin: 0rem;
 	background: linear-gradient(
 		rgba(0, 0, 0, 0),
 		rgba(0, 0, 0, 0.404),
@@ -148,7 +148,7 @@ span.icon {
 	font-size: 1rem;
 }
 .video-react-menu {
-	background-color: whitesmoke;
+	background-color: rgba(3, 3, 3, 0.781);
 	width: 150px;
 	height: fit-content;
 	bottom: 101%;
@@ -160,20 +160,20 @@ span.icon {
 	border-radius: 5px;
 	right: 0px;
 	position: absolute;
-	color: black;
+	color: #ffffff;
 	z-index: 3;
 	box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
 }
 .list- {
 	display: flex;
 	align-items: center;
-	color: black;
+	color: #ffffff;
 	text-decoration: none;
 	.text {
 		margin-left: 10px;
 	}
 	&:hover {
-		background: gray;
+		background: #8080806c;
 		color: white;
 	}
 	span.icon > svg {
@@ -193,7 +193,7 @@ span.icon {
 		border-radius: 5px;
 		transition: all 0.2s ease-out;
 		&:hover {
-			background-color: gray;
+			background-color: #8080806c;
 			color: white;
 		}
 	}

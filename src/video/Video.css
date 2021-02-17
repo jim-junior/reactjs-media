@@ -101,7 +101,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   bottom: 0px;
   left: 0px;
   right: 0px;
-  margin: 0rem 0.3rem;
+  margin: 0rem;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.404)), color-stop(rgba(0, 0, 0, 0.589)), to(rgba(0, 0, 0, 0.863)));
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.863));
   -webkit-transition: all 0.5s ease-out;
@@ -197,7 +197,7 @@ span.icon {
 }
 
 .video-react-menu {
-  background-color: whitesmoke;
+  background-color: rgba(3, 3, 3, 0.781);
   width: 150px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -213,7 +213,7 @@ span.icon {
   border-radius: 5px;
   right: 0px;
   position: absolute;
-  color: black;
+  color: #ffffff;
   z-index: 3;
   -webkit-box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
           box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
@@ -226,7 +226,7 @@ span.icon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: black;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -235,7 +235,7 @@ span.icon {
 }
 
 .list-:hover {
-  background: gray;
+  background: #8080806c;
   color: white;
 }
 
@@ -268,7 +268,7 @@ span.icon {
 }
 
 .list-1 .icon:hover {
-  background-color: gray;
+  background-color: #8080806c;
   color: white;
 }
 

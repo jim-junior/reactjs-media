@@ -2,7 +2,7 @@
 Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
 */
 
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { MdPause, MdPlayArrow, MdAdd, MdRemove, MdFastRewind, MdFastForward, MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff, MdPictureInPictureAlt, MdFullscreenExit, MdFullscreen, MdErrorOutline, MdClose, MdFlipToBack, MdLoop, MdSettings, MdFileDownload } from 'react-icons/md'
 import PropTypes from 'prop-types';
 import './Video.css'
@@ -10,12 +10,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-const iOSBoxShadow =
-    '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
+
 
 
 export const ReactVideo = (props) => {
@@ -27,13 +25,16 @@ export const ReactVideo = (props) => {
     const [error, seterror] = useState(false)
     const [y, sety] = useState(false)
     const [x, setx] = useState(false)
+    const [climb] = useState(false)
     const [on, seton] = useState(false)
     const [loaded, setloaded] = useState(true)
     const [fulls, setfulls] = useState(false)
     const [mute, setmute] = useState(false)
     const [more, setmore] = useState(false)
     const [ct, setcurrenttime] = useState('00:00')
-    const [ctt, setctt] = useState('00:00')
+    useEffect(() => {
+
+    }, [climb])
     const TimeSlider = withStyles({
         root: {
             color: '#3880ff',
@@ -51,6 +52,9 @@ export const ReactVideo = (props) => {
         },
         track: {
             height: 2,
+            '&:hover .thumb': {
+                transform: 'scale(0)'
+            }
         },
         rail: {
             height: 2,
@@ -105,19 +109,6 @@ export const ReactVideo = (props) => {
         if (props.onSeek) {
             props.onSeek()
         }
-    }
-    function onMove(e) {
-        const x = e.nativeEvent.layerX
-        const { offsetWidth } = div.current
-        const { duration } = video.current
-
-        let time = (x / offsetWidth) * duration
-        setctt(calcTime(time))
-
-        if (props.onSeek) {
-            props.onSeek()
-        }
-
     }
     function addp() {
         if (video.current.playbackRate < 16) {
@@ -324,10 +315,14 @@ export const ReactVideo = (props) => {
 
                         <div className="video-react-pro">
                             <Typography style={{ color: 'grey' }} variant="caption" component="span">
-                                {ct} \ {video.current ? calcTime(video.current.duration) : <>00:00</>}
+                                {ct}
                             </Typography>
                         </div>
-                        <div className="video-react-pro"></div>
+                        <div className="video-react-pro">
+                            <Typography style={{ color: 'grey' }} variant="caption" component="span">
+                                {video.current ? calcTime(video.current.duration) : <>00:00</>}
+                            </Typography>
+                        </div>
 
                         {/* Volume controlls */}
                         <Tooltip title="Volume" aria-label="add" placement="top" >
@@ -366,10 +361,10 @@ export const ReactVideo = (props) => {
                                     transform: 'scale(1)',
                                     opacity: 1
                                 } : {}} className="video-react-menu">
-                                    <a download='video' href={props.src} className="list-" onClick={pp} >
+                                    {props.download ? <a download='video' href={props.src} className="list-" onClick={pp} >
                                         <span className="icon"><MdFileDownload /></span>
                                         <span className="text">Download</span>
-                                    </a>
+                                    </a> : <></>}
                                     <div className="list-" onClick={pp} >
                                         <span className="icon"><MdPictureInPictureAlt /></span>
                                         <span className="text">Picture In Picture</span>
