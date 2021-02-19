@@ -12,10 +12,12 @@ CVS
 .lock-wscript
 .wafpickle-N
 .DS_Store
-npm-debug.log
 .npmrc
 config.gypi
 .vs
 .vscode
 README.html
 test
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
