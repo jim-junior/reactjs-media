@@ -339,8 +339,9 @@ span.icon {
 			height: fit-content;
 			padding: 1rem 2rem;
 			position: absolute;
-			left: 45%;
-			top: 45%;
+			left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%)
 			color: white;
 			background: $theme;
 			border-radius: 25%;
