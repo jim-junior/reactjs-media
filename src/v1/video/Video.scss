@@ -4,18 +4,21 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 
 $theme: #006eff;
 $back: #00000075;
+
 .one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 {
 	width: 100%;
 	height: 500px;
 	color: $theme;
 	background: black;
 	position: relative;
+
 	&:hover {
 		.video-react-lower-bar_dhhiahhbhhbhb3767d7637____u {
 			opacity: 1;
 		}
 	}
 }
+
 .progress-video-react {
 	display: flex;
 	align-items: center;
@@ -23,8 +26,9 @@ $back: #00000075;
 	width: 100%;
 	margin-bottom: 5px;
 	cursor: pointer;
-	background-color: aliceblue;
+	background-color: rgba(255, 255, 255, 0.664);
 	transition: all 0.4s;
+
 	.finnished {
 		background-color: $theme;
 		height: 100%;
@@ -32,6 +36,7 @@ $back: #00000075;
 		position: relative;
 		display: flex;
 	}
+
 	.point {
 		width: 0px;
 		height: 0px;
@@ -40,63 +45,77 @@ $back: #00000075;
 		position: absolute;
 		right: -3px;
 		pointer-events: none;
-		border-radius: 50%;
 		background-color: $theme;
 		transition: all 0.3s;
+
 		&:hover {
 			transform: scale(1.5);
 		}
 	}
+
 	&:focus {
 		background-color: yellow;
 	}
+
 	&:hover {
 		height: 5px;
+
 		.point {
 			width: 10px;
 			height: 10px;
 		}
 	}
 }
+
 .video-react-loading {
-	width: 40px;
-	height: 40px;
 	width: 50px;
-	top: 43.33%;
+	height: 50px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.089);
+	border: white 2px solid;
+	border-top: blue 2px solid;
+	top: 33.33%;
 	left: 43.33%;
+	animation: loading 1s infinite;
 	position: absolute;
+	/* margin: auto;
+	margin-top: auto;
+	margin-bottom: auto; */
 }
+
 @keyframes loading {
 	100% {
 		transform: rotate(360deg);
 	}
 }
+
 .video-react-lower-bar_dhhiahhbhhbhb3767d7637____u {
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	margin: 0rem;
-	background: linear-gradient(
-		rgba(0, 0, 0, 0),
-		rgba(0, 0, 0, 0.404),
-		rgba(0, 0, 0, 0.589),
-		rgba(0, 0, 0, 0.863)
-	);
+	margin: 0rem 0.3rem;
+	background: linear-gradient(rgba(0, 0, 0, 0),
+			rgba(0, 0, 0, 0.404),
+			rgba(0, 0, 0, 0.589),
+			rgba(0, 0, 0, 0.863));
 	transition: all 0.5s ease-out;
 	opacity: 0;
 }
-.one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9 > video {
+
+.one___flkjsjJJNJnn_nANN8hG_YG7GY7g7BH9>video {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
 }
-.video-react-controls > div {
+
+.video-react-controls>div {
 	width: 45%;
 	height: fit-content;
 	flex: 1;
 	text-align: center;
 	padding-top: 5px;
+
 	svg {
 		font-size: 1.5rem !important;
 		margin-top: auto !important;
@@ -104,27 +123,33 @@ $back: #00000075;
 		margin-bottom: auto !important;
 	}
 }
+
 .video-react-controls {
 	display: flex;
 	width: 100%;
 }
+
 .time-stamps {
 	width: 100%;
 	display: flex;
 	font-size: 0.7rem;
 	color: white;
 	text-shadow: black 1px 1px 1px;
+
 	.fullstime {
 		margin-left: auto;
 		padding-right: 5px;
 	}
+
 	.current {
 		padding-left: 5px;
 	}
 }
+
 .video-react-more {
 	position: relative;
 }
+
 .video-react-play,
 .video-react-pause,
 .video-react-volume,
@@ -136,6 +161,7 @@ $back: #00000075;
 	transition: all 0.3s;
 	cursor: pointer;
 	color: white;
+
 	&:hover {
 		border-top: rgba(209, 208, 208, 0.267) 1px solid;
 		border-bottom: rgba(209, 208, 208, 0.267) 1px solid;
@@ -143,12 +169,14 @@ $back: #00000075;
 		color: $theme;
 	}
 }
+
 span.icon {
 	padding: 5px;
 	font-size: 1rem;
 }
+
 .video-react-menu {
-	background-color: rgba(3, 3, 3, 0.781);
+	background-color: rgba(7, 7, 7, 0.671);
 	width: 150px;
 	height: fit-content;
 	bottom: 101%;
@@ -160,52 +188,63 @@ span.icon {
 	border-radius: 5px;
 	right: 0px;
 	position: absolute;
-	color: #ffffff;
+	color: #b4b3b3;
 	z-index: 3;
 	box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
 }
+
 .list- {
 	display: flex;
 	align-items: center;
-	color: #ffffff;
+	color: #b4b3b3;
 	text-decoration: none;
+
 	.text {
 		margin-left: 10px;
 	}
+
 	&:hover {
-		background: #8080806c;
+		background: rgba(128, 128, 128, 0.486);
 		color: white;
 	}
-	span.icon > svg {
+
+	span.icon>svg {
 		color: $theme;
 		font-size: 1.5rem !important;
 		width: 20px !important;
 	}
 }
+
 .list-1 {
 	display: flex;
 	align-items: center;
+
 	span {
 		flex: 1;
 	}
+
 	.icon {
 		color: $theme;
 		border-radius: 5px;
 		transition: all 0.2s ease-out;
+
 		&:hover {
-			background-color: #8080806c;
+			background-color: gray;
 			color: white;
 		}
 	}
 }
+
 .video-react-volume {
 	position: relative;
 	display: flex;
 	align-items: center;
+
 	.finnished {
 		background-color: $theme;
 		height: 100%;
 	}
+
 	.volume-add {
 		opacity: 0;
 		display: flex;
@@ -215,6 +254,7 @@ span.icon {
 		color: white;
 		transition: all 0.5s;
 	}
+
 	.volume-div {
 		width: 0px;
 		height: 3px;
@@ -223,15 +263,18 @@ span.icon {
 		transition: all 0.5s;
 		border-radius: 5px;
 	}
+
 	&:hover {
 		.volume-add {
 			opacity: 1;
 		}
+
 		.volume-div {
 			width: 80px;
 		}
 	}
 }
+
 .video-react-error_12ede3ws3 {
 	background-color: red;
 	z-index: 10;
@@ -248,24 +291,30 @@ span.icon {
 	box-shadow: black 1px 1px 25px;
 	left: 10px;
 	transition: all 0.5s ease-in-out;
+
 	span {
 		margin: 5px;
 		text-align: center;
 		vertical-align: middle;
 	}
+
 	.cancel {
 		padding: 0.3rem;
 		border-radius: 5px;
 		cursor: pointer;
+
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.37);
 		}
 	}
+
 	svg {
 		font-size: 1.5rem;
 	}
+
 	padding: 0.1rem;
 }
+
 .menu-c {
 	position: fixed;
 	top: 0;
@@ -273,10 +322,12 @@ span.icon {
 	right: 0;
 	bottom: 0;
 }
+
 .menu-contxt {
 	position: relative;
 	margin: 0px;
 }
+
 .video-rect-context {
 	background-color: rgba(0, 0, 0, 0.829);
 	width: fit-content;
@@ -286,10 +337,12 @@ span.icon {
 	border-radius: 3px;
 	box-shadow: #000000b4 1px 1px 15px, #000000b4 -1px -1px 15px;
 	padding: 0.5rem;
+
 	ul {
 		list-style: none;
 		margin: 0px;
 		padding: 0px;
+
 		li {
 			font-size: 0.9rem;
 			display: flex;
@@ -298,9 +351,11 @@ span.icon {
 			cursor: pointer;
 			border-radius: 3px;
 			transition: all 0.3s ease-out;
+
 			&:hover {
 				background-color: rgba(255, 255, 255, 0.199);
 			}
+
 			svg {
 				font-size: 1.5rem;
 				padding-right: 0.2rem;
@@ -309,6 +364,7 @@ span.icon {
 		}
 	}
 }
+
 .poster {
 	position: absolute;
 	z-index: 15;
@@ -316,35 +372,80 @@ span.icon {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	& > div {
+
+	&>div {
 		position: relative;
 		background: black;
 		height: 100%;
 		width: 100%;
+
 		img {
 			width: 100%;
 			height: 100%;
 			margin: 0px;
 		}
+
 		div {
 			width: fit-content;
 			height: fit-content;
-			padding: 0.5rem 1rem;
+			padding: 1rem 2rem;
 			position: absolute;
-			left: 45%;
-			top: 45%;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
 			color: white;
 			background: $theme;
 			border-radius: 25%;
+
 			svg {
 				font-size: 3rem;
 			}
+
 			cursor: pointer;
+
 			&:hover {
 				background: #2985fd;
 			}
+
 			margin: auto;
 			z-index: 3;
 		}
 	}
+}
+
+.tooltip {
+	position: relative;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: fit-content;
+	font-size: .5rem;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 5px;
+	position: absolute;
+	z-index: 1;
+	pointer-events: none;
+	bottom: 230%;
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
 }

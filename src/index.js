@@ -3,17 +3,18 @@
 Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
 */
 
-import { ReactAudio } from "./audio/react-audio.jsx";
-import { FacebookPlayer } from "./facebook/index.jsx";
-import { Image } from "./image/index.jsx";
-import { ReactVideo } from "./video/react-video.jsx";
-import { YoutubePlayer } from "./youtube/index.jsx";
-
+import { ReactAudio } from "./v1/audio/react-audio.jsx";
+import { FacebookPlayer } from "./v1/facebook/index.jsx";
+import { Image } from "./v1/image/index.jsx";
+import { ReactVideo } from "./v1/video/react-video.jsx";
+import Video from "./v2/video/index.jsx";
+import { YoutubePlayer } from "./v1/youtube/index.jsx";
 
 export default {
-    ReactAudio, 
+    ReactAudio,
     ReactVideo,
     Image,
     YoutubePlayer,
-    FacebookPlayer
+    FacebookPlayer,
+    Video
 }

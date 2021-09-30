@@ -24,26 +24,7 @@ const config =  [
     ]
   },
   {
-    input: "src/video/react-video.jsx",
-    output: {
-      name: "ReactVideo",
-      sourcemap: true,
-      file: "video.js",
-      format: "cjs"
-    },
-    external: ["react", /@babel\/runtime/],
-    plugins: [
-      babel({
-        exclude: 'node_modules/**',
-        plugins: ['@babel/transform-runtime'],
-        babelHelpers: 'runtime'
-      }),
-      sourcemaps(),
-      styles()
-    ]
-  },
-  {
-    input: "src/video/react-video.jsx",
+    input: "src/v1/video/react-video.jsx",
     output: {
       name: "ReactVideo",
       sourcemap: true,
@@ -62,7 +43,7 @@ const config =  [
     ]
   },
   {
-    input: "src/video/react-video.jsx",
+    input: "src/v1/video/react-video.jsx",
     output: {
       name: "ReactVideo",
       sourcemap: true,
@@ -81,7 +62,7 @@ const config =  [
     ]
   },
   {
-    input: "src/video/react-video.jsx",
+    input: "src/v1/video/react-video.jsx",
     output: {
       name: "ReactVideo",
       sourcemap: true,
@@ -98,27 +79,9 @@ const config =  [
       styles(),
       sourcemaps()
     ]
-  },{
-    input: "src/audio/react-audio.jsx",
-    output: {
-      name: "ReactAudio",
-      sourcemap: true,
-      file: "audio.js",
-      format: "cjs"
-    },
-    external: ["react", /@babel\/runtime/],
-    plugins: [
-      babel({
-        exclude: 'node_modules/**',
-        plugins: ['@babel/transform-runtime'],
-        babelHelpers: 'runtime'
-      }),
-      styles(),
-      sourcemaps()
-    ]
   },
   {
-    input: "src/audio/react-audio.jsx",
+    input: "src/v1/audio/react-audio.jsx",
     output: {
       name: "ReactAudio",
       sourcemap: true,
@@ -137,7 +100,7 @@ const config =  [
     ]
   },
   {
-    input: "src/audio/react-audio.jsx",
+    input: "src/v1/audio/react-audio.jsx",
     output: {
       name: "ReactAudio",
       sourcemap: true,
@@ -156,7 +119,7 @@ const config =  [
     ]
   },
   {
-    input: "src/audio/react-audio.jsx",
+    input: "src/v1/audio/react-audio.jsx",
     output: {
       name: "ReactAudio",
       file: "dist/audio.cjs.js",

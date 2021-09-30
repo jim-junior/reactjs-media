@@ -24,7 +24,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   width: 100%;
   margin-bottom: 5px;
   cursor: pointer;
-  background-color: aliceblue;
+  background-color: rgba(255, 255, 255, 0.664);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
@@ -32,17 +32,31 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 .progress-video-react .finnished {
   background-color: #006eff;
   height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .progress-video-react .point {
   width: 0px;
   height: 0px;
+  margin-left: auto;
   border-radius: 50%;
-  background-color: aqua;
+  position: absolute;
+  right: -3px;
+  pointer-events: none;
+  background-color: #006eff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .progress-video-react .point:hover {
-  background-color: #006eff;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
 }
 
 .progress-video-react:focus {
@@ -54,7 +68,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
 }
 
 .progress-video-react:hover .point {
-  width: 1px;
+  width: 10px;
   height: 10px;
 }
 
@@ -65,7 +79,6 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   background-color: rgba(255, 255, 255, 0.089);
   border: white 2px solid;
   border-top: blue 2px solid;
-  width: 50px;
   top: 33.33%;
   left: 43.33%;
   -webkit-animation: loading 1s infinite;
@@ -95,7 +108,7 @@ Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be foun
   bottom: 0px;
   left: 0px;
   right: 0px;
-  margin: 0.5rem 0.3rem;
+  margin: 0rem 0.3rem;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.404)), color-stop(rgba(0, 0, 0, 0.589)), to(rgba(0, 0, 0, 0.863)));
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.863));
   -webkit-transition: all 0.5s ease-out;
@@ -191,7 +204,7 @@ span.icon {
 }
 
 .video-react-menu {
-  background-color: whitesmoke;
+  background-color: rgba(7, 7, 7, 0.671);
   width: 150px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -207,7 +220,7 @@ span.icon {
   border-radius: 5px;
   right: 0px;
   position: absolute;
-  color: black;
+  color: #b4b3b3;
   z-index: 3;
   -webkit-box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
           box-shadow: #00000052 1px 1px 15px, #00000052 -1px -1px 15px;
@@ -220,6 +233,8 @@ span.icon {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: #b4b3b3;
+  text-decoration: none;
 }
 
 .list- .text {
@@ -227,7 +242,7 @@ span.icon {
 }
 
 .list-:hover {
-  background: gray;
+  background: rgba(128, 128, 128, 0.486);
   color: white;
 }
 
@@ -454,8 +469,10 @@ span.icon {
   height: fit-content;
   padding: 1rem 2rem;
   position: absolute;
-  left: 45%;
-  top: 45%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   color: white;
   background: #006eff;
   border-radius: 25%;
@@ -470,5 +487,45 @@ span.icon {
 
 .poster > div div:hover {
   background: #2985fd;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: .5rem;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  bottom: 230%;
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 /*# sourceMappingURL=Video.css.map */
