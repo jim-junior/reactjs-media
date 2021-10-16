@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* 
-Copyright Beingana Jim Junior, 2021 and all the contributors. License Cn be found in the LICENCE file
+Copyright Beingana Jim Junior, 2021 and all the contributors. License Can be found in the LICENCE file
 */
 
 import { ReactAudio } from "./v1/audio/react-audio.jsx";
