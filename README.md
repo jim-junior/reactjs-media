@@ -104,7 +104,7 @@ A few important props you can pass are here:
 
 ---
 
-If you want to learn more on how to customize it. Checkout the offical [Documentation](https://cranom.com/reactjs-media "Documentation")
+If you want to learn more on how to customize it. Checkout the offical [Documentation](https://cranom.vercel.app/reactjs-media "Documentation")
 
 <!-- props.onTimeUpdate(e, currentTime, w) -->
 
