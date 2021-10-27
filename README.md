@@ -109,6 +109,14 @@ If you want to learn more on how to customize it. Checkout the offical [Document
 <!-- props.onTimeUpdate(e, currentTime, w) -->
 
 ---
+### Sponsoring
+You can sponsor this project in two ways.
+#### Using patron
+
+#### Purchase interserver cloud hosting for $0.01 using our coupon.
+  coupon: `sponsorreactjsmedia`
+  You will get a discount off the first month and pay only $0.01.
+___
 
 This package is developed by [Beingana Jim Junior](https://www.twitter.com/_jimjunior_) a fullstack Developer. The source code can be found on [Github](https://github.com/jim-junior/reactjs-media).
 Anybody interested is free to contribute.
