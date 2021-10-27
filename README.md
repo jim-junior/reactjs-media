@@ -112,6 +112,7 @@ If you want to learn more on how to customize it. Checkout the offical [Document
 ### Sponsoring
 You can sponsor this project in two ways.
 #### Using patron
+Patreon profile link: [https://patreon.com/jimjunior](https://patreon.com/jimjunior)
 
 #### Purchase interserver cloud hosting for $0.01 using our coupon.
   coupon: `sponsorreactjsmedia`
