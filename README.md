@@ -21,7 +21,10 @@ Sound Cloud player is soon Comming
 To install go to your terminal and run this script
 
 ```bash
+# npm
 $ npm install reactjs-media
+# yarn
+$ yarn add reacttjs-media
 ```
 
 If your see no error then is is Installed.
@@ -30,7 +33,7 @@ If your see no error then is is Installed.
 
 In here we shall show a small demo on how to setup a simple video component. We shall create the default component.
 
-**\_Using new player in version 2**
+**Using new player in version 2**
 
 ```jsx
 import React from 'react';
@@ -59,7 +62,7 @@ const MyVideo = () => {
 
 ```
 
-**\_Using old player in version 1**
+**Using old player in version 1**
 
 ```jsx
 import React from 'react';
@@ -88,35 +91,35 @@ const MyVideo = () => {
 
 ```
 
-The above code can be used to create the most basic video component. .
+> **Note:** The `ReactVideo` component will be removed in future versions of the package starting with veersion 3
 
 Try it on [Codesandbox](https://codesandbox.io/s/reactjs-media-3pj4t?file=/src/App.js)
 
 A few important props you can pass are here:
-| Prop | type | Function |
+| Prop           | type                  | Function                                                                                                                       |
 | -------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `src` | string : **Required** | This is the source of the video you want to display a it will be placed in the `<source />` tag. |
-| `poster` | string: | This is the poster os the video |
-| `className` | string | The class of the video |
-| `onPlay` | fuction | It takes in a function and you can use it how you want |
-| `onPause` | fuction | It also takes in a function and you can use it how you want |
-| `onTimeUpdate` | function | It is triggered when the video is playing. It passes in 3 arguments. An `event`, `currentTime`, and the `percentage` finished. |
+| `src`          | string : **Required** | This is the source of the video you want to display a it will be placed in the `<source />` tag.                               |
+| `poster`       | string:               | This is the poster os the video                                                                                                |
+| `className`    | string                | The class of the video                                                                                                         |
+| `onPlay`       | fuction               | It takes in a function and you can use it how you want                                                                         |
+| `onPause`      | fuction               | It also takes in a function and you can use it how you want                                                                    |
+| `onTimeUpdate` | function              | It is triggered when the video is playing. It passes in 3 arguments. An `event`, `currentTime`, and the `percentage` finished. |
 
 ---
 
 If you want to learn more on how to customize it. Checkout the offical [Documentation](https://cranom.vercel.app/reactjs-media "Documentation")
 
-<!-- props.onTimeUpdate(e, currentTime, w) -->
 
 ---
 ### Sponsoring
 You can sponsor this project in two ways.
-***Using Patreon***
+**Using Patreon**
 Patreon profile link: [https://patreon.com/jimjunior](https://patreon.com/jimjunior)
 
-***Purchase interserver cloud hosting for $0.01 using our coupon.***
-  coupon: `sponsorreactjsmedia`
-  You will get a discount off the first month and pay only $0.01. Visit [interserver here](https://www.interserver.net/r/656116)
+**Purchase interserver cloud hosting for $0.01 using our coupon.**
+
+coupon: `sponsorreactjsmedia`
+You will get a discount off the first month and pay only $0.01. Visit [interserver here](https://www.interserver.net/r/656116)
 ___
 
 This package is developed by [Beingana Jim Junior](https://www.twitter.com/_jimjunior_) a fullstack Developer. The source code can be found on [Github](https://github.com/jim-junior/reactjs-media).

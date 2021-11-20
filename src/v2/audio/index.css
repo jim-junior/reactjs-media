@@ -4,6 +4,7 @@
   background-color: #0f0f0f;
   color: #ffffff;
   font-size: 2rem;
+  padding: 2px 5px;
 }
 
 .controls {
@@ -53,6 +54,9 @@
   display: -ms-flexbox;
   display: flex;
   margin-right: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .central-controls > div div {

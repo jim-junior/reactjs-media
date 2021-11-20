@@ -2,9 +2,9 @@
     width: 100%;
     border-radius: 5px;
     background-color: #0f0f0f;
-    //color: #99989883;
     color: #ffffff;
     font-size: 2rem;
+    padding: 2px 5px;
 }
 
 .controls {
@@ -36,8 +36,9 @@
     margin-left: auto;
     display: flex;
     margin-right: auto;
-    div {
-        flex: 1;
-    }
+    align-items: center;
+      div {
+          flex: 1;
+      }
     }
 }

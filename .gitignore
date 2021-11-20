@@ -25,3 +25,8 @@ yarn-debug.log*
 yarn-error.log*
 comand.txt
 players.txt
+
+# media files used in development
+demo/video.*
+demo/image.*
+demo/audio.*

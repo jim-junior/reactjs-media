@@ -4,7 +4,9 @@
   "description": "A package for all media components in react. Video and Audio",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "webpack": "webpack --mode development",
+    "dev": "nodemon server.js"
   },
   "peerDependencies": {
     "react": "^17.0.1",
@@ -14,8 +16,10 @@
     "@babel/runtime": "^7.12.5",
     "@material-ui/core": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@react-icons/all-files": "^4.1.0",
     "prop-types": "^15.7.2",
-    "react-icons": "^4.1.0"
+    "react-icons": "^4.1.0",
+    "sass": "^1.43.4"
   },
   "repository": {
     "type": "git",
@@ -35,7 +39,7 @@
   "bugs": {
     "url": "https://github.com/jim-junior/reactjs-media/issues"
   },
-  "homepage": "https://cranom.com/reactjs-media",
+  "homepage": "https://cranom.vercel.app/reactjs-media",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
@@ -44,11 +48,21 @@
     "@babel/preset-react": "^7.12.10",
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^21.0.0",
+    "babel-loader": "^8.2.3",
     "babel-plugin-inline-react-svg": "^2.0.1",
+    "css-loader": "^6.5.1",
+    "express": "^4.17.1",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.15",
     "rollup": "^2.58.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-styles": "^3.12.2",
-    "rollup-plugin-svg-import": "^1.5.1"
+    "rollup-plugin-svg-import": "^1.5.1",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1"
   }
 }

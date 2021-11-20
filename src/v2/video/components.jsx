@@ -1,6 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { forwardRef, useRef, useEffect, useState, useContext } from 'react'
-import * as Icons from 'react-icons/all'
+import { FaPause, FaPlay, FaForward, FaVolumeUp } from "react-icons/fa"
+import { RiFullscreenFill } from "react-icons/ri"
+import { MdFullscreenExit, MdLoop, MdPictureInPicture, MdFlipToBack, MdVolumeDown, MdVolumeUp } from "react-icons/md"
+import { GoSettings } from "react-icons/go"
+import { IoCloseCircleOutline } from "react-icons/io5"
+import { CgClose } from "react-icons/cg"
+import { FiDownloadCloud } from "react-icons/fi"
+import { GiSpeedometer } from "react-icons/gi"
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -151,19 +158,19 @@ export const LowerControls = (props) => {
     <>
       <div className="controls">
         <div className="play">
-          {Playing ? <Icons.FaPause onClick={pause} /> :
-            <Icons.FaPlay onClick={play} />}
+          {Playing ? <FaPause onClick={pause} /> :
+            <FaPlay onClick={play} />}
         </div>
         <div className="foward">
-          <Icons.FaForward onClick={forward} />
+          <FaForward onClick={forward} />
         </div>
         <div className="timestamps">
           {CurrentTime} / {Duration}
         </div>
         <div className="settimgs">
           <div className="fullscreen">
-            {fullscreen === false ? <Icons.RiFullscreenFill onClick={enterFullScreen} /> :
-              <Icons.MdFullscreenExit onClick={exitFullScreen} />}
+            {fullscreen === false ? <RiFullscreenFill onClick={enterFullScreen} /> :
+              <MdFullscreenExit onClick={exitFullScreen} />}
           </div>
           {props.nosettings ? <></> :
             <Settings {...props} />}
@@ -177,7 +184,7 @@ export const Settings = (props) => {
   const { setsetting, setting } = useContext(VideoContext)
   return (
     <div className="settings">
-      <Icons.GoSettings onClick={(e) => { setsetting(!setting) }} />
+      <GoSettings onClick={(e) => { setsetting(!setting) }} />
       <SettingsMenu {...props} />
     </div>
   )
@@ -200,39 +207,39 @@ export const SettingsMenu = (props) => {
     <div style={setting === false ? { display: 'none' } : {}} className="settingsmenu">
       <div className="menutop menuitem">
         <span className="icon">
-          <Icons.IoCloseCircleOutline onClick={(e) => { setsetting(false) }} />
+          <IoCloseCircleOutline onClick={(e) => { setsetting(false) }} />
         </span>
         <span className="item">Settings</span>
       </div>
       {props.nodownload ? <></> :
         <a download="video" href={src} className="menuitem">
           <span className="icon">
-            <Icons.FiDownloadCloud />
+            <FiDownloadCloud />
           </span>
           <span className="item">Download</span>
         </a>}
       <div onClick={loop} className="menuitem">
         <span className="icon">
-          <Icons.MdLoop />
+          <MdLoop />
         </span>
         {looping ? <span className="item">Stop Loop</span> :
           <span className="item">Loop</span>}
       </div>
       <div onClick={PictureInPicture} className="menuitem">
         <span className="icon">
-          <Icons.MdPictureInPicture />
+          <MdPictureInPicture />
         </span>
         <span className="item">MiniPlayer</span>
       </div>
       <div onClick={(e) => { setplayback(true) }} className="menuitem">
         <span className="icon">
-          <Icons.GiSpeedometer />
+          <GiSpeedometer />
         </span>
         <span className="item">Playback Speed</span>
       </div>
       <div onClick={(e) => { setvolumeadjuston(true) }} className="menuitem">
         <span className="icon">
-          <Icons.FaVolumeUp />
+          <FaVolumeUp />
         </span>
         <span className="item">Volume</span>
       </div>
@@ -271,7 +278,7 @@ export const VolumeAdjust = (props) => {
         <Grid container spacing={2}>
           <Grid item>
             <IconButton onClick={(e) => { setvolumeadjuston(false) }} style={{ color: 'white' }} aria-label="delete">
-              <Icons.CgClose />
+              <CgClose />
             </IconButton>
 
           </Grid>
@@ -281,13 +288,13 @@ export const VolumeAdjust = (props) => {
         </Typography>
         <Grid container spacing={2}>
           <Grid item>
-            <Icons.MdVolumeDown />
+            <MdVolumeDown />
           </Grid>
           <Grid item xs>
             <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
           </Grid>
           <Grid item>
-            <Icons.MdVolumeUp />
+            <MdVolumeUp />
           </Grid>
         </Grid>
       </div>
@@ -398,7 +405,7 @@ export const PlaybackSpeedAdjust = (props) => {
         <Grid container spacing={2}>
           <Grid item>
             <IconButton onClick={(e) => { setplayback(false) }} style={{ color: 'white' }} aria-label="delete">
-              <Icons.CgClose />
+              <CgClose />
             </IconButton>
 
           </Grid>
@@ -432,7 +439,7 @@ export const Poster = (props) => {
         {props.poster ? <img src={props.poster} alt="poster" /> : ""}
         <div className="postericon">
           <div className="picon">
-            <Icons.FaPlay onClick={play} />
+            <FaPlay onClick={play} />
           </div>
         </div>
       </div>
@@ -466,37 +473,37 @@ export const ContextMenu = (props) => {
         <div onClick={Playing ? pause : play} className="menuitem">
           {Playing ? <>
             <span className="icon">
-              <Icons.FaPause />
+              <FaPause />
             </span>
             <span className="item">Pause</span></> :
             <>
               <span className="icon">
-                <Icons.FaPlay />
+                <FaPlay />
               </span>
               <span className="item">Play</span></>}
         </div>
         {props.nodownload ? <></> :
           <a download="video" href={src} className="menuitem">
             <span className="icon">
-              <Icons.FiDownloadCloud />
+              <FiDownloadCloud />
             </span>
             <span className="item">Download</span>
           </a>}
         <div onClick={PictureInPicture} className="menuitem">
           <span className="icon">
-            <Icons.MdPictureInPicture />
+            <MdPictureInPicture />
           </span>
           <span className="item">MiniPlayer</span>
         </div>
         <div onClick={(e) => { setplayback(true) }} className="menuitem">
           <span className="icon">
-            <Icons.GiSpeedometer />
+            <GiSpeedometer />
           </span>
           <span className="item">Playback Speed</span>
         </div>
         <div onClick={(e) => { setClipboard() }} className="menuitem">
           <span className="icon">
-            <Icons.MdFlipToBack />
+            <MdFlipToBack />
           </span>
           <span className="item">Copy Video Adress</span>
         </div>
@@ -508,7 +515,7 @@ export const ContextMenu = (props) => {
 export const Style = (props) => {
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .play:hover, .foward:hover, .timestamps:hover, .fullscreen:hover, .settings:hover {
             color: ${props.primaryColor};
         }

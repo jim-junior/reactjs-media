@@ -21,3 +21,10 @@ test
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+server.js
+.trix
+.editorconfig
+demo
+webpack.config.js
+.github
+SECURITY.md

@@ -6,10 +6,9 @@ The following are the version that are being suported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.x     | :white_check_mark: |
-| 1.3.x   | :x:                |
+| 2.x.x   | :white_check_mark: |
 | 1.5.x   | :white_check_mark: |
-| < 1.2   | :x:                |
+| <1.3.x  | :x:                |
 
 ## Reporting a Vulnerability
 
