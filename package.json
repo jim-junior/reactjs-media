@@ -1,6 +1,6 @@
 {
   "name": "reactjs-media",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "A package for all media components in react. Video and Audio",
   "main": "./lib/index.js",
   "scripts": {
