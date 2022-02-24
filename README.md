@@ -1,3 +1,4 @@
+> I am currently busy. If you wish to continue as the lead of this project. Please contact me.
 # Reactjs Media
 
 The reactjs media is a react package with awesome HTMLMediaElements that are recreated into react components with a good looking UI and fast UX.
