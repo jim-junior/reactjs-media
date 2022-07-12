@@ -52,7 +52,7 @@
     "babel-plugin-inline-react-svg": "^2.0.1",
     "css-loader": "^6.5.1",
     "express": "^4.17.1",
-    "html-loader": "^3.0.1",
+    "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.15",
     "rollup": "^2.58.0",
