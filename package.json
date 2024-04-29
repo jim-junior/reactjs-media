@@ -10,7 +10,6 @@
     "react": ">17.0.1",
     "react-dom": ">17.0.1"
   },
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jim-junior/reactjs-media.git"
@@ -30,5 +29,12 @@
     "url": "https://github.com/jim-junior/reactjs-media/issues"
   },
   "homepage": "https://cranom.vercel.app/reactjs-media",
-  "devDependencies": {}
+  "devDependencies": {
+    "rollup": "^4.17.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.2.10"
+  }
 }
