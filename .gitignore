@@ -8,6 +8,7 @@
 /test
 # production
 /build
+/dist
 
 
 # misc
