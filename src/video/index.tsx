@@ -1,13 +1,6 @@
-import React, {
-  useEffect,
-  useRef,
-  forwardRef,
-  useContext,
-  createContext,
-  Context,
-  useState,
-} from "react";
-import { FaPlay, FaPause } from "react-icons/fa";
+import { VideoProvider } from "./context";
+import { VideoControls, VideoPoster } from "./controls";
+import { VideoElement } from "./element";
 
 export type VideoProps = {
   controls?: boolean;
@@ -16,58 +9,11 @@ export type VideoProps = {
   width: string | number;
 };
 
-type VideoCTX = Context<{
-  videoRef: React.RefObject<HTMLVideoElement>;
-}>;
-
-export const VideoContext = createContext({
-  videoRef: { current: null },
-}) as VideoCTX;
-
-const VideoProvider = ({ children }: { children: React.ReactNode }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  return (
-    <VideoContext.Provider
-      value={{
-        videoRef,
-      }}
-    >
-      {children}
-    </VideoContext.Provider>
-  );
-};
-
-export type VideoElementProps = {
-  controls?: boolean;
-  src: string;
-};
-
-const VideoElement = ({ controls = true, src }: VideoElementProps) => {
-  const { videoRef } = useContext(VideoContext);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.src = src;
-      videoRef.current.preload = "metadata";
-    }
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      width="100%"
-      height="100%"
-      controls={controls}
-    ></video>
-  );
-};
-
 const Video = ({ controls = true, src, height, width }: VideoProps) => {
   return (
     <VideoProvider>
       <div
+        className="videoRoot"
         style={{
           maxHeight: height,
           maxWidth: width,
@@ -75,20 +21,13 @@ const Video = ({ controls = true, src, height, width }: VideoProps) => {
       >
         <VideoElement src={src} controls={false} />
         {controls && <VideoControls />}
+        {/*         <VideoPoster
+          src={
+            "https://plus.unsplash.com/premium_photo-1708589337299-0fa0a53c4089?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+        /> */}
       </div>
     </VideoProvider>
-  );
-};
-
-export const VideoControls = () => {
-  const { videoRef } = useContext(VideoContext);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  return (
-    <div
-      id="video-overlay"
-      className="w-full h-full absolute top-0 left-0"
-    ></div>
   );
 };
 

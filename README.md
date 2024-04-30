@@ -29,7 +29,6 @@ If your see no error then is is Installed.
 
 In here we shall show a small demo on how to setup a simple video component. We shall create the default component.
 
-**Using new player in version 2**
 
 ```jsx
 import React from 'react';
@@ -57,36 +56,6 @@ const MyVideo = () => {
 }
 
 ```
-
-**Using old player in version 1**
-
-```jsx
-import React from 'react';
-import { ReactVideo } from 'reactjs-media';
-
-const App = () => {
-    return (
-        <div>
-            <MyVideo />
-        </div>
-    )
-}
-
-const MyVideo = () => {
-    return (
-        <>
-        <div>
-            <ReactVideo
-                src='https://www.example.com/myvideo.mp4'
-                poster='/poster.png'
-            />
-        <div/>
-        </>
-    )
-}
-
-```
-
 
 If you want to learn more, Checkout the offical [Documentation](https://cranom.vercel.app/reactjs-media "Documentation")
 
