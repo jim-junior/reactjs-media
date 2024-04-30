@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 
-type VideoProps = {
+export type VideoProps = {
   controls?: boolean;
   src: string;
   height: string | number;
@@ -20,7 +20,7 @@ type VideoCTX = Context<{
   videoRef: React.RefObject<HTMLVideoElement>;
 }>;
 
-const VideoContext = createContext({
+export const VideoContext = createContext({
   videoRef: { current: null },
 }) as VideoCTX;
 
@@ -39,7 +39,7 @@ const VideoProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-type VideoElementProps = {
+export type VideoElementProps = {
   controls?: boolean;
   src: string;
 };
@@ -80,7 +80,7 @@ const Video = ({ controls = true, src, height, width }: VideoProps) => {
   );
 };
 
-const VideoControls = () => {
+export const VideoControls = () => {
   const { videoRef } = useContext(VideoContext);
   const [isPlaying, setIsPlaying] = useState(false);
 
