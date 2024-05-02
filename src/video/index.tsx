@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { VideoContext, VideoProvider } from "./context";
 import { VideoControls, VideoPoster } from "./controls";
 import { VideoElement } from "./element";
+import styles from "./styles/video.module.scss";
 
 export type VideoProps = {
   controls?: boolean;
@@ -36,7 +37,7 @@ function VideoRoot({
   return (
     <div
       ref={containerRef}
-      className="videoRoot"
+      className={styles.videoRoot}
       style={{
         maxHeight: height,
         maxWidth: width,

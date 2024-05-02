@@ -4,7 +4,7 @@
   height: 100%;
   overflow: hidden;
 }
-.video-overlay {
+.videoOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -20,7 +20,7 @@
   text-align: center;
 }
 
-.video-loader {
+.videoLoader {
   // video loader is inside the video-overlay
   position: absolute;
   top: 0;
@@ -33,7 +33,7 @@
   align-items: center;
 }
 
-.video-error {
+.videoError {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -43,7 +43,7 @@
   font-weight: bold;
 }
 
-.video-loader__spinner {
+.videoLoaderSpinner {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -59,7 +59,7 @@
   }
 }
 
-.video-tooltip {
+.videoTooltip {
   position: absolute;
   top: -4.5rem;
   left: 0;
@@ -71,7 +71,7 @@
   z-index: 2;
 }
 
-.video-poster {
+.videoPoster {
   // inside the videoRoot
   position: absolute;
   top: 0;
@@ -86,7 +86,7 @@
   }
 }
 
-.video-poster__play-button {
+.videoPosterPlayButton {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -101,7 +101,7 @@
   cursor: pointer;
 }
 
-.video-controls-bar {
+.videoControlsBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,17 +110,17 @@
   margin: 0 auto;
 }
 
-.video-controls-bar__left {
+.videoControlsBarLeft {
   display: flex;
   align-items: center;
 }
 
-.video-controls-bar__right {
+.videoControlsBarRight {
   display: flex;
   align-items: center;
 }
 
-.video-controls-button {
+.videoControlsButton {
   background-color: transparent;
   border: none;
   color: white;
@@ -129,7 +129,7 @@
   margin: 0 10px;
 }
 
-.video-controls-container {
+.videoControlsContainer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -140,12 +140,12 @@
   height: fit-content;
 }
 
-.video-time {
+.videoTime {
   color: white;
   font-size: 0.9rem;
 }
 
-.video-progress-bar {
+.videoProgressBar {
   width: 96%;
   margin: 0 auto;
   height: 3px;
@@ -154,20 +154,20 @@
   cursor: pointer;
   transition: height 0.3s;
   &:hover {
-    .video-progress-bar__fill {
+    .videoProgressBarFill {
       background-color: white;
     }
     height: 5px;
   }
 }
 
-.video-progress-bar__fill {
+.videoProgressBarFill {
   height: 100%;
   background-color: rgba(255, 255, 255, 0.5);
   transition: background-color 0.3s;
 }
 
-.seeking-canvas {
+.seekingCanvas {
   position: absolute;
   top: -3rem;
   left: 0;
@@ -179,13 +179,13 @@
   border: 1px solid white;
 }
 
-.video-volume-control-container {
+.videoVolumeControlContainer {
   display: flex;
   align-items: center;
   margin: 0 10px;
 }
 
-.volume-controls-button {
+.volumeControlsButton {
   background-color: transparent;
   border: none;
   color: white;
@@ -194,7 +194,7 @@
   margin: 0 10px;
 }
 
-.volume-controls-bar {
+.volumeControlsBar {
   width: 70px;
   height: 3px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -202,19 +202,19 @@
   cursor: pointer;
   transition: height 0.3s;
   &:hover {
-    .volume-controls-bar__fill {
+    .volumeControlsBarFill {
       background-color: rgba(255, 255, 255, 0.702);
     }
   }
 }
 
-.volume-controls-bar__fill {
+.volumeControlsBarFill {
   height: 100%;
   background-color: white;
   transition: background-color 0.3s;
 }
 
-.volume-controls-bar__handle {
+.volumeControlsBarHandle {
   position: absolute;
   top: -3.5px;
   left: 0;

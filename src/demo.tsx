@@ -1,10 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Video from "./video";
+import Video from "./index";
 
 const App = () => {
   return (
-    <Video
+    <Video.Video
       src={"/video.mkv"}
       controls={true}
       height={500}

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { VideoContext } from "./context";
-import "./styles/video.scss";
 import { MdSettings } from "react-icons/md";
 import { FaFastForward } from "react-icons/fa";
 import { BsFillRewindFill } from "react-icons/bs";
@@ -13,6 +12,7 @@ import {
   RiPictureInPicture2Line,
   RiPictureInPictureExitFill,
 } from "react-icons/ri";
+import styles from "./styles/video.module.scss";
 
 export const VideoControls = () => {
   const { videoRef } = useContext(VideoContext);
@@ -39,7 +39,7 @@ export const VideoControls = () => {
   }, [videoRef.current]);
 
   return (
-    <div className="video-overlay">
+    <div className={styles.videoOverlay}>
       <VideoLoader />
       <VideoControlsContainer />
     </div>
@@ -97,8 +97,8 @@ const VideoLoader = () => {
     return null;
   }
   return (
-    <div className="video-loader">
-      <div className="video-loader__spinner"></div>
+    <div className={styles.videoLoader}>
+      <div className={styles.videoLoaderSpinner}></div>
     </div>
   );
 };
@@ -156,7 +156,7 @@ const VideoControlsContainer = () => {
 
   return (
     <div
-      className="video-controls-container"
+      className={styles.videoControlsContainer}
       style={{ display: isInteracting ? "flex" : "none" }}
     >
       <VideoProgressBar />
@@ -263,12 +263,12 @@ const VideoProgressBar = () => {
     }
   }, [videoRef.current]);
   return (
-    <div ref={progressBar} className="video-progress-bar">
+    <div ref={progressBar} className={styles.videoProgressBar}>
       {isHovering && (
         <SeekingCanvas time={hoverTimeStamp} percentage={hoveringPrecentage} />
       )}
       <div
-        className="video-progress-bar__fill"
+        className={styles.videoProgressBarFill}
         style={{ width: `${videoPercentagePlayed}%` }}
       ></div>
       <VideoToolTip
@@ -293,7 +293,7 @@ const VideoToolTip = ({
     return null;
   }
   return (
-    <div className="video-tooltip" style={{ left: `${percentage - 3}%` }}>
+    <div className={styles.videoTooltip} style={{ left: `${percentage - 3}%` }}>
       {text}
     </div>
   );
@@ -341,7 +341,7 @@ const SeekingCanvas = ({
     <canvas
       style={{ left: `${percentage - 5}%` }}
       ref={canvasRef}
-      className="seeking-canvas"
+      className={styles.seekingCanvas}
       height={40}
       width={80}
     ></canvas>
@@ -378,12 +378,12 @@ export const VideoPoster = ({ src }: { src: string }) => {
 
   return (
     <div
-      className="video-poster"
+      className={styles.videoPoster}
       style={{
         backgroundImage: `url(${src})`,
       }}
     >
-      <button className="video-poster__play-button" onClick={play}>
+      <button className={styles.videoPosterPlayButton} onClick={play}>
         <FaPlay />
       </button>
     </div>
@@ -392,14 +392,14 @@ export const VideoPoster = ({ src }: { src: string }) => {
 
 const VideoControlsBar = () => {
   return (
-    <div className="video-controls-bar">
-      <div className="video-controls-bar__left">
+    <div className={styles.videoControlsBar}>
+      <div className={styles.videoControlsBarLeft}>
         <VideoPlayPauseButton />
         <VideoFastForwardButton />
         <VideoTime />
         <VideoVolumeControlBar />
       </div>
-      <div className="video-controls-bar__right">
+      <div className={styles.videoControlsBarRight}>
         <PictureInPictureButton />
         <VideoFullScreenButton />
         <VideoSettingsButton />
@@ -412,7 +412,7 @@ const VideoFastForwardButton = () => {
   const { forward } = useControls();
 
   return (
-    <button className="video-controls-button" onClick={forward}>
+    <button className={styles.videoControlsButton} onClick={forward}>
       <FaFastForward />
     </button>
   );
@@ -494,13 +494,13 @@ const VideoVolumeControlBar = () => {
   }, [videoRef.current]);
 
   return (
-    <div className="video-volume-control-container">
-      <button className="volume-controls-button" onClick={handleMute}>
+    <div className={styles.videoVolumeControlContainer}>
+      <button className={styles.volumeControlsButton} onClick={handleMute}>
         {renderVolumeIcon()}
       </button>
-      <div className="volume-controls-bar" ref={slider}>
+      <div className={styles.volumeControlsBar} ref={slider}>
         <div
-          className="volume-controls-bar__fill"
+          className={styles.volumeControlsBarFill}
           style={{ width: `${volume * 100}%` }}
         ></div>
         <div
@@ -514,7 +514,7 @@ const VideoVolumeControlBar = () => {
 
 const VideoSettingsButton = () => {
   return (
-    <button className="video-controls-button">
+    <button className={styles.videoControlsButton}>
       <MdSettings />
     </button>
   );
@@ -548,7 +548,7 @@ const VideoTime = () => {
     }
   }, [videoRef.current]);
   return (
-    <div className="video-time">
+    <div className={styles.videoTime}>
       {time} / {formatTime(videoRef.current?.duration || 0)}
     </div>
   );
@@ -572,7 +572,7 @@ const VideoFullScreenButton = () => {
   }, []);
 
   return (
-    <button className="video-controls-button" onClick={toggleFullscreen}>
+    <button className={styles.videoControlsButton} onClick={toggleFullscreen}>
       {isFullScreen ? <MdFullscreenExit /> : <MdOutlineFullscreen />}
     </button>
   );
@@ -616,7 +616,7 @@ const PictureInPictureButton = () => {
   }, [videoRef.current]);
 
   return (
-    <button className="video-controls-button" onClick={togglePip}>
+    <button className={styles.videoControlsButton} onClick={togglePip}>
       {isPip ? <RiPictureInPictureExitFill /> : <RiPictureInPicture2Line />}
     </button>
   );
@@ -661,7 +661,7 @@ const VideoPlayPauseButton = () => {
     }
   }, [videoRef.current]);
   return (
-    <button className="video-controls-button">
+    <button className={styles.videoControlsButton}>
       {isPlaying ? (
         <FaPause onClick={togglePlay} />
       ) : (

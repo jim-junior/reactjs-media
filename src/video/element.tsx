@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { VideoContext } from "./context";
+import styles from "./styles/video.module.scss";
 
 export type VideoElementProps = {
   controls?: boolean;
@@ -19,7 +20,7 @@ export const VideoElement = ({ controls = true, src }: VideoElementProps) => {
   return (
     <video
       ref={videoRef}
-      className="video-element"
+      className={styles.videoElement}
       width="100%"
       height="100%"
       controls={controls}
