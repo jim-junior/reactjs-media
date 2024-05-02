@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { VideoContext } from "../context";
 
 export const useControls = () => {
-  const { videoRef } = useContext(VideoContext);
+  const { videoRef, containerRef } = useContext(VideoContext);
 
   const play = async () => {
     if (videoRef.current) {
@@ -80,6 +80,30 @@ export const useControls = () => {
     }
   };
 
+  const toggleFullscreen = () => {
+    if (containerRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        containerRef.current.requestFullscreen();
+      }
+    }
+  };
+
+  const togglePip = async () => {
+    if (videoRef.current && "requestPictureInPicture" in videoRef.current) {
+      try {
+        if (document.pictureInPictureElement) {
+          await document.exitPictureInPicture();
+        } else {
+          await videoRef.current.requestPictureInPicture();
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return {
     play,
     pause,
@@ -93,5 +117,7 @@ export const useControls = () => {
     toggleMute,
     increaseVolume,
     decreaseVolume,
+    toggleFullscreen,
+    togglePip,
   };
 };
