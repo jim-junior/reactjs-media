@@ -5,7 +5,7 @@ import Video from "./video";
 const App = () => {
   return (
     <Video
-      src={"https://cdn.pixabay.com/video/2023/09/24/182082-867762198_tiny.mp4"}
+      src={"/video.mkv"}
       controls={true}
       height={500}
       width={800}

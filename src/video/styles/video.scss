@@ -61,13 +61,14 @@
 
 .video-tooltip {
   position: absolute;
-  top: -2rem;
+  top: -4.5rem;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   font-size: 0.8rem;
+  z-index: 2;
 }
 
 .video-poster {
@@ -133,7 +134,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(transparent, rgba(252, 252, 252, 0.5));
+  background: linear-gradient(transparent, rgb(0, 0, 0));
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -164,4 +165,62 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.5);
   transition: background-color 0.3s;
+}
+
+.seeking-canvas {
+  position: absolute;
+  top: -3rem;
+  left: 0;
+  width: 80px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 2;
+  border-radius: 0.2rem;
+  border: 1px solid white;
+}
+
+.video-volume-control-container {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.volume-controls-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.volume-controls-bar {
+  width: 100px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  cursor: pointer;
+  transition: height 0.3s;
+  &:hover {
+    .volume-controls-bar__fill {
+      background-color: rgba(255, 255, 255, 0.702);
+    }
+  }
+}
+
+.volume-controls-bar__fill {
+  height: 100%;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.volume-controls-bar__handle {
+  position: absolute;
+  top: -3.5px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
 }
