@@ -4,6 +4,8 @@
 
 The reactjs media is a react package with awesome HTMLMediaElements that are recreated into react components with a good looking UI and fast UX.
 
+Try it out on [CodeSandbox](https://codesandbox.io/p/sandbox/reactjs-media-c5x795)
+
 It includes currently only has a video and audio component.
 
 Available components:
