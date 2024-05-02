@@ -104,6 +104,12 @@ export const useControls = () => {
     }
   };
 
+  const seek = (time: number) => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = time;
+    }
+  };
+
   return {
     play,
     pause,
@@ -119,5 +125,6 @@ export const useControls = () => {
     decreaseVolume,
     toggleFullscreen,
     togglePip,
+    seek,
   };
 };

@@ -1,11 +1,7 @@
 import { useContext, useEffect } from "react";
 import { VideoContext } from "./context";
 import styles from "./styles/video.module.scss";
-
-export type VideoElementProps = {
-  controls?: boolean;
-  src: string;
-};
+import { VideoElementProps } from "./types";
 
 export const VideoElement = ({ controls = true, src }: VideoElementProps) => {
   const { videoRef } = useContext(VideoContext);

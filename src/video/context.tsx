@@ -1,9 +1,5 @@
 import { Context, createContext, useRef } from "react";
-
-type VideoCTX = Context<{
-  videoRef: React.RefObject<HTMLVideoElement>;
-  containerRef: React.RefObject<HTMLDivElement>;
-}>;
+import { VideoCTX } from "./types";
 
 export const VideoContext: VideoCTX = createContext({
   videoRef: { current: null },
