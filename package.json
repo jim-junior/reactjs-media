@@ -31,7 +31,7 @@
   "bugs": {
     "url": "https://github.com/jim-junior/reactjs-media/issues"
   },
-  "homepage": "https://cranom.vercel.app/reactjs-media",
+  "homepage": "https://open.cranom.cloud/reactjs-media/intro",
   "devDependencies": {
     "@eslint/js": "^9.1.1",
     "@rollup/plugin-commonjs": "^25.0.7",

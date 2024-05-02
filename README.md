@@ -8,7 +8,6 @@ It includes currently only has a video and audio component.
 
 Available components:
 
-- Image
 - Video
 - Audio
 
@@ -57,7 +56,7 @@ const MyVideo = () => {
 
 ```
 
-If you want to learn more, Checkout the offical [Documentation](https://cranom.vercel.app/reactjs-media "Documentation")
+If you want to learn more, Checkout the offical [Documentation](https://open.cranom.cloud/reactjs-media/intro "Documentation")
 
 ___
 
