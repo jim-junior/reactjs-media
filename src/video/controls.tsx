@@ -327,8 +327,18 @@ const SeekingCanvas = ({
         const context = canvasRef.current.getContext("2d");
         if (context) {
           referenceElement.currentTime = time;
-          await referenceElement.play();
-          referenceElement.pause();
+          // Fix: Error: The play() request was interrupted by a call to pause(). https://goo.gl/LdLk22
+          // See: https://github.com/jim-junior/reactjs-media/issues/261
+          try {
+            await referenceElement.play();
+          } catch (error) {
+            console.warn("Reference Video Inturrupted");
+          }
+          try {
+            referenceElement.pause();
+          } catch (error) {
+            // Do Nothing, Just Catch the Error Since the browser automatically pauses the video
+          }
 
           context.drawImage(referenceElement, 0, 0, 80, 40);
         }
