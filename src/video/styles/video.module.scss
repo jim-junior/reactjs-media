@@ -224,3 +224,48 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.contextPageOverlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.contextMenuCard {
+  position: absolute;
+}
+
+.contextMenu {
+  background: rgba(0, 0, 0, 0.507);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 5px;
+}
+
+.contextMenuItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background: rgba(245, 245, 245, 0.325);
+  }
+}
+
+.contextMenuItemIcon {
+  color: white;
+  margin-right: 10px;
+}
+
+.contextMenuItemLabel {
+  color: white;
+  font-size: 0.7rem;
+}

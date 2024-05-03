@@ -13,33 +13,13 @@ import {
   RiPictureInPictureExitFill,
 } from "react-icons/ri";
 import styles from "./styles/video.module.scss";
+import { ContextMenuItem } from "./types";
 
 export const VideoControls = () => {
-  const { videoRef } = useContext(VideoContext);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const handlePlay = () => {
-        setIsPlaying(true);
-      };
-
-      const handlePause = () => {
-        setIsPlaying(false);
-      };
-
-      videoRef.current.addEventListener("play", handlePlay);
-      videoRef.current.addEventListener("pause", handlePause);
-
-      return () => {
-        videoRef.current?.removeEventListener("play", handlePlay);
-        videoRef.current?.removeEventListener("pause", handlePause);
-      };
-    }
-  }, [videoRef.current]);
+  const { overlayRef } = useContext(VideoContext);
 
   return (
-    <div className={styles.videoOverlay}>
+    <div className={styles.videoOverlay} ref={overlayRef}>
       <VideoLoader />
       <VideoControlsContainer />
     </div>
@@ -166,7 +146,7 @@ const VideoControlsContainer = () => {
 };
 
 const VideoProgressBar = () => {
-  const { videoRef } = useContext(VideoContext);
+  const { videoRef, seekPreview } = useContext(VideoContext);
   const [videoPercentagePlayed, setVideoPercentagePlayed] = useState(0);
   const progressBar = useRef<HTMLDivElement>(null);
   const [hoveringPrecentage, setHoveringPercentage] = useState(0);
@@ -264,7 +244,7 @@ const VideoProgressBar = () => {
   }, [videoRef.current]);
   return (
     <div ref={progressBar} className={styles.videoProgressBar}>
-      {isHovering && (
+      {seekPreview && isHovering && (
         <SeekingCanvas time={hoverTimeStamp} percentage={hoveringPrecentage} />
       )}
       <div
@@ -678,5 +658,51 @@ const VideoPlayPauseButton = () => {
         <FaPlay onClick={togglePlay} />
       )}
     </button>
+  );
+};
+
+export const ContextMenu = ({
+  renderCustomMenu,
+}: {
+  renderCustomMenu?: (
+    contextMenuItems: Array<ContextMenuItem>
+  ) => React.ReactNode | null;
+}) => {
+  const { contextMenuItems, menuOpen, setMenuOpen, menuClientX, menuClientY } =
+    useContext(VideoContext);
+  if (!menuOpen) {
+    return null;
+  }
+
+  return (
+    <div
+      className={styles.contextPageOverlay}
+      onClick={() => setMenuOpen(false)}
+    >
+      <div
+        className={styles.contextMenuCard}
+        style={{ top: menuClientY, left: menuClientX }}
+      >
+        {renderCustomMenu ? (
+          // @ts-ignore
+          renderCustomMenu(contextMenuItems)
+        ) : (
+          <div className={styles.contextMenu}>
+            {contextMenuItems?.map((item: ContextMenuItem, index: number) => (
+              <button
+                key={index}
+                className={styles.contextMenuItem}
+                onClick={item.onClick}
+              >
+                <span className={styles.contextMenuItemIcon}>{item.icon}</span>
+                <span className={styles.contextMenuItemLabel}>
+                  {item.label}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };

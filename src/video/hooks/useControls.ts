@@ -110,6 +110,12 @@ export const useControls = () => {
     }
   };
 
+  const setLoop = (loop: boolean) => {
+    if (videoRef.current) {
+      videoRef.current.loop = loop;
+    }
+  };
+
   return {
     play,
     pause,
@@ -126,5 +132,6 @@ export const useControls = () => {
     toggleFullscreen,
     togglePip,
     seek,
+    setLoop,
   };
 };
