@@ -18,6 +18,10 @@ export interface VideoProps {
   width: string | number;
   poster: string;
   /**
+   * Indicates whether the video should show a preview when seeking
+   */
+  seekPreview?: boolean;
+  /**
    * Event Listener for when the video time updates
    * @param time - The current time of the video
    */
@@ -45,7 +49,15 @@ export interface VideoProps {
   onLoadedMetadata?: () => void;
   onLoadedData?: () => void;
   onCanPlay?: () => void;
+  contextMenu?: boolean;
+  contextMenuItems?: Array<ContextMenuItem>;
 }
+
+export type ContextMenuItem = {
+  label: string;
+  onClick: () => void;
+  icon?: React.ReactNode;
+};
 
 export interface VideoElementProps {
   controls?: boolean;
@@ -55,6 +67,21 @@ export interface VideoElementProps {
 export type VideoCTX = Context<{
   videoRef: React.RefObject<HTMLVideoElement>;
   containerRef: React.RefObject<HTMLDivElement>;
+  overlayRef: React.RefObject<HTMLDivElement>;
+  seekPreview: boolean;
+  setSeekPreview:
+    | React.Dispatch<React.SetStateAction<boolean>>
+    | ((boolean: boolean) => void);
+  menuClientY: number;
+  setMenuClientY: React.Dispatch<React.SetStateAction<number>>;
+  menuClientX: number;
+  setMenuClientX: React.Dispatch<React.SetStateAction<number>>;
+  contextMenuItems?: Array<ContextMenuItem> | [];
+  setContextMenuItems: React.Dispatch<
+    React.SetStateAction<Array<ContextMenuItem>>
+  >;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 
 export type VideoPlayerRef = {
@@ -67,4 +94,5 @@ export type VideoPlayerRef = {
   togglePip: () => void;
   toggleMute: () => void;
   togglePlay: () => void;
+  setLoop: (loop: boolean) => void;
 };

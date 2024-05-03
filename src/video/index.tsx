@@ -5,12 +5,15 @@ import {
   useRef,
   MutableRefObject,
 } from "react";
-import { VideoContext, VideoProvider } from "./context";
-import { VideoControls, VideoPoster } from "./controls";
+import { VideoContext, VideoCTXProvider } from "./context";
+import { ContextMenu, VideoControls, VideoPoster } from "./controls";
 import { VideoElement } from "./element";
 import styles from "./styles/video.module.scss";
 import { VideoProps, VideoPlayerRef } from "./types";
 import { useControls } from "./hooks/useControls";
+import { FaPlay, FaVolumeMute } from "react-icons/fa";
+import { FaPause } from "react-icons/fa6";
+import { MdFullscreen, MdPictureInPicture } from "react-icons/md";
 
 /**
  * A Video Component
@@ -36,17 +39,30 @@ import { useControls } from "./hooks/useControls";
  *   onTimeUpdate={(time) => console.log(time)}
  * />
  * ```
- * @link https://open.cranom.cloud/reactjs-media/video
+ * @see https://open.cranom.cloud/reactjs-media/video-player
+ * @link https://open.cranom.cloud/reactjs-media/api#video
  */
 const Video = forwardRef<any, VideoProps>((props, ref) => {
   return (
-    <VideoProvider>
-      <VideoRoot {...props} ref={ref}>
-        <VideoElement src={props.src} controls={false} />
-        {props.controls && <VideoControls />}
-        <VideoPoster src={props.poster} />
-      </VideoRoot>
+    <VideoProvider {...props} ref={ref}>
+      <VideoElement src={props.src} controls={false} />
+      {props.controls && <VideoControls />}
+      <VideoPoster src={props.poster} />
+      <ContextMenu />
     </VideoProvider>
+  );
+});
+
+export const VideoProvider = forwardRef<
+  any,
+  VideoProps & { children: React.ReactNode }
+>((props, ref) => {
+  return (
+    <VideoCTXProvider>
+      <VideoRoot {...props} ref={ref}>
+        {props.children}
+      </VideoRoot>
+    </VideoCTXProvider>
   );
 });
 
@@ -54,7 +70,15 @@ const VideoRoot = forwardRef<
   MutableRefObject<VideoPlayerRef | null>,
   VideoProps & { children: React.ReactNode }
 >((props, ref) => {
-  const { containerRef } = useContext(VideoContext);
+  const {
+    containerRef,
+    setSeekPreview,
+    setContextMenuItems,
+    setMenuClientX,
+    setMenuClientY,
+    setMenuOpen,
+    overlayRef,
+  } = useContext(VideoContext);
   const {
     play,
     pause,
@@ -66,6 +90,10 @@ const VideoRoot = forwardRef<
     togglePip,
     toggleMute,
   } = useControls();
+
+  useEffect(() => {
+    setSeekPreview(!!props.seekPreview);
+  }, [props.seekPreview]);
 
   // Expose Video Player Controls
   useEffect(() => {
@@ -156,6 +184,52 @@ const VideoRoot = forwardRef<
       video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("canplay", onCanPlay);
     };
+  }, []);
+
+  const CONTEXT_MENU_ITEMS = [
+    {
+      label: "Play",
+      onClick: play,
+      icon: <FaPlay />,
+    },
+    {
+      label: "Pause",
+      onClick: <FaPause />,
+    },
+    {
+      label: "Toggle Fullscreen",
+      onClick: toggleFullscreen,
+      icon: <MdFullscreen />,
+    },
+    {
+      label: "Toggle Picture in Picture",
+      onClick: togglePip,
+      icon: <MdPictureInPicture />,
+    },
+    {
+      label: "Toggle Mute",
+      onClick: toggleMute,
+      icons: <FaVolumeMute />,
+    },
+  ];
+
+  // set context menu items
+  useEffect(() => {
+    if (props.contextMenu) {
+      if (props.contextMenuItems) {
+        setContextMenuItems(props.contextMenuItems);
+      } else {
+        // @ts-ignore
+        setContextMenuItems(CONTEXT_MENU_ITEMS);
+      }
+      // register context menu event listener
+      overlayRef.current?.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        setMenuClientX(e.clientX);
+        setMenuClientY(e.clientY);
+        setMenuOpen(true);
+      });
+    }
   }, []);
 
   return (
