@@ -1,6 +1,6 @@
 import { Context } from "react";
 
-export type VideoProps = {
+export interface VideoProps {
   /**
    * Indicates whether the video should have controls. If `false`, wont render the controls
    */
@@ -45,12 +45,12 @@ export type VideoProps = {
   onLoadedMetadata?: () => void;
   onLoadedData?: () => void;
   onCanPlay?: () => void;
-};
+}
 
-export type VideoElementProps = {
+export interface VideoElementProps {
   controls?: boolean;
   src: string;
-};
+}
 
 export type VideoCTX = Context<{
   videoRef: React.RefObject<HTMLVideoElement>;
