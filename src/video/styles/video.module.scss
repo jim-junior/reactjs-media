@@ -1,3 +1,5 @@
+@import "./mixins.scss";
+
 .videoRoot {
   position: relative;
   width: 100%;
@@ -144,7 +146,30 @@
 
 .videoTime {
   color: white;
-  font-size: 0.9rem;
+  text-align: left;
+  width: 96%;
+  margin: 0 auto;
+  display: flex;
+  margin-bottom: 10px;
+  @include desktop {
+    font-size: 0.8rem;
+  }
+
+  @include tablet {
+    font-size: 0.7rem;
+  }
+
+  @include mobile {
+    font-size: 0.5rem;
+    margin-bottom: 10px;
+  }
+}
+
+.videoTimeCurrent {
+}
+
+.videoTimeDuration {
+  margin-left: auto;
 }
 
 .videoProgressBar {
@@ -185,13 +210,16 @@
   display: flex;
   align-items: center;
   margin: 0 10px;
+  @include mobile {
+    display: none;
+  }
 }
 
 .volumeControlsButton {
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   margin: 0 10px;
 }

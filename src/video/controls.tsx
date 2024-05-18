@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { FaPlay, FaPause } from "react-icons/fa";
+import { FaPlay, FaPause, FaExpand } from "react-icons/fa";
 import { VideoContext } from "./context";
 import { MdSettings } from "react-icons/md";
 import { FaFastForward } from "react-icons/fa";
@@ -14,6 +14,9 @@ import {
 } from "react-icons/ri";
 import styles from "./styles/video.module.scss";
 import { ContextMenuItem } from "./types";
+import { VideoTime } from "./components/VideoTime";
+import { VideoVolumeControlBar } from "./components/VolumeControl";
+import { VideoProgressBar } from "./components/ProgressBar";
 
 export const VideoControls = () => {
   const { overlayRef } = useContext(VideoContext);
@@ -139,202 +142,10 @@ const VideoControlsContainer = () => {
       className={styles.videoControlsContainer}
       style={{ display: isInteracting ? "flex" : "none" }}
     >
+      <VideoTime />
       <VideoProgressBar />
       <VideoControlsBar />
     </div>
-  );
-};
-
-const VideoProgressBar = () => {
-  const { videoRef, seekPreview } = useContext(VideoContext);
-  const [videoPercentagePlayed, setVideoPercentagePlayed] = useState(0);
-  const progressBar = useRef<HTMLDivElement>(null);
-  const [hoveringPrecentage, setHoveringPercentage] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-  const [hoverTime, setHoverTime] = useState("00:00");
-  const [hoverTimeStamp, setHoverTimeStamp] = useState(0);
-
-  function seek(e: MouseEvent) {
-    if (progressBar.current && videoRef.current) {
-      const rect = progressBar.current.getBoundingClientRect();
-      const percentage = ((e.clientX - rect.left) / rect.width) * 100;
-      videoRef.current.currentTime =
-        (percentage / 100) * videoRef.current.duration;
-    }
-  }
-
-  useEffect(() => {
-    if (progressBar.current) {
-      const handleMouseDown = (e: MouseEvent) => {
-        seek(e);
-      };
-
-      progressBar.current.addEventListener("mousedown", handleMouseDown);
-
-      return () => {
-        progressBar.current?.removeEventListener("mousedown", handleMouseDown);
-      };
-    }
-  }, [progressBar.current]);
-
-  function formatTime(time: number) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    const secondsString = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    const minutesString = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    return `${minutesString}:${secondsString}`;
-  }
-
-  useEffect(() => {
-    if (progressBar.current) {
-      const handleMouseMove = (e: MouseEvent) => {
-        if (progressBar.current && videoRef.current) {
-          const rect = progressBar.current.getBoundingClientRect();
-          const percentage = ((e.clientX - rect.left) / rect.width) * 100;
-          setHoveringPercentage(percentage);
-
-          const time = (percentage / 100) * videoRef.current.duration;
-          setHoverTimeStamp(time);
-          setHoverTime(formatTime(time));
-        }
-      };
-
-      const handleMouseEnter = () => {
-        setIsHovering(true);
-      };
-
-      const handleMouseLeave = () => {
-        setIsHovering(false);
-      };
-
-      progressBar.current.addEventListener("mousemove", handleMouseMove);
-      progressBar.current.addEventListener("mouseenter", handleMouseEnter);
-      progressBar.current.addEventListener("mouseleave", handleMouseLeave);
-
-      return () => {
-        progressBar.current?.removeEventListener("mousemove", handleMouseMove);
-        progressBar.current?.removeEventListener(
-          "mouseenter",
-          handleMouseEnter
-        );
-        progressBar.current?.removeEventListener(
-          "mouseleave",
-          handleMouseLeave
-        );
-      };
-    }
-  }, [progressBar.current]);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const handleTimeUpdate = () => {
-        if (videoRef.current) {
-          setVideoPercentagePlayed(
-            (videoRef.current.currentTime / videoRef.current.duration) * 100
-          );
-        }
-      };
-
-      videoRef.current.addEventListener("timeupdate", handleTimeUpdate);
-
-      return () => {
-        videoRef.current?.removeEventListener("timeupdate", handleTimeUpdate);
-      };
-    }
-  }, [videoRef.current]);
-  return (
-    <div ref={progressBar} className={styles.videoProgressBar}>
-      {seekPreview && isHovering && (
-        <SeekingCanvas time={hoverTimeStamp} percentage={hoveringPrecentage} />
-      )}
-      <div
-        className={styles.videoProgressBarFill}
-        style={{ width: `${videoPercentagePlayed}%` }}
-      ></div>
-      <VideoToolTip
-        text={hoverTime}
-        open={isHovering}
-        percentage={hoveringPrecentage}
-      />
-    </div>
-  );
-};
-
-const VideoToolTip = ({
-  text,
-  percentage,
-  open,
-}: {
-  text: string;
-  percentage: number;
-  open: boolean;
-}) => {
-  if (!open) {
-    return null;
-  }
-  return (
-    <div className={styles.videoTooltip} style={{ left: `${percentage - 3}%` }}>
-      {text}
-    </div>
-  );
-};
-
-const SeekingCanvas = ({
-  time,
-  percentage,
-}: {
-  time: number;
-  percentage: number;
-}) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { videoRef } = useContext(VideoContext);
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    if (referenceElement === null && videoRef.current) {
-      const element = document.createElement("video");
-      element.src = videoRef.current.src;
-      element.volume = 0;
-      setReferenceElement(element);
-    }
-  }, [referenceElement, videoRef.current]);
-
-  // get frame at time from reference video and draw it on canvas
-  useEffect(() => {
-    async function getFrameAtTime(time: number) {
-      if (canvasRef.current && referenceElement) {
-        const context = canvasRef.current.getContext("2d");
-        if (context) {
-          referenceElement.currentTime = time;
-          // Fix: Error: The play() request was interrupted by a call to pause(). https://goo.gl/LdLk22
-          // See: https://github.com/jim-junior/reactjs-media/issues/261
-          try {
-            await referenceElement.play();
-          } catch (error) {
-            console.warn("Reference Video Inturrupted");
-          }
-          try {
-            referenceElement.pause();
-          } catch (error) {
-            // Do Nothing, Just Catch the Error Since the browser automatically pauses the video
-          }
-
-          context.drawImage(referenceElement, 0, 0, 80, 40);
-        }
-      }
-    }
-    getFrameAtTime(time);
-  }, [canvasRef.current, time, referenceElement]);
-
-  return (
-    <canvas
-      style={{ left: `${percentage - 5}%` }}
-      ref={canvasRef}
-      className={styles.seekingCanvas}
-      height={40}
-      width={80}
-    ></canvas>
   );
 };
 
@@ -386,7 +197,6 @@ const VideoControlsBar = () => {
       <div className={styles.videoControlsBarLeft}>
         <VideoPlayPauseButton />
         <VideoFastForwardButton />
-        <VideoTime />
         <VideoVolumeControlBar />
       </div>
       <div className={styles.videoControlsBarRight}>
@@ -408,139 +218,11 @@ const VideoFastForwardButton = () => {
   );
 };
 
-const VideoVolumeControlBar = () => {
-  const { updateVolume, toggleMute } = useControls();
-  const { videoRef } = useContext(VideoContext);
-  const [volume, setVolume] = useState(1);
-  const slider = useRef<HTMLDivElement>(null);
-  const [isMuted, setIsMuted] = useState(false);
-
-  useEffect(() => {
-    if (slider.current) {
-      const handleMouseDown = (e: MouseEvent) => {
-        if (slider.current && videoRef.current) {
-          const rect = slider.current.getBoundingClientRect();
-          const percentage = ((e.clientX - rect.left) / rect.width) * 100;
-          updateVolume(percentage / 100);
-          setVolume(percentage / 100);
-        }
-      };
-
-      slider.current.addEventListener("mousedown", handleMouseDown);
-
-      return () => {
-        slider.current?.removeEventListener("mousedown", handleMouseDown);
-      };
-    }
-  }, [slider.current]);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      setVolume(videoRef.current.volume);
-    }
-  }, [videoRef.current]);
-
-  function renderVolumeIcon() {
-    if (isMuted) {
-      return <FaVolumeMute />;
-    } else if (volume === 0) {
-      return <FaVolumeMute />;
-    } else if (volume <= 0.3) {
-      return <FaVolumeOff />;
-    } else if (volume < 0.5) {
-      return <FaVolumeLow />;
-    } else {
-      return <FaVolumeUp />;
-    }
-  }
-
-  function handleMute() {
-    if (isMuted) {
-      toggleMute();
-      setIsMuted(false);
-    } else {
-      toggleMute();
-      setIsMuted(true);
-    }
-  }
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const handleVolumeChange = () => {
-        if (videoRef.current) {
-          setVolume(videoRef.current.volume);
-        }
-      };
-
-      videoRef.current.addEventListener("volumechange", handleVolumeChange);
-
-      return () => {
-        videoRef.current?.removeEventListener(
-          "volumechange",
-          handleVolumeChange
-        );
-      };
-    }
-  }, [videoRef.current]);
-
-  return (
-    <div className={styles.videoVolumeControlContainer}>
-      <button className={styles.volumeControlsButton} onClick={handleMute}>
-        {renderVolumeIcon()}
-      </button>
-      <div className={styles.volumeControlsBar} ref={slider}>
-        <div
-          className={styles.volumeControlsBarFill}
-          style={{ width: `${volume * 100}%` }}
-        ></div>
-        <div
-          className="volume-controls-bar__handle"
-          style={{ left: `${volume * 100 - 3.5}%` }}
-        ></div>
-      </div>
-    </div>
-  );
-};
-
 const VideoSettingsButton = () => {
   return (
     <button className={styles.videoControlsButton}>
       <MdSettings />
     </button>
-  );
-};
-
-const VideoTime = () => {
-  const { videoRef } = useContext(VideoContext);
-  const [time, setTime] = useState("00:00");
-
-  function formatTime(time: number) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    const secondsString = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    const minutesString = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    return `${minutesString}:${secondsString}`;
-  }
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const handleTimeUpdate = () => {
-        if (videoRef.current) {
-          setTime(formatTime(videoRef.current.currentTime));
-        }
-      };
-
-      videoRef.current.addEventListener("timeupdate", handleTimeUpdate);
-
-      return () => {
-        videoRef.current?.removeEventListener("timeupdate", handleTimeUpdate);
-      };
-    }
-  }, [videoRef.current]);
-  return (
-    <div className={styles.videoTime}>
-      {time} / {formatTime(videoRef.current?.duration || 0)}
-    </div>
   );
 };
 
@@ -563,7 +245,7 @@ const VideoFullScreenButton = () => {
 
   return (
     <button className={styles.videoControlsButton} onClick={toggleFullscreen}>
-      {isFullScreen ? <MdFullscreenExit /> : <MdOutlineFullscreen />}
+      {isFullScreen ? <MdFullscreenExit /> : <FaExpand />}
     </button>
   );
 };
@@ -658,51 +340,5 @@ const VideoPlayPauseButton = () => {
         <FaPlay onClick={togglePlay} />
       )}
     </button>
-  );
-};
-
-export const ContextMenu = ({
-  renderCustomMenu,
-}: {
-  renderCustomMenu?: (
-    contextMenuItems: Array<ContextMenuItem>
-  ) => React.ReactNode | null;
-}) => {
-  const { contextMenuItems, menuOpen, setMenuOpen, menuClientX, menuClientY } =
-    useContext(VideoContext);
-  if (!menuOpen) {
-    return null;
-  }
-
-  return (
-    <div
-      className={styles.contextPageOverlay}
-      onClick={() => setMenuOpen(false)}
-    >
-      <div
-        className={styles.contextMenuCard}
-        style={{ top: menuClientY, left: menuClientX }}
-      >
-        {renderCustomMenu ? (
-          // @ts-ignore
-          renderCustomMenu(contextMenuItems)
-        ) : (
-          <div className={styles.contextMenu}>
-            {contextMenuItems?.map((item: ContextMenuItem, index: number) => (
-              <button
-                key={index}
-                className={styles.contextMenuItem}
-                onClick={item.onClick}
-              >
-                <span className={styles.contextMenuItemIcon}>{item.icon}</span>
-                <span className={styles.contextMenuItemLabel}>
-                  {item.label}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
   );
 };

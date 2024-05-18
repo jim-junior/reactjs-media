@@ -1,0 +1,22 @@
+// desktop-screen-size varable
+$desktop-screen-size: 1024px;
+$tablet-screen-size: 768px;
+$mobile-screen-size: 425px;
+
+@mixin desktop {
+  @media (min-width: $desktop-screen-size) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $desktop-screen-size) and (min-width: $tablet-screen-size) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $tablet-screen-size) {
+    @content;
+  }
+}

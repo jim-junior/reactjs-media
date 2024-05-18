@@ -6,14 +6,15 @@ import {
   MutableRefObject,
 } from "react";
 import { VideoContext, VideoCTXProvider } from "./context";
-import { ContextMenu, VideoControls, VideoPoster } from "./controls";
+import { VideoControls, VideoPoster } from "./controls";
 import { VideoElement } from "./element";
 import styles from "./styles/video.module.scss";
 import { VideoProps, VideoPlayerRef } from "./types";
 import { useControls } from "./hooks/useControls";
-import { FaPlay, FaVolumeMute } from "react-icons/fa";
+import { FaExpand, FaPlay, FaVolumeMute } from "react-icons/fa";
 import { FaPause } from "react-icons/fa6";
 import { MdFullscreen, MdPictureInPicture } from "react-icons/md";
+import { ContextMenu } from "./components/ContextMenu";
 
 /**
  * A Video Component
@@ -194,12 +195,13 @@ const VideoRoot = forwardRef<
     },
     {
       label: "Pause",
-      onClick: <FaPause />,
+      onClick: pause,
+      icon: <FaPause />,
     },
     {
       label: "Toggle Fullscreen",
       onClick: toggleFullscreen,
-      icon: <MdFullscreen />,
+      icon: <FaExpand />,
     },
     {
       label: "Toggle Picture in Picture",
@@ -209,7 +211,7 @@ const VideoRoot = forwardRef<
     {
       label: "Toggle Mute",
       onClick: toggleMute,
-      icons: <FaVolumeMute />,
+      icon: <FaVolumeMute />,
     },
   ];
 
