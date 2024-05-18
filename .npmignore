@@ -29,3 +29,7 @@ webpack.config.js
 .github
 SECURITY.md
 public
+.gitpod.yml
+index.html
+eslint.config.js
+tailwind.config.js
