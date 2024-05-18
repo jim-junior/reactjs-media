@@ -81,6 +81,8 @@
   object-fit: cover;
   cursor: pointer;
   z-index: 1;
+  background-position: center;
+  background-size: cover;
   &:hover {
     filter: brightness(0.8);
   }
