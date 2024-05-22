@@ -299,3 +299,37 @@
   color: white;
   font-size: 0.7rem;
 }
+
+// Settings Modal
+
+.settingsOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.settingRoot {
+  background-color: white;
+  width: 50%;
+  height: 50%;
+  border-radius: 0.2rem;
+  padding: 1rem;
+}
+
+.settingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.settingTitle {
+  font-size: 1.5rem;
+}

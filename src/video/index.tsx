@@ -15,6 +15,7 @@ import { FaExpand, FaPlay, FaVolumeMute } from "react-icons/fa";
 import { FaPause } from "react-icons/fa6";
 import { MdFullscreen, MdPictureInPicture } from "react-icons/md";
 import { ContextMenu } from "./components/ContextMenu";
+import { Settings } from "./components/SettingsMenu";
 
 /**
  * A Video Component

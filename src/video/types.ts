@@ -51,12 +51,24 @@ export interface VideoProps {
   onCanPlay?: () => void;
   contextMenu?: boolean;
   contextMenuItems?: Array<ContextMenuItem>;
+  settings?: boolean;
+  settingsGroups?: Array<SettingsGroup>;
 }
 
 export type ContextMenuItem = {
   label: string;
   onClick: () => void;
   icon?: React.ReactNode;
+};
+
+export type SettingsGroup = {
+  title: string;
+  options: Array<SettingsItem>;
+};
+
+export type SettingsItem = {
+  label: string;
+  onClick: () => void;
 };
 
 export interface VideoElementProps {
