@@ -41,8 +41,8 @@ import { Settings } from "./components/SettingsMenu";
  *   onTimeUpdate={(time) => console.log(time)}
  * />
  * ```
- * @see https://open.cranom.cloud/reactjs-media/video-player
- * @link https://open.cranom.cloud/reactjs-media/api#video
+ * @see https://open.cranom.tech/reactjs-media/video-player
+ * @link https://open.cranom.tech/reactjs-media/api#video
  */
 const Video = forwardRef<any, VideoProps>((props, ref) => {
   return (

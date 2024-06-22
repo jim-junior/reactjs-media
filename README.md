@@ -58,7 +58,7 @@ const MyVideo = () => {
 
 ```
 
-If you want to learn more, Checkout the offical [Documentation](https://open.cranom.cloud/reactjs-media/intro "Documentation")
+If you want to learn more, Checkout the offical [Documentation](https://open.cranom.tech/reactjs-media/intro "Documentation")
 
 ___
 
