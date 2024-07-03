@@ -1,8 +1,7 @@
-import {
+import React, {
   useContext,
   useEffect,
   forwardRef,
-  useRef,
   MutableRefObject,
 } from "react";
 import { VideoContext, VideoCTXProvider } from "./context";
@@ -13,9 +12,8 @@ import { VideoProps, VideoPlayerRef } from "./types";
 import { useControls } from "./hooks/useControls";
 import { FaExpand, FaPlay, FaVolumeMute } from "react-icons/fa";
 import { FaPause } from "react-icons/fa6";
-import { MdFullscreen, MdPictureInPicture } from "react-icons/md";
+import { MdPictureInPicture } from "react-icons/md";
 import { ContextMenu } from "./components/ContextMenu";
-import { Settings } from "./components/SettingsMenu";
 
 /**
  * A Video Component
@@ -44,9 +42,16 @@ import { Settings } from "./components/SettingsMenu";
  * @see https://open.cranom.tech/reactjs-media/video-player
  * @link https://open.cranom.tech/reactjs-media/api#video
  */
-const Video = forwardRef<any, VideoProps>((props, ref) => {
+const Video = forwardRef<VideoPlayerRef, VideoProps>(function Video(
+  props,
+  ref
+) {
   return (
-    <VideoProvider {...props} ref={ref}>
+    <VideoProvider
+      {...props}
+      // @ts-expect-error - ref is a MutableRefObject
+      ref={ref}
+    >
       <VideoElement src={props.src} controls={false} />
       {props.controls && <VideoControls />}
       <VideoPoster src={props.poster} />
@@ -56,9 +61,9 @@ const Video = forwardRef<any, VideoProps>((props, ref) => {
 });
 
 export const VideoProvider = forwardRef<
-  any,
+  MutableRefObject<VideoPlayerRef | null>,
   VideoProps & { children: React.ReactNode }
->((props, ref) => {
+>(function VideoProvider(props, ref) {
   return (
     <VideoCTXProvider>
       <VideoRoot {...props} ref={ref}>
@@ -71,7 +76,7 @@ export const VideoProvider = forwardRef<
 const VideoRoot = forwardRef<
   MutableRefObject<VideoPlayerRef | null>,
   VideoProps & { children: React.ReactNode }
->((props, ref) => {
+>(function VideoRoot(props, ref) {
   const {
     containerRef,
     setSeekPreview,
@@ -101,7 +106,7 @@ const VideoRoot = forwardRef<
   useEffect(() => {
     if (!ref) return;
 
-    // @ts-ignore
+    // @ts-expect-error - ref is a MutableRefObject
     ref.current = {
       play,
       pause,
@@ -222,7 +227,6 @@ const VideoRoot = forwardRef<
       if (props.contextMenuItems) {
         setContextMenuItems(props.contextMenuItems);
       } else {
-        // @ts-ignore
         setContextMenuItems(CONTEXT_MENU_ITEMS);
       }
       // register context menu event listener

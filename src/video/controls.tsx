@@ -1,19 +1,15 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaPlay, FaPause, FaExpand } from "react-icons/fa";
 import { VideoContext } from "./context";
 import { MdSettings } from "react-icons/md";
 import { FaFastForward } from "react-icons/fa";
-import { BsFillRewindFill } from "react-icons/bs";
-import { FaVolumeLow } from "react-icons/fa6";
 import { useControls } from "./hooks/useControls";
-import { FaVolumeMute, FaVolumeUp, FaVolumeOff } from "react-icons/fa";
-import { MdOutlineFullscreen, MdFullscreenExit } from "react-icons/md";
+import { MdFullscreenExit } from "react-icons/md";
 import {
   RiPictureInPicture2Line,
   RiPictureInPictureExitFill,
 } from "react-icons/ri";
 import styles from "./styles/video.module.scss";
-import { ContextMenuItem } from "./types";
 import { VideoTime } from "./components/VideoTime";
 import { VideoVolumeControlBar } from "./components/VolumeControl";
 import { VideoProgressBar } from "./components/ProgressBar";
@@ -92,6 +88,7 @@ const VideoControlsContainer = () => {
 
   useEffect(() => {
     if (containerRef.current) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let timeout: any;
       if (isInteracting) {
         timeout = setTimeout(() => {
@@ -227,7 +224,7 @@ const VideoSettingsButton = () => {
 };
 
 const VideoFullScreenButton = () => {
-  const { containerRef } = useContext(VideoContext);
+  //const { containerRef } = useContext(VideoContext);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const { toggleFullscreen } = useControls();
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { VideoContext } from "./context";
 import styles from "./styles/video.module.scss";
 import { VideoElementProps } from "./types";
