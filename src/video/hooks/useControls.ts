@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { VideoContext } from "../context";
 
 export const useControls = () => {

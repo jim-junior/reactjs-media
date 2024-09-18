@@ -13,7 +13,7 @@ export interface VideoProps {
    * @example "video"
    * @example "https://www.example.com/video"
    **/
-  src: string;
+  src: string | MediaStream;
   height: string | number;
   width: string | number;
   poster: string;
@@ -73,7 +73,7 @@ export type SettingsItem = {
 
 export interface VideoElementProps {
   controls?: boolean;
-  src: string;
+  src: string | MediaStream;
 }
 
 export type VideoCTX = Context<{

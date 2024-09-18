@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useContext, useState, useEffect, useRef } from "react";
 import { VideoContext } from "../context";
 import styles from "../styles/video.module.scss";

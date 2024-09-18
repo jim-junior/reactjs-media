@@ -21,7 +21,7 @@ To install go to your terminal and run this script
 # npm
 $ npm install reactjs-media
 # yarn
-$ yarn add reacttjs-media
+$ yarn add reactjs-media
 ```
 
 If your see no error then is is Installed.

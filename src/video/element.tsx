@@ -8,10 +8,16 @@ export const VideoElement = ({ controls = true, src }: VideoElementProps) => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.src = src;
+      if (src) {
+        if (typeof src === "string") {
+          videoRef.current.src = src;
+        } else {
+          videoRef.current.srcObject = src;
+        }
+      }
       videoRef.current.preload = "metadata";
     }
-  }, []);
+  }, [videoRef.current, src]);
 
   return (
     <video

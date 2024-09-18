@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useContext } from "react";
 import { VideoContext } from "../context";
 import styles from "../styles/video.module.scss";
@@ -26,6 +27,7 @@ export const ContextMenu = ({
         style={{ top: menuClientY, left: menuClientX }}
       >
         {renderCustomMenu ? (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           renderCustomMenu(contextMenuItems)
         ) : (
