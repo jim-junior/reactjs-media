@@ -2,7 +2,7 @@
 
 ##### <div align="center"> [![License: MIT](https://flat.badgen.net/npm/license/reactjs-media)](https://opensource.org/licenses/MIT) [![Npm package total downloads](https://flat.badgen.net/npm/dt/reactjs-media)](https://npmjs.com/package/reactjs-media) [![version](https://flat.badgen.net/npm/v/reactjs-media)](https://npmjs.com/package/reactjs-media) [![](https://flat.badgen.net/badge/icon/github?icon=github&label&color=black)](https://github.com/jim-junior/reactjs-media) </div>
 
-The reactjs media is a react package with awesome HTMLMediaElements that are recreated into react components with a good looking UI and fast UX.
+Interactive media in React. This library is a collection of media components that can be used to display media on the web.
 
 Try it out on [CodeSandbox](https://codesandbox.io/p/sandbox/reactjs-media-c5x795)
 
@@ -24,8 +24,6 @@ $ npm install reactjs-media
 $ yarn add reactjs-media
 ```
 
-If your see no error then is is Installed.
-
 #### Setup
 
 In here we shall show a small demo on how to setup a simple video component. We shall create the default component.
@@ -38,23 +36,15 @@ import { Video } from 'reactjs-media';
 const App = () => {
     return (
         <div>
-            <MyVideo />
-        </div>
-    )
-}
-
-const MyVideo = () => {
-    return (
-        <>
-        <div>
             <Video
                 src='https://www.example.com/myvideo.mp4'
                 poster='/poster.png'
             />
-        <div/>
-        </>
+        </div>
     )
 }
+
+
 
 ```
 
