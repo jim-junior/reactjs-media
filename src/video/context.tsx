@@ -17,12 +17,16 @@ export const VideoContext: VideoCTX = createContext({
   setContextMenuItems: (contextMenuItems: Array<ContextMenuItem>) => {},
   menuOpen: false,
   setMenuOpen: (menuOpen: boolean) => {},
+  setSrc: (src: string | MediaStream | null) => {},
+  src: null,
 }) as VideoCTX;
 
 export const VideoCTXProvider = ({
   children,
+  src,
 }: {
   children: React.ReactNode;
+  src: string | MediaStream | null;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,6 +38,7 @@ export const VideoCTXProvider = ({
     Array<ContextMenuItem>
   >([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [videoSrc, setSrc] = useState<string | MediaStream | null>(src);
 
   return (
     <VideoContext.Provider
@@ -51,6 +56,8 @@ export const VideoCTXProvider = ({
         menuOpen,
         setMenuOpen,
         overlayRef,
+        src: videoSrc,
+        setSrc,
       }}
     >
       {children}

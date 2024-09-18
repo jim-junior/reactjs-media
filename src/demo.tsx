@@ -4,21 +4,34 @@ import { Video, VideoPlayerRef } from "./index";
 
 const App = () => {
   const ref = React.useRef<VideoPlayerRef | null>(null);
+  const [src, setSrc] = React.useState<string | MediaStream | null>(null);
+  const constraints = (window.constraints = {
+    audio: false,
+    video: true,
+  });
+
+  async function init(e) {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      setSrc(stream);
+      e.target.disabled = true;
+    } catch (e) {
+      // pass
+    }
+  }
   return (
     <div>
       <Video
-        src={"/video.mkv"}
+        src={src}
         controls={true}
         height={500}
         width={800}
         contextMenu
         seekPreview
-        poster={
-          "https://hips.hearstapps.com/hmg-prod/images/ripley-pa-108-011822-01629-r-661067043d66f.jpg?resize=980:*"
-        }
         ref={ref}
         onTimeUpdate={(time) => console.log(time)}
       />
+      <button onClick={init}>Start Camera</button>
     </div>
   );
 };

@@ -12,6 +12,7 @@ export const VideoElement = ({ controls = true, src }: VideoElementProps) => {
         if (typeof src === "string") {
           videoRef.current.src = src;
         } else {
+          videoRef.current.autoplay = true;
           videoRef.current.srcObject = src;
         }
       }

@@ -83,7 +83,7 @@ const VideoLoader = () => {
 };
 
 const VideoControlsContainer = () => {
-  const { containerRef } = useContext(VideoContext);
+  const { containerRef, src } = useContext(VideoContext);
   const [isInteracting, setIsInteracting] = useState(false);
 
   useEffect(() => {
@@ -133,6 +133,10 @@ const VideoControlsContainer = () => {
       };
     }
   }, [containerRef.current]);
+
+  if (typeof src !== "string") {
+    return null;
+  }
 
   return (
     <div
@@ -189,6 +193,10 @@ export const VideoPoster = ({ src }: { src: string }) => {
 };
 
 const VideoControlsBar = () => {
+  const { src } = useContext(VideoContext);
+  if (typeof src !== "string") {
+    return null;
+  }
   return (
     <div className={styles.videoControlsBar}>
       <div className={styles.videoControlsBarLeft}>

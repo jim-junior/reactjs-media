@@ -53,8 +53,8 @@ const Video = forwardRef<VideoPlayerRef, VideoProps>(function Video(
       ref={ref}
     >
       <VideoElement src={props.src} controls={false} />
-      {props.controls && <VideoControls />}
-      <VideoPoster src={props.poster} />
+      {props.controls && props.src && <VideoControls />}
+      {props.poster && <VideoPoster src={props.poster} />}
       <ContextMenu />
     </VideoProvider>
   );
@@ -65,7 +65,7 @@ export const VideoProvider = forwardRef<
   VideoProps & { children: React.ReactNode }
 >(function VideoProvider(props, ref) {
   return (
-    <VideoCTXProvider>
+    <VideoCTXProvider {...props}>
       <VideoRoot {...props} ref={ref}>
         {props.children}
       </VideoRoot>
@@ -246,6 +246,7 @@ const VideoRoot = forwardRef<
       style={{
         maxHeight: props.height,
         maxWidth: props.width,
+        background: "black",
       }}
     >
       {props.children}

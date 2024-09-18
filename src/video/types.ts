@@ -13,10 +13,10 @@ export interface VideoProps {
    * @example "video"
    * @example "https://www.example.com/video"
    **/
-  src: string | MediaStream;
+  src: string | MediaStream | null;
   height: string | number;
   width: string | number;
-  poster: string;
+  poster?: string;
   /**
    * Indicates whether the video should show a preview when seeking
    */
@@ -73,7 +73,7 @@ export type SettingsItem = {
 
 export interface VideoElementProps {
   controls?: boolean;
-  src: string | MediaStream;
+  src: string | MediaStream | null;
 }
 
 export type VideoCTX = Context<{
@@ -94,6 +94,8 @@ export type VideoCTX = Context<{
   >;
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  src: string | MediaStream | null;
+  setSrc: React.Dispatch<React.SetStateAction<string | MediaStream | null>>;
 }>;
 
 export type VideoPlayerRef = {
