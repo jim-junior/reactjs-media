@@ -9,9 +9,6 @@ export interface VideoProps {
    * The source of the video
    * @example "https://www.example.com/video.mp4"
    * @example "/video.mp4"
-   * @example "video.mp4"
-   * @example "video"
-   * @example "https://www.example.com/video"
    **/
   src: string | MediaStream | null;
   height: string | number;
