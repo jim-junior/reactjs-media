@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import styles from "../styles/video.module.scss";
 
 export const Settings = ({}) => {

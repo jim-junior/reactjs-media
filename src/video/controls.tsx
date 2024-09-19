@@ -85,6 +85,7 @@ const VideoLoader = () => {
 const VideoControlsContainer = () => {
   const { containerRef, src } = useContext(VideoContext);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -134,7 +135,15 @@ const VideoControlsContainer = () => {
     }
   }, [containerRef.current]);
 
-  if (typeof src !== "string") {
+  useEffect(() => {
+    if (typeof src === "string") {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  }, [src]);
+
+  if (!visible) {
     return null;
   }
 

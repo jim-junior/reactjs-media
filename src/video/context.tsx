@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 import { Context, createContext, useRef, useState } from "react";
 import { ContextMenuItem, VideoCTX } from "./types";
 
@@ -39,6 +39,10 @@ export const VideoCTXProvider = ({
   >([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoSrc, setSrc] = useState<string | MediaStream | null>(src);
+
+  useEffect(() => {
+    setSrc(src);
+  }, [src]);
 
   return (
     <VideoContext.Provider

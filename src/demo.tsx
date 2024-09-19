@@ -4,7 +4,9 @@ import { Video, VideoPlayerRef } from "./index";
 
 const App = () => {
   const ref = React.useRef<VideoPlayerRef | null>(null);
-  const [src, setSrc] = React.useState<string | MediaStream | null>(null);
+  const [src, setSrc] = React.useState<string | MediaStream | null>(
+    "/video.mkv"
+  );
   const constraints = (window.constraints = {
     audio: false,
     video: true,
