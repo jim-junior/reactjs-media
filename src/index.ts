@@ -7,6 +7,7 @@ import Audio from "./audio";
 import Img from "./image";
 
 export * from "./video/types";
+export * from "./audio/types";
 export {
   Video,
   VideoContext,
