@@ -75,7 +75,7 @@ To set up the project locally:
    npm run dev
    ```
 
-
+All code is located in the `src` directory. and to test your component import it in the `test/demo.tsx` file.
 
 ## Coding Style
 
